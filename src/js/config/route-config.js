@@ -5,7 +5,7 @@ aqtApp.config(function($routeProvider, $locationProvider) {
 		controller : ''
 
 	}).when("/", {
-		templateUrl : 'views/step.html'
+		templateUrl : 'views/main.html'
 
 	}).otherwise({
 		redirectTo : '/'
