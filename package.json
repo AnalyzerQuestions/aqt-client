@@ -2,7 +2,7 @@
   "name": "aqt-client",
   "version": "0.0.0",
   "description": "webapp client AQT",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
