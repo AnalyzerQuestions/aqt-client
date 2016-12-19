@@ -1,12 +1,12 @@
 {
-  "name": "AQT-client",
+  "name": "aqt-client",
   "description": "client web AQT",
   "main": "index.js",
   "authors": [
     "Franck Aragão"
   ],
   "license": "BSD-2-Clause",
-  "homepage": "https://github.com/FranckAJ",
+  "homepage": "https://github.com/AnalyzerQuestions/aqt-client.git",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "angular": "^1.6.0",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "angular-route": "^1.6.0"
   }
 }
