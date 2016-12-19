@@ -1,0 +1,21 @@
+{
+  "name": "AQT-client",
+  "description": "client web AQT",
+  "main": "index.js",
+  "authors": [
+    "Franck Aragão"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/FranckAJ",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.0",
+    "jquery": "^3.1.1"
+  }
+}
