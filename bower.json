@@ -10,7 +10,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "src/vendor",
+    "public/vendor",
     "test",
     "tests"
   ],
