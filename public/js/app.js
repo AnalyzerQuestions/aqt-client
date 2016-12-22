@@ -14,4 +14,5 @@ if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || wi
     console.error('Error during service worker registration:', e);
   });
   
-}
+};
+

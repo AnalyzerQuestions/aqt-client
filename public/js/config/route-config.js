@@ -4,11 +4,13 @@ aqtApp.config(function($routeProvider, $locationProvider) {
 		templateUrl : 'views/main.html'
 
 	}).when("/", {
-		templateUrl : 'views/login.html'
+		templateUrl : 'views/login.html',
+		controller : 'loginController'
 
 	}).otherwise({
 		redirectTo : '/'
 	});
+
 
 	$locationProvider.html5Mode(true);
 
