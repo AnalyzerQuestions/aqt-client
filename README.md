@@ -2,9 +2,9 @@
 
 ### REQUIREMENTS
 * NodeJS [download](https://nodejs.org/en/)
-    1. NPM
-    2. Bower `npm install -g bower`
-    3. Gulp (Optional) `npm install --global gulp-cli`
+    1. Bower `npm install -g bower`
+    2. Gulp (Optional) - gulp is a toolkit that helps you automate tasks. [download](http://gulpjs.com/)
+    3. nodemon (Optional) Automatic restarting of application. [download](https://nodemon.io/)
 
 
 ### USAGE

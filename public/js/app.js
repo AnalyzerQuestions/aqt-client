@@ -1,6 +1,5 @@
 var aqtApp = angular.module("aqtApp", ['ngRoute']);
 
-
 /**
 Service Worker register
 **/
