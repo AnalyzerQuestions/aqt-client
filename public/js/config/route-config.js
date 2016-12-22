@@ -7,6 +7,10 @@ aqtApp.config(function($routeProvider, $locationProvider) {
 		templateUrl : 'views/login.html',
 		controller : 'loginController'
 
+	}).when("/new", {
+		templateUrl : 'views/new-question.html',
+		controller: 'newQuestionController'
+
 	}).otherwise({
 		redirectTo : '/'
 	});

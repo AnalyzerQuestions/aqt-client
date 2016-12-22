@@ -1,4 +1,4 @@
-var aqtApp = angular.module("aqtApp", ['ngRoute']);
+var aqtApp = angular.module("aqtApp", ['ngRoute', 'ngTagsInput']);
 
 /**
 Service Worker register
