@@ -1,8 +1,5 @@
 <div ng-include="'views/fragments/navBar.html'"></div>
 
-<div class="section"></div>
-<div class="section"></div>
-
 <div class="container">
 	<center>
 		<p>Escreva sua Perguta de Programação</p>
@@ -24,12 +21,12 @@
 		<div class='row'>
 			<div class='input-field col s12'>
 				<textarea id="description" ng-model="source" class="materialize-textarea"></textarea>
-          		<label for="description">Descrição</label>
+        <label for="description">Descrição</label>
 			</div>
 		</div>
 		<div class='row'>
 			<div class='input-field col s12'>
-				<tags-input ng-model="tags"></tags-input>
+				<tags-input id="tag" ng-model="tags"></tags-input>
 			</div>
 		</div>
 		<br />
@@ -41,5 +38,3 @@
 </form>
 </div>
 </div>
-
-

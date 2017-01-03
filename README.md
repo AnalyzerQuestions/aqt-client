@@ -10,7 +10,7 @@
 ### USAGE
  * clone this repository;
  * Inside the project directory, perform the steps:
-    1. Use command line `npm update` to download modules of project.
+    1. Use command line `npm install` to download modules of project.
     2. Use command line `bower update` to download dependicies of project.
     3. Use command line `node app.js` to started local server.
     4. Be happy!!
