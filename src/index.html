@@ -13,14 +13,15 @@
 
 
   <meta name="mobile-web-app-capable" content="yes"/>
-  <link rel="icon" sizes="192x192" href="img/icons/icon-192.png"/>
+  <link rel="icon" sizes="192x192" href="assets/img/icons/icon-192.png"/>
   <meta name="theme-color" content="#0097A7"/>
 
 
-  <link rel="stylesheet" type="text/css" href="css/aqtApp.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/css/aqtApp.css"/>
   <link rel="stylesheet" type="text/css" href="vendor/materialize/dist/css/materialize.min.css"
   media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="vendor/ng-tags-input/ng-tags-input.css"/>
+  <link rel="stylesheet" type="text/css" href="vendor/simplemde/simplemde.min.css"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 
   <script src="vendor/jquery/dist/jquery.min.js"></script>
@@ -28,13 +29,16 @@
   <script src="vendor/angular/angular.js"></script>
   <script src="vendor/angular-route/angular-route.js"></script>
   <script src="vendor/ng-tags-input/ng-tags-input.min.js"></script>
+	<script type="text/javascript" src="vendor/simplemde/dist/simplemde.min.js"/></script>
 
-  <script src="js/app.js"></script>
-  <script src="js/config/route-config.js"></script>
 
-  <script src="js/controller/main-controller.js"></script>
-  <script src="js/controller/login-controller.js"></script>
-  <script src="js/controller/new-question.js"></script>
+  <script src="app/directivies/markdown.directive.js"></script>
+  <script src="app/aqt.module.js"></script>
+  <script src="app/config/route.config.js"></script>
+
+  <script src="app/components/main/main.controller.js"></script>
+  <script src="app/components/login/login.controller.js"></script>
+  <script src="app/components/question/new-question.controller.js"></script>
 
 </head>
 <body>

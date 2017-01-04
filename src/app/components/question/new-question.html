@@ -1,4 +1,4 @@
-<div ng-include="'views/fragments/navBar.html'"></div>
+<div ng-include="'app/common/navBar.html'"></div>
 
 <div class="container">
 	<center>
@@ -18,21 +18,29 @@
 			</div>
 		</div>
 
+		<!-- <div class='row'>
+			<div class='col s12'>
+	 			<simple-mde ng-model="question.description" clear="true"></simple-mde>
+			</div>
+		</div -->
 		<div class='row'>
 			<div class='input-field col s12'>
 				<textarea id="description" ng-model="source" class="materialize-textarea"></textarea>
         <label for="description">Descrição</label>
 			</div>
 		</div>
+
 		<div class='row'>
 			<div class='input-field col s12'>
 				<tags-input id="tag" ng-model="tags"></tags-input>
 			</div>
 		</div>
-		<br />
+		<br/>
 
 		<div class='row'>
-			<a name='btn_post' class='col s12 btn btn-large waves-effect cyan darken-2'>POSTAR</a>
+			<div class='input-field col s12'>
+				<a name='btn_post' class='col s12 btn btn-large waves-effect cyan darken-2'>POSTAR</a>
+			</div>
 		</div>
 	</center>
 </form>

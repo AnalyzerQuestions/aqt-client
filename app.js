@@ -5,10 +5,10 @@ var app = express();
 // seleciona process.env.PORT, caso exista variavel de ambiente (heroku)
 app.set('port', (process.env.PORT || 3000));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
 
-app.get('/*', function(req, res) { 
-  res.sendFile(__dirname + '/public/index.html')
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/src/index.html')
 });
 
 var server = app.listen(app.get('port'), function() {

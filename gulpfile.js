@@ -1,11 +1,9 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 
-/**
-Análise do código js.
-**/
+
 gulp.task('jshint', function () {
-  return gulp.src('public/js/**/*.js')
+  return gulp.src('src/app/**/*.js')
   .pipe(jshint())
   .pipe(jshint.reporter('default'));
 });
