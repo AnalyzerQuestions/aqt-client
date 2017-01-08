@@ -1,14 +1,14 @@
-aqtApp.config(function($routeProvider, $locationProvider) {
+angular.module("aqtApp").config(function($routeProvider, $locationProvider) {
 
 	$routeProvider.when("/main", {
-		templateUrl : 'app/components/main/main.html'
+		templateUrl : './main.html'
 
 	}).when("/", {
-		templateUrl : 'app/components/login/login.html',
+		templateUrl : './login.html',
 		controller : 'loginController'
 
 	}).when("/new", {
-		templateUrl : 'app/components/question/new-question.html',
+		templateUrl : './new-question.html',
 		controller: 'newQuestionController'
 
 	}).otherwise({

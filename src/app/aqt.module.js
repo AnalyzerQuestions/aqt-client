@@ -1,4 +1,4 @@
-var aqtApp = angular.module("aqtApp", ['ngRoute', 'aqtDirectivies', 'ngTagsInput']);
+angular.module("aqtApp", ['ngRoute', 'ngTagsInput', 'templates']);
 
 
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {

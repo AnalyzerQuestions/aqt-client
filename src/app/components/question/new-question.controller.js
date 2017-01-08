@@ -1,4 +1,4 @@
-aqtApp.controller("newQuestionController", function($scope, $location){
+angular.module("aqtApp").controller("newQuestionController", function($scope, $location){
 
   $scope.question = {
     description:'blala'

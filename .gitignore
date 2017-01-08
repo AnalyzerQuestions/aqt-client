@@ -30,7 +30,7 @@ build/Release
 node_modules
 vendor
 /node_modules
-/vendor
+/dist
 jspm_packages
 
 # Optional npm cache directory
@@ -38,3 +38,5 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+.templates.js
