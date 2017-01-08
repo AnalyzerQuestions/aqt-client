@@ -9,7 +9,7 @@ angular.module("aqtApp").config(function($routeProvider, $locationProvider) {
 
 	}).when("/new", {
 		templateUrl : './new-question.html',
-		controller: 'newQuestionController'
+		controller: 'newQuestionController as nqCtrl'
 
 	}).otherwise({
 		redirectTo : '/'

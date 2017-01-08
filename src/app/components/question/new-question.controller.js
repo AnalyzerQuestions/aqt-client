@@ -1,8 +1,15 @@
-angular.module("aqtApp").controller("newQuestionController", function($scope, $location){
+angular.module("aqtApp").controller("newQuestionController", function(questionService){
 
-  $scope.question = {
-    description:'blala'
-  }
+  var vm = this;
 
+  vm.question = {};
+  vm.tags = [];
+  vm.suggestions = [];
+
+  vm.register = function() {
+    questionService.getSuggestions(vm.question, function(response){
+      vm.suggestions = response;
+    })
+  };
 
 });
