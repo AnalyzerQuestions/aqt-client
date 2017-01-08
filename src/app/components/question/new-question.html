@@ -1,5 +1,4 @@
 <div ng-include="'./navBar.html'"></div>
-<!-- <suggestion-modal suggestions="vm.suggestions"></suggestion-modal> -->
 
 <div class="container">
 	<center>
@@ -37,10 +36,12 @@
 
 		<div class='row'>
 			<div class='input-field col s12'>
-				<button type="submit" class='col s12 btn btn-large waves-effect cyan darken-2'>POSTAR</button>
+				<button class='col s12 btn btn-large waves-effect cyan darken-2'>POSTAR</button>
 			</div>
-
 		</div>
+
+		<suggestions-modal suggestions="nqCtrl.suggestions"></suggestions-modal>
+
 	</center>
 </form>
 </div>

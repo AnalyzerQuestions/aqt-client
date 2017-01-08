@@ -30,6 +30,7 @@ const PATHS = {
     'angular/angular.js',
     'angular-route/angular-route.js',
     'materialize-css/dist/js/materialize.js',
+    'angular-materialize/src/angular-materialize.js',
     'ng-tags-input/build/ng-tags-input.js'
   ],
   static: [

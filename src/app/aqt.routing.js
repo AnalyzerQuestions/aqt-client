@@ -1,4 +1,4 @@
-angular.module("aqtApp").config(function($routeProvider, $locationProvider) {
+angular.module("aqtApp").config(function($routeProvider) {
 
 	$routeProvider.when("/main", {
 		templateUrl : './main.html'
@@ -14,7 +14,4 @@ angular.module("aqtApp").config(function($routeProvider, $locationProvider) {
 	}).otherwise({
 		redirectTo : '/'
 	});
-
-	$locationProvider.html5Mode(true);
-
 });
