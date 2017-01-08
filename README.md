@@ -7,5 +7,5 @@
  * clone this repository;
  * Inside the project directory, perform the steps:
     1. Use command line `npm install` to download modules of project.
-    3. Use command line `npm stater` to started local server.
+    3. Use command line `npm start` to started local server.
     4. Be happy!!
