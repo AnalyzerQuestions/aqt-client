@@ -1,4 +1,4 @@
-angular.module("aqtApp").component('suggestionsModal', {
+angular.module("common").component('suggestionsModal', {
 
   bindings: {
     suggestions: '=',

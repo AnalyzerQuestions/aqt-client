@@ -1,4 +1,4 @@
-angular.module("aqtApp").controller("mainController", function($scope){
+angular.module("components").controller("mainController", function($scope){
 
 
 });

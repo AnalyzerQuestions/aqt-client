@@ -1,4 +1,13 @@
-angular.module("aqtApp", ['ngRoute', 'ngTagsInput', 'templates']);
+/**
+ * @ngdoc module
+ * @name aqtApp
+ *
+ * @description
+ * This is the aqtApp module. It is the major module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common']);
 
 
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {

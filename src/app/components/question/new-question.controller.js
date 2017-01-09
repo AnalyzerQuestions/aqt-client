@@ -1,4 +1,4 @@
-angular.module("aqtApp").controller("newQuestionController", function(questionService){
+angular.module("components").controller("newQuestionController", function(questionService){
 
   var vm = this;
 

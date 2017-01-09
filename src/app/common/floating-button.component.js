@@ -1,4 +1,4 @@
-angular.module("aqtApp").component('btnFb', {
+angular.module("common").component('btnFb', {
 
   bindings: {
     url: '<',

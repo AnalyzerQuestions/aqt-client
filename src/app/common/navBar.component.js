@@ -1,4 +1,4 @@
-angular.module("aqtApp").component('navBar', {
+angular.module("common").component('navBar', {
 
   bindings: {
     name: '<'
