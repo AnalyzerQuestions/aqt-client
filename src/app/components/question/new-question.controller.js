@@ -5,12 +5,13 @@ angular.module("aqtApp").controller("newQuestionController", function(questionSe
   vm.question = {};
   vm.tags = [];
   vm.suggestions = [];
-  vm.openModal = false;
+  vm.open = false;
 
   vm.register = function() {
     questionService.getSuggestions(vm.question, function(response){
       vm.suggestions = response;
-      vm.openModal = true;
+      vm.open = true;
     })
+
   };
 });

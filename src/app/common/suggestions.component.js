@@ -1,17 +1,28 @@
 angular.module("aqtApp").component('suggestionsModal', {
 
   bindings: {
-    suggestions: '<'
+    suggestions: '=',
+    open: '<'
   },
 
   templateUrl: './suggestions.component.html',
 
   controller: function(){
-    $(document).ready(function(){
-      $('.modal').modal();
-    });
 
-    $('modal-suggestions').modal('open');
+    function showModal(){
+      $('#suggestionsModal').modal('open');
+    };
+
+    this.$onInit = function() {
+      $(document).ready(function(){
+        $('.modal').modal();
+
+      });
+    };
+
+    this.$onChanges = function (changes) {
+      showModal();
+    };
 
   }
 
