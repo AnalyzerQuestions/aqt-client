@@ -3,9 +3,12 @@ angular.module("aqtApp").config(function($routeProvider) {
 	$routeProvider.when("/main", {
 		templateUrl : './main.html'
 
+	}).when("/blank", {
+			templateUrl : './blank.htm'
+
 	}).when("/", {
 		templateUrl : './login.html',
-		controller : 'loginController'
+		controller : 'loginController as loginCtrl'
 
 	}).when("/new", {
 		templateUrl : './new-question.html',
@@ -14,5 +17,5 @@ angular.module("aqtApp").config(function($routeProvider) {
 	}).otherwise({
 		redirectTo : '/'
 	});
-	
+
 });

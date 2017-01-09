@@ -1,4 +1,7 @@
 <nav-bar name="'AQT'"></nav-bar>
+<div class="section"></div>
+<div class="section"></div>
+<div class="section"></div>
 
 <div class="container">
 	<center>
@@ -6,35 +9,16 @@
 		<p><small>Faça login com sua conta do Stack Overflow em Português</small></p>
 	</center>
 
-	<form class="col s12" method="post">
-		<div class='row'>
-			<div class='col s12'>
-			</div>
-		</div>
+	<div class="section"></div>
+	<div class="section"></div>
+	<div class="section"></div>
 
-		<div class='row'>
-			<div class='input-field col s12'>
-				<input class='validate' type='email' name='email' id='email' />
-				<label for='email'>E-mail ou seu ID do Stack Overflow</label>
-			</div>
-		</div>
 
+	<form class="col s12">
 		<div class='row'>
-			<div class='input-field col s12'>
-				<input class='validate' type='password' name='password' id='password' />
-				<label for='password'>Senha</label>
-			</div>
-			<label style='float: right;'>
-				<a href='https://pt.stackoverflow.com/users/account-recovery'>Esqueceu a senha?</a>
-			</label>
+			<a name='btn_login' ng-click="loginCtrl.login()" class='col s12 btn btn-large waves-effect yellow darken-3'>Login com Stack Overflow</a>
 		</div>
-
-		<br />
-
-		<div class='row'>
-			<a name='btn_login' ng-click="login()" class='col s12 btn btn-large waves-effect cyan darken-2'>ENTRAR</a>
-		</div>
-	</center>
-</form>
+	</form>
+	
 </div>
 </div>

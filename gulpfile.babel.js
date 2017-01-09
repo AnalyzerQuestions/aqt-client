@@ -19,7 +19,7 @@ const PATHS = {
   distDocs: './docs/build',
   docs: './docs/app/*.js',
   scripts: [`${ROOT}/app/**/*.js`,],
-  
+
   styles: [
     `${ROOT}/assets/css/*.css`,
     'node_modules/materialize-css/dist/css/materialize.css'
@@ -33,7 +33,8 @@ const PATHS = {
     'angular-route/angular-route.js',
     'materialize-css/dist/js/materialize.js',
     'angular-materialize/src/angular-materialize.js',
-    'ng-tags-input/build/ng-tags-input.js'
+    'ng-tags-input/build/ng-tags-input.js',
+    'api-so/so-api.js'
   ],
   static: [
     `${ROOT}/index.html`,
@@ -64,7 +65,12 @@ gulp.task('templates', () => {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('modules', ['templates'], () => {
+gulp.task('copySO', () => {
+  return gulp.src(`${ROOT}/so-api.js`, { base: 'src' })
+    .pipe(gulp.dest('node_modules/api-so'));
+});
+
+gulp.task('modules', ['copySO','templates'], () => {
   return gulp.src(PATHS.modules.map(item => 'node_modules/' + item))
     .pipe(concat('vendor.js'))
     .pipe(gulpif(NODE_EV === 'production', uglify()))

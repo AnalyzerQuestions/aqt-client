@@ -1,7 +1,35 @@
-angular.module("components").controller("loginController", function($scope, $location){
+angular.module("components").controller("loginController", function($location, aqtValue){
 
-	$scope.login = function(){
-		$location.path('/main');
-	}
+var vm = this;
+
+initSO();
+
+vm.login = function(){
+
+	$(function(){
+    SE.authenticate({
+        success: function(data) {
+          console.log('Success :', data);
+        },
+        error: function(data) {
+            console.log('Error: ', data);
+        },
+        networkUsers: true
+    });
+	});
+}
+
+function initSO(){
+	$(function(){
+		SE.init({
+				clientId: aqtValue.so.clientId,
+				key: aqtValue.so.key,
+				channelUrl: aqtValue.so.channelUrl,
+				complete: function(data) {
+						console.log('Init: ', data);
+				}
+		});
+	});
+};
 
 });
