@@ -14,4 +14,5 @@ angular.module("aqtApp").config(function($routeProvider) {
 	}).otherwise({
 		redirectTo : '/'
 	});
+	
 });

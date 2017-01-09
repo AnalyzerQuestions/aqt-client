@@ -9,3 +9,6 @@
     1. Use command line `npm install` to download modules of project.
     3. Use command line `npm start` to started local server.
     4. Be happy!!
+
+
+`MIT License - Copyright (c) 2017 Franck Aragão`

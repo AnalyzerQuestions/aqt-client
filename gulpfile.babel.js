@@ -19,12 +19,14 @@ const PATHS = {
   distDocs: './docs/build',
   docs: './docs/app/*.js',
   scripts: [`${ROOT}/app/**/*.js`,],
+  
   styles: [
     `${ROOT}/assets/css/*.css`,
     'node_modules/materialize-css/dist/css/materialize.css'
 
   ],
   templates: `${ROOT}/app/**/*.html`,
+
   modules: [
     'jquery/dist/jquery.min.js',
     'angular/angular.js',
