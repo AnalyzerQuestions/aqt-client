@@ -4,8 +4,7 @@
   "description": "webapp client AQT",
   "main": "app.js",
   "scripts": {
-    "start": "gulp",
-    "test": "npm test"
+    "start": "gulp"
   },
   "author": "Franck Aragão <fjunior.aragao@gmail.com>",
   "license": "MIT",

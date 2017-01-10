@@ -15,7 +15,8 @@ angular.module("components").controller("loginController", function($location, a
                 error: function(data) {
                     console.log('Error: ', data);
                 },
-                networkUsers: true
+                networkUsers: true,
+                scope: aqtValue.so.scopeList
             });
         });
     }
