@@ -4,6 +4,7 @@
   "description": "webapp client AQT",
   "main": "app.js",
   "scripts": {
+    "postinstall": "npm install",
     "start": "gulp"
   },
   "author": "Franck Aragão <fjunior.aragao@gmail.com>",
@@ -45,6 +46,6 @@
     "run-sequence": "^1.2.2"
   },
   "engines": {
-    "node": "4.1.1"
+    "node": "6.9.2"
   }
 }
