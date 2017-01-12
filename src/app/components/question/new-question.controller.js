@@ -17,10 +17,9 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.open = false;
 
     vm.register = function() {
-        resolveTagComponent(vm.tags);
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
-
+            vm.open = true;
             if (!vm.open) {
                 postQuestion(vm.question);
             }
