@@ -8,7 +8,6 @@ angular.module("components").factory("questionService", function($http, aqtValue
     };
 
     var _postQuestion = function(question, callback) {
-
         var config = {
             params: {
                 title: question.title,

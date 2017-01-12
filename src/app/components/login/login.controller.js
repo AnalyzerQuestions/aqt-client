@@ -10,7 +10,6 @@ angular.module("components").controller("loginController", function($location, a
             SE.authenticate({
                 success: function(data) {
                     console.log('Success :', data);
-                    $location.path('/main');
                 },
                 error: function(data) {
                     console.log('Error: ', data);
@@ -18,7 +17,9 @@ angular.module("components").controller("loginController", function($location, a
                 networkUsers: true,
                 scope: aqtValue.so.scopeList
             });
+
         });
+        $location.path('/main');
     }
 
     function initSO() {

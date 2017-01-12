@@ -1,17 +1,39 @@
-angular.module("components").controller("newQuestionController", function(questionService){
+angular.module("components").controller("newQuestionController", function(questionService) {
 
-  var vm = this;
+    var vm = this;
 
-  vm.question = {};
-  vm.tags = [];
-  vm.suggestions = [];
-  vm.open = false;
+    vm.question = {};
+    vm.tags = [];
+    vm.suggestions = [];
+    vm.open = false;
 
-  vm.register = function() {
-    questionService.getSuggestions(vm.question, function(response){
-      vm.suggestions = response;
-      vm.open = true;
-    })
+    vm.register = function() {
+        resolveTagComponent(vm.tags);
+        questionService.getSuggestions(vm.question, function(response) {
+            vm.suggestions = response;
 
-  };
+            if (!vm.open) {
+                postQuestion(vm.question);
+            }
+
+        });
+    };
+
+    var postQuestion = function(question) {
+        questionService.postQuestion(question, function(response) {
+            console.log(response);
+        });
+    };
+
+
+    function resolveTagComponent(tags) {
+        if (tags) {
+            if (!vm.question.tags) {
+                vm.question.tags = [];
+            }
+            tags.forEach(function(tag) {
+                vm.question.tags.push(tag.text);
+            })
+        }
+    };
 });
