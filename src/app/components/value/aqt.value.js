@@ -1,3 +1,12 @@
+/**
+ * @ngdoc value
+ * @name AQT Value
+ *
+ * @description
+ * This is major value this app.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
 angular.module("components").value("aqtValue", {
 
     api: "http://localhost:8080/",
@@ -8,9 +17,9 @@ angular.module("components").value("aqtValue", {
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
         scopeList: ['write_access', 'read_inbox'],
-        accessToken: 'XkXKX9nA*VP*dk410JXLFQ))',
+        accessToken: 'TODO',
         redirectUri: 'https://stackexchange.com/oauth/login_success',
-        key: 'KJi1v7aNWJ8aziMts2QEmQ((',
+        key: 'TODO',
         channelUrl: 'http://localhost:3000/#/blank'
     }
 });

@@ -1,3 +1,12 @@
+/**
+ * @ngdoc controller
+ * @name question controller
+ *
+ * @description
+ * This is the new question controller.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
 angular.module("components").controller("newQuestionController", function(questionService) {
 
     var vm = this;

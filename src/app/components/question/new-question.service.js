@@ -1,3 +1,12 @@
+/**
+ * @ngdoc service
+ * @name question Service
+ *
+ * @description
+ * This is the question service.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
 angular.module("components").factory("questionService", function($http, aqtValue) {
 
     var _getSuggestions = function(question, callback) {
