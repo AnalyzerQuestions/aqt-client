@@ -15,107 +15,113 @@ import runSequence from 'run-sequence';
 const NODE_EV = process.env.NODE_ENV || 'development';
 const ROOT = 'src/';
 const PATHS = {
-  dist: './dist/',
-  distDocs: './docs/build',
-  docs: './docs/app/*.js',
-  scripts: [`${ROOT}/app/**/*.js`,],
+    dist: './dist/',
+    distDocs: './docs/build',
+    docs: './docs/app/*.js',
+    scripts: [`${ROOT}/app/**/*.js`, ],
 
-  styles: [
-    `${ROOT}/assets/css/*.css`,
-    'node_modules/materialize-css/dist/css/materialize.css'
+    styles: [
+        `${ROOT}/assets/css/*.css`,
+        'node_modules/materialize-css/dist/css/materialize.css'
 
-  ],
-  templates: `${ROOT}/app/**/*.html`,
+    ],
+    templates: `${ROOT}/app/**/*.html`,
 
-  modules: [
-    'jquery/dist/jquery.min.js',
-    'angular/angular.js',
-    'angular-route/angular-route.js',
-    'materialize-css/dist/js/materialize.js',
-    'angular-materialize/src/angular-materialize.js',
-    'ng-tags-input/build/ng-tags-input.js',
-    'api-so/so-api.js'
-  ],
-  static: [
-    `${ROOT}/index.html`,
-    `${ROOT}/manifest.json`,
-    `${ROOT}/appCache.manifest`,
-    `${ROOT}/sw.js`,
-    `${ROOT}/assets/img/**/*`,
-    `${ROOT}/assets/fonts/**/*`
-  ]
+    modules: [
+        'jquery/dist/jquery.min.js',
+        'angular/angular.js',
+        'angular-route/angular-route.js',
+        'materialize-css/dist/js/materialize.js',
+        'angular-materialize/src/angular-materialize.js',
+        'ng-tags-input/build/ng-tags-input.js',
+        'api-so/so-api.js'
+    ],
+    static: [
+        `${ROOT}/index.html`,
+        `${ROOT}/manifest.json`,
+        `${ROOT}/appCache.manifest`,
+        `${ROOT}/sw.js`,
+        `${ROOT}/assets/img/**/*`,
+        `${ROOT}/assets/fonts/**/*`
+    ]
 };
 
 server.create();
 
 gulp.task('clean', () => {
-  return del('dist/**/*');
+    return del('dist/**/*');
 });
 
 gulp.task('templates', () => {
-  return gulp.src(PATHS.templates)
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(templateCache({
-      ROOT: 'app',
-      standalone: true,
-      transformUrl: function (url) {
-        return url.replace(path.dirname(url), '.');
-      }
-    }))
-    .pipe(gulp.dest('./'));
+    return gulp.src(PATHS.templates)
+        .pipe(htmlmin({
+            collapseWhitespace: true
+        }))
+        .pipe(templateCache({
+            ROOT: 'app',
+            standalone: true,
+            transformUrl: function(url) {
+                return url.replace(path.dirname(url), '.');
+            }
+        }))
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('copySO', () => {
-  return gulp.src(`${ROOT}/so-api.js`, { base: 'src' })
-    .pipe(gulp.dest('node_modules/api-so'));
+    return gulp.src(`${ROOT}/so-api.js`, {
+            base: 'src'
+        })
+        .pipe(gulp.dest('node_modules/api-so'));
 });
 
-gulp.task('modules', ['copySO','templates'], () => {
-  return gulp.src(PATHS.modules.map(item => 'node_modules/' + item))
-    .pipe(concat('vendor.js'))
-    .pipe(gulpif(NODE_EV === 'production', uglify()))
-    .pipe(gulp.dest(PATHS.dist + 'js/'));
+gulp.task('modules', ['copySO', 'templates'], () => {
+    return gulp.src(PATHS.modules.map(item => 'node_modules/' + item))
+        .pipe(concat('vendor.js'))
+        .pipe(gulpif(NODE_EV === 'production', uglify()))
+        .pipe(gulp.dest(PATHS.dist + 'js/'));
 });
 
 gulp.task('styles', () => {
-	return gulp.src(PATHS.styles)
-	.pipe(cleanCSS())
-	.pipe(concat('styles.min.css'))
-	.pipe(gulp.dest(PATHS.dist + 'css/'));
+    return gulp.src(PATHS.styles)
+        .pipe(cleanCSS())
+        .pipe(concat('styles.min.css'))
+        .pipe(gulp.dest(PATHS.dist + 'css/'));
 });
 
 gulp.task('scripts', ['modules'], () => {
-  return gulp.src([
-      `${ROOT}/app/**/*.js`,
-      ...PATHS.scripts,
-      './templates.js'
-    ])
-    .pipe(wrap('(function(angular){\n\'use strict\';\n<%= contents %>})(window.angular);'))
-    .pipe(concat('bundle.js'))
-    .pipe(ngAnnotate())
-    .pipe(gulpif(NODE_EV === 'production', uglify()))
-    .pipe(gulp.dest(PATHS.dist + 'js/'));
+    return gulp.src([
+            `${ROOT}/app/**/*.js`,
+            ...PATHS.scripts,
+            './templates.js'
+        ])
+        .pipe(wrap('(function(angular){\n\'use strict\';\n<%= contents %>})(window.angular);'))
+        .pipe(concat('bundle.js'))
+        .pipe(ngAnnotate())
+        .pipe(gulpif(NODE_EV === 'production', uglify()))
+        .pipe(gulp.dest(PATHS.dist + 'js/'));
 });
 
 gulp.task('serve', () => {
-  return server.init({
-    files: [`${PATHS.dist}/**`],
-    port: 3000,
-    server: {
-      baseDir: PATHS.dist
-    }
-  });
+    return server.init({
+        files: [`${PATHS.dist}/**`],
+        port: 3000,
+        server: {
+            baseDir: PATHS.dist
+        }
+    });
 });
 
 gulp.task('copy', ['clean'], () => {
-  return gulp.src(PATHS.static, { base: 'src' })
-    .pipe(gulp.dest(PATHS.dist));
+    return gulp.src(PATHS.static, {
+            base: 'src'
+        })
+        .pipe(gulp.dest(PATHS.dist));
 });
 
 gulp.task('watch', ['serve', 'scripts'], () => {
-  gulp.watch([PATHS.scripts, PATHS.templates], ['scripts']);
+    gulp.watch([PATHS.scripts, PATHS.templates], ['scripts']);
 });
 
 gulp.task('default', (cb) => {
-	return runSequence('clean', ['copy','styles','serve','watch'], cb)
+    return runSequence('clean', ['copy', 'styles', 'serve', 'watch'], cb)
 });
