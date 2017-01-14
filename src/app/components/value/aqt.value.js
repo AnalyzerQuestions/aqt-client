@@ -17,9 +17,9 @@ angular.module("components").value("aqtValue", {
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
         scopeList: ['write_access'],
-        accessToken: 'TODO',
+        accessToken: 'SpyGmg1LohQgvGPtKEbdZw))',
         redirectUri: 'https://stackexchange.com/oauth/login_success',
-        key: 'TODO',
+        key: 'KJi1v7aNWJ8aziMts2QEmQ((',
         channelUrl: 'http://localhost:3000/#/blank'
     }
 });

@@ -20,7 +20,7 @@ angular.module("components").controller("newQuestionController", function(questi
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
-            if (vm.suggestions.size) {
+            if (vm.suggestions.length) {
                 vm.open = true;
             }
             if (!vm.open) {
