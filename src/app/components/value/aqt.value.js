@@ -16,7 +16,7 @@ angular.module("components").value("aqtValue", {
         apiAuth: 'https://stackexchange.com/',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
-        scopeList: ['write_access', 'read_inbox'],
+        scopeList: ['write_access'],
         accessToken: 'TODO',
         redirectUri: 'https://stackexchange.com/oauth/login_success',
         key: 'TODO',
