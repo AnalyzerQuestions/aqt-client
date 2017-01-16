@@ -10,7 +10,8 @@ import templateCache from 'gulp-angular-templatecache';
 import server from 'browser-sync';
 import del from 'del';
 import path from 'path';
-import runSequence from 'run-sequence';
+import runSequence
+from 'run-sequence';
 
 const NODE_EV = process.env.NODE_ENV || 'development';
 const ROOT = 'src/';
@@ -22,7 +23,8 @@ const PATHS = {
 
     styles: [
         `${ROOT}/assets/css/*.css`,
-        'node_modules/materialize-css/dist/css/materialize.css'
+        'node_modules/materialize-css/dist/css/materialize.css',
+        'node_modules/simplemde/dist/simplemde.min.css'
 
     ],
     templates: `${ROOT}/app/**/*.html`,
@@ -34,7 +36,9 @@ const PATHS = {
         'materialize-css/dist/js/materialize.js',
         'angular-materialize/src/angular-materialize.js',
         'ng-tags-input/build/ng-tags-input.js',
-        'api-so/so-api.js'
+        'api-so/so-api.js',
+        'simplemde/dist/simplemde.min.js',
+        'simplemde-angular/dist/simplemde-angular.min.js',
     ],
     static: [
         `${ROOT}/index.html`,

@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common']);
+angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common','simplemde']);
 
 
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
