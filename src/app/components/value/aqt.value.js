@@ -20,6 +20,6 @@ angular.module("components").value("aqtValue", {
         accessToken: 'U(s44Rn04*aAE2OYKOS4jg))',
         redirectUri: 'https://stackexchange.com/oauth/login_success',
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
-        channelUrl: 'http://localhost:3000/#/blank'
+        channelUrl: 'https://aqt-prot.herokuapp.com/#/blank'
     }
 });
