@@ -17,6 +17,6 @@ angular.module("components").value("aqtValue", {
         clientId: 7786,
         scopeList: ['write_access'],
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
-        channelUrl: 'https://appif.herokuapp.com/#/blank'
+        channelUrl: 'https://stackexchange.com/oauth/login_success'
     }
 });
