@@ -24,7 +24,6 @@ angular.module("components").factory("questionService", function($http, aqtValue
                 tags: question.tags,
                 site: aqtValue.so.site,
                 key: aqtValue.so.key,
-                access_token: aqtValue.so.accessToken,
                 preview: true,
                 filter: 'default',
                 run: true

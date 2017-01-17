@@ -13,12 +13,9 @@ angular.module("components").value("aqtValue", {
 
     so: {
         site: 'pt.stackoverflow',
-        apiAuth: 'https://stackexchange.com/',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
         scopeList: ['write_access'],
-        accessToken: 'U(s44Rn04*aAE2OYKOS4jg))',
-        redirectUri: 'https://stackexchange.com/oauth/login_success',
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }

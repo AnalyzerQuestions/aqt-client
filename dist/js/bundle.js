@@ -9,7 +9,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common','simplemde']);
+angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common']);
 
 
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
@@ -141,7 +141,7 @@ angular.module("common").component('suggestionsModal', {
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module('components', ['ngTagsInput']);
+angular.module('components', ['ngTagsInput', 'simplemde']);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -172,12 +172,9 @@ angular.module("components").value("aqtValue", {
 
     so: {
         site: 'pt.stackoverflow',
-        apiAuth: 'https://stackexchange.com/',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
         scopeList: ['write_access'],
-        accessToken: 'U(s44Rn04*aAE2OYKOS4jg))',
-        redirectUri: 'https://stackexchange.com/oauth/login_success',
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }
@@ -206,16 +203,15 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
             SE.authenticate({
                 success: function(data) {
                     console.log('Success :', data);
+                    $location.path('/main');
                 },
                 error: function(data) {
                     console.log('Error: ', data);
                 },
-                networkUsers: true,
-                scope: aqtValue.so.scopeList
+                networkUsers: true
             });
 
         });
-        $location.path('/main');
     }
 
     function initSO() {
@@ -353,7 +349,6 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
                 tags: question.tags,
                 site: aqtValue.so.site,
                 key: aqtValue.so.key,
-                access_token: aqtValue.so.accessToken,
                 preview: true,
                 filter: 'default',
                 run: true

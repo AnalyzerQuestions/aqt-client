@@ -19,16 +19,15 @@ angular.module("components").controller("loginController", function($location, a
             SE.authenticate({
                 success: function(data) {
                     console.log('Success :', data);
+                    $location.path('/main');
                 },
                 error: function(data) {
                     console.log('Error: ', data);
                 },
-                networkUsers: true,
-                scope: aqtValue.so.scopeList
+                networkUsers: true
             });
 
         });
-        $location.path('/main');
     }
 
     function initSO() {

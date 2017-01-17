@@ -11,4 +11,4 @@
     4. Be happy!!
 
 
-`MIT License - Copyright (c) 2017 Franck Aragão`
+`MIT License - Copyright (c) 2017 Analyzer Questions Tool`
