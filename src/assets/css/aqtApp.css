@@ -95,3 +95,11 @@
       float: left;
       height: 26px;
     }
+
+  .CodeMirror {
+    height: 50px !important;
+  }
+
+  .CodeMirror, .CodeMirror-scroll {
+    min-height: 100px;
+}

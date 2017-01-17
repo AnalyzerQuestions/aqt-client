@@ -24,7 +24,9 @@ const PATHS = {
     styles: [
         `${ROOT}/assets/css/*.css`,
         'node_modules/materialize-css/dist/css/materialize.css',
-        'node_modules/simplemde/dist/simplemde.min.css'
+        'node_modules/simplemde/dist/simplemde.min.css',
+        'node_modules/prismjs/themes/prism.css',
+    
 
     ],
     templates: `${ROOT}/app/**/*.html`,
@@ -39,6 +41,7 @@ const PATHS = {
         'api-so/so-api.js',
         'simplemde/dist/simplemde.min.js',
         'simplemde-angular/dist/simplemde-angular.min.js',
+        'prismjs/prism.js'
     ],
     static: [
         `${ROOT}/index.html`,

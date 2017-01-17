@@ -7,14 +7,32 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("newQuestionController", function(questionService) {
+angular.module("components").controller("newQuestionController", function(questionService, $scope) {
 
+    console.log($scope.simplemde);
     var vm = this;
 
     vm.question = {};
     vm.tags = [];
     vm.suggestions = [];
     vm.open = false;
+    vm.simplemdeOptions = {
+
+    spellChecker: false,  
+    showIcons: ["code"],
+    forceSync: true, 
+    hideIcons:["heading"],
+    previewRender: function(plainText, preview) {
+        setTimeout(function() {
+            preview.innerHTML = this.parent.markdown(plainText);
+            Prism.highlightAll();
+            console.log("EXE....")
+        }.bind(this), 1)
+        return "Loading..."
+     },
+    
+    };
+
 
     vm.register = function() {
         questionService.getSuggestions(vm.question, function(response) {
