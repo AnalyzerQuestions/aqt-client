@@ -1,29 +1,27 @@
 angular.module("common").component('suggestionsModal', {
 
-  bindings: {
-    suggestions: '=',
-    open: '<'
-  },
+    bindings: {
+        suggestions: '=',
+        open: '<'
+    },
 
-  templateUrl: './suggestions.component.html',
+    templateUrl: './suggestions.component.html',
 
-  controller: function(){
+    controller: function() {
 
-    function showModal(){
-      $('#suggestionsModal').modal('open');
-    };
+        function showModal() {
+            $('#suggestionsModal').modal('open');
+        };
 
-    this.$onInit = function() {
-      $(document).ready(function(){
-        $('.modal').modal();
+        this.$onInit = function() {
+            $(document).ready(function() {
+                $('.modal').modal();
 
-      });
-    };
+            });
+        };
 
-    this.$onChanges = function (changes) {
-      showModal();
-    };
-
-  }
-
+        this.onDestry = function() {
+            this.suggestions = [];
+        };
+    }
 });

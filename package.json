@@ -1,10 +1,9 @@
 {
   "name": "aqt-client",
-  "version": "0.0.0",
+  "version": "0.0.5",
   "description": "webapp client AQT",
   "main": "app.js",
   "scripts": {
-    "postinstall": "npm install",
     "start": "gulp"
   },
   "author": "Franck Aragão <fjunior.aragao@gmail.com>",
@@ -34,20 +33,10 @@
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",
     "gulp-ng-annotate": "^2.0.0",
-    "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "gulp-wrap": "^0.13.0",
-    "jasmine-core": "^2.4.1",
-    "karma": "^0.13.19",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-jasmine": "^0.3.6",
-    "karma-phantomjs-launcher": "^1.0.1",
-    "karma-spec-reporter": "0.0.23",
     "lodash": "^4.16.2",
     "path": "^0.12.7",
     "run-sequence": "^1.2.2"
-  },
-  "engines": {
-    "node": "6.9.2"
   }
 }

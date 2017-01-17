@@ -1,19 +1,19 @@
-<div>
-  <div id="suggestionsModal" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h5>Algumas dicas para melhorar sua pergunta</h5>
-      <ul class="collection">
-        <li class="collection-item" ng-repeat="sug in $ctrl.suggestions">
+<div ng-show="$ctrl.open" {{$ctrl.open}}>
+    <div id="suggestionsModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h5>Algumas dicas para melhorar sua pergunta</h5>
+            <ul class="collection">
+                <li class="collection-item" ng-repeat="sug in $ctrl.suggestions">
 
-          <span class="title">{{sug.header}}</span>
-          <br>
-          <small ng-repeat="m in sug.subHeaders">
+                    <span class="title">{{sug.header}}</span>
+                    <br>
+                    <small ng-repeat="m in sug.subHeaders">
               <i>{{m}}</i>
               <br>
           </small>
-        </li>
+                </li>
 
-      </ul>
+            </ul>
+        </div>
     </div>
-  </div>
 </div>

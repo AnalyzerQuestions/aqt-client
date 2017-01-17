@@ -13,7 +13,7 @@ angular.module("aqtApp").config(function($routeProvider) {
         templateUrl: './main.html'
 
     }).when("/blank", {
-        templateUrl: './blank.htm'
+        templateUrl: './blank.html'
 
     }).when("/", {
         templateUrl: './login.html',
