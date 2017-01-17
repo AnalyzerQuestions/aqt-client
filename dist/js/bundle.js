@@ -55,8 +55,32 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
     }).otherwise({
         redirectTo: '/'
     });
-
 }]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name common
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module('components', ['ngTagsInput', 'simplemde']);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name aqtApp
+ *
+ * @description
+ * This is the custom config for simplemde.
+ *
+ * @author <a href="https://github.com/JoseRafael97">José Rafael Feitosa</a>
+ **/
 })(window.angular);
 (function(angular){
 'use strict';
@@ -129,31 +153,6 @@ angular.module("common").component('suggestionsModal', {
         };
     }
 });
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name common
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module('components', ['ngTagsInput', 'simplemde']);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name aqtApp
- *
- * @description
- * This is the custom config for simplemde.
- *
- * @author <a href="https://github.com/JoseRafael97">José Rafael Feitosa</a>
- **/
 })(window.angular);
 (function(angular){
 'use strict';
