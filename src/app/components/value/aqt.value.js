@@ -17,7 +17,7 @@ angular.module("components").value("aqtValue", {
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
         scopeList: ['write_access'],
-        accessToken: 'SpyGmg1LohQgvGPtKEbdZw))',
+        accessToken: 'U(s44Rn04*aAE2OYKOS4jg))',
         redirectUri: 'https://stackexchange.com/oauth/login_success',
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
         channelUrl: 'http://localhost:3000/#/blank'
