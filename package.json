@@ -17,7 +17,8 @@
     "materialize-css": "^0.97.8",
     "ng-tags-input": "^3.1.1",
     "prismjs": "^1.6.0",
-    "simplemde": "^1.11.2"
+    "simplemde": "^1.11.2",
+    "simplemde-angular": "git+https://github.com/hansottowirtz/simplemde-angular.git"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",

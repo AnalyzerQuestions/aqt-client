@@ -132,9 +132,6 @@ angular.module("common").component('suggestionsModal', {
 })(window.angular);
 (function(angular){
 'use strict';
-})(window.angular);
-(function(angular){
-'use strict';
 /**
  * @ngdoc module
  * @name common
@@ -145,6 +142,18 @@ angular.module("common").component('suggestionsModal', {
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
 angular.module('components', ['ngTagsInput']);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name aqtApp
+ *
+ * @description
+ * This is the custom config for simplemde.
+ *
+ * @author <a href="https://github.com/JoseRafael97">José Rafael Feitosa</a>
+ **/
 })(window.angular);
 (function(angular){
 'use strict';
@@ -226,14 +235,32 @@ angular.module("components").controller("mainController", ["$scope", function($s
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("newQuestionController", ["questionService", function(questionService) {
+angular.module("components").controller("newQuestionController", ["questionService", "$scope", function(questionService, $scope) {
 
+    console.log($scope.simplemde);
     var vm = this;
 
     vm.question = {};
     vm.tags = [];
     vm.suggestions = [];
     vm.open = false;
+    vm.simplemdeOptions = {
+
+    spellChecker: false,  
+    showIcons: ["code"],
+    forceSync: true, 
+    hideIcons:["heading"],
+    previewRender: function(plainText, preview) {
+        setTimeout(function() {
+            preview.innerHTML = this.parent.markdown(plainText);
+            Prism.highlightAll();
+            console.log("EXE....")
+        }.bind(this), 1)
+        return "Loading..."
+     },
+    
+    };
+
 
     vm.register = function() {
         resolveTagComponent(vm.tags);
@@ -354,4 +381,4 @@ $templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<nav-bar name="\'AQT\'"></nav-bar><div class="section"></div><div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><p><small>Fa\xE7a login com sua conta do Stack Overflow em Portugu\xEAs</small></p></center><div class="section"></div><div class="section"></div><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">Login com Stack Overflow</a></div></form></div>');
 $templateCache.put('./main.html','<nav-bar name="\'AQT\'"></nav-bar><div class="row"></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
-$templateCache.put('./new-question.html','<nav-bar name="\'AQT\'"></nav-bar><div class="container"><center><p>Escreva sua Perguta de Programa\xE7\xE3o</p></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">T\xEDtulo da Pergunta</label></div></div><div class="row"><div class="input-field col s12"><textarea simplemde="{spellChecker: false}" id="description" ng-model="nqCtrl.question.description" class="materialize-textarea"></textarea></div></div><div class="row"><div class="input-field col s12"><tags-input id="tag" ng-model="nqCtrl.tags"></tags-input></div></div><br><div class="row"><div class="input-field col s12"><button class="col s12 btn btn-large waves-effect cyan darken-2">POSTAR</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);
+$templateCache.put('./new-question.html','<nav-bar name="\'AQT\'"></nav-bar><div class="container"><center><p>Escreva sua Perguta de Programa\xE7\xE3o</p></center>{{nqCtrl.question.description}}<pre><code class="language-css">p { color: red }</code></pre><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">T\xEDtulo da Pergunta</label></div></div><div class="row"><div class="input-field col s12"><textarea simplemde="nqCtrl.simplemdeOptions" id="description" ng-model="nqCtrl.question.description" class="materialize-textarea"></textarea></div></div><div class="row"><div class="input-field col s12"><tags-input id="tag" ng-model="nqCtrl.tags"></tags-input></div></div><br><div class="row"><div class="input-field col s12"><button class="col s12 btn btn-large waves-effect cyan darken-2">POSTAR</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);
