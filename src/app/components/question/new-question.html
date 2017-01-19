@@ -4,11 +4,7 @@
 	<center>
 		<p>Escreva sua Perguta de Programação</p>
 	</center>
-
-	{{nqCtrl.question.description}}
-<pre><code class="language-css">p { color: red }</code></pre>
-
-
+	{{simplemde.get().value()}}
 
 	<form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate>
 
@@ -46,6 +42,8 @@
 		<suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal>
 
 		</center>
+
+
 	</form>
 </div>
 </div>

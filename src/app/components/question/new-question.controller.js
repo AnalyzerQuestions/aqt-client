@@ -16,27 +16,35 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.tags = [];
     vm.suggestions = [];
     vm.open = false;
-    vm.simplemdeOptions = {
 
-    spellChecker: false,  
-    showIcons: ["code"],
-    forceSync: true, 
-    hideIcons:["heading"],
-    previewRender: function(plainText, preview) {
-        setTimeout(function() {
-            preview.innerHTML = this.parent.markdown(plainText);
-            Prism.highlightAll();
-            console.log("EXE....")
-        }.bind(this), 1)
-        return "Loading..."
-     },
-    
+     vm.simplemdeOptions = {
+
+        spellChecker: false,
+        showIcons: ["code"],
+        forceSync: true,
+        indentWithTabs: false,
+        lineWrapping: false,
+        hideIcons:["heading","fullscreen", "side-by-side"],
+        previewRender: function(plainText, preview) {
+            setTimeout(function() {
+                preview.innerHTML = this.parent.markdown(plainText);
+                Prism.highlightAll();
+                console.log("EXE....")
+            }.bind(this), 1)
+            return "Loading..."
+         },
+        tabSize:1,
+        autofocus: true,
+        status:false,
+        lineWrapping:true,
+
+
     };
 
 
     vm.register = function() {
-        resolveTagComponent(vm.tags);
-        questionService.getSuggestions(vm.question, function(response) {
+            vm.question.tags = [];
+            questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
             if (vm.suggestions.length) {

@@ -96,10 +96,18 @@
       height: 26px;
     }
 
+
+   /*custom simplemde*/
+
   .CodeMirror {
-    height: 50px !important;
+      min-height: 150px !important;
   }
 
-  .CodeMirror, .CodeMirror-scroll {
-    min-height: 100px;
-}
+  .CodeMirror .CodeMirror-scroll {
+      min-height: 150px !important;
+   }
+
+   .editor-toolbar{
+      border-top-left-radius: 0px !important;
+      border-top-right-radius: 0px !important;
+   }
