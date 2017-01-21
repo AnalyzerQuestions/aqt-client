@@ -9,7 +9,6 @@
  **/
 angular.module("components").controller("newQuestionController", function(questionService, $scope) {
 
-    console.log($scope.simplemde);
     var vm = this;
 
     vm.question = {};
@@ -17,9 +16,10 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.suggestions = [];
     vm.open = false;
 
-     vm.simplemdeOptions = {
+    vm.simplemdeOptions = {
 
-        spellChecker: false,
+        spellChecker: true,
+        styleSelectedText:true,
         showIcons: ["code"],
         forceSync: true,
         indentWithTabs: false,
@@ -29,7 +29,6 @@ angular.module("components").controller("newQuestionController", function(questi
             setTimeout(function() {
                 preview.innerHTML = this.parent.markdown(plainText);
                 Prism.highlightAll();
-                console.log("EXE....")
             }.bind(this), 1)
             return "Loading..."
          },
@@ -37,10 +36,7 @@ angular.module("components").controller("newQuestionController", function(questi
         autofocus: true,
         status:false,
         lineWrapping:true,
-
-
     };
-
 
     vm.register = function() {
             vm.question.tags = [];

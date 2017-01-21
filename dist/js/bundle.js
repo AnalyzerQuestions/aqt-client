@@ -156,6 +156,21 @@ angular.module('components', ['ngTagsInput', 'simplemde']);
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("components").directive('custom-simplemde', [function(){
+  return {
+    restrict: 'A',
+    require: 'simplemde',
+    link: function(scope, element, attrs, simplemde) {
+      var mde = simplemde.get();
+      console.log(mde.value(), "fdsfsdfsda");
+
+      simplemde.rerenderPreview()
+    }
+  }
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
 /**
  * @ngdoc value
  * @name AQT Value
@@ -260,7 +275,6 @@ angular.module("components").controller("mainController", ["$scope", function($s
  **/
 angular.module("components").controller("newQuestionController", ["questionService", "$scope", function(questionService, $scope) {
 
-    console.log($scope.simplemde);
     var vm = this;
 
     vm.question = {};
@@ -268,9 +282,10 @@ angular.module("components").controller("newQuestionController", ["questionServi
     vm.suggestions = [];
     vm.open = false;
 
-     vm.simplemdeOptions = {
+    vm.simplemdeOptions = {
 
-        spellChecker: false,
+        spellChecker: true,
+        styleSelectedText:true,
         showIcons: ["code"],
         forceSync: true,
         indentWithTabs: false,
@@ -280,7 +295,6 @@ angular.module("components").controller("newQuestionController", ["questionServi
             setTimeout(function() {
                 preview.innerHTML = this.parent.markdown(plainText);
                 Prism.highlightAll();
-                console.log("EXE....")
             }.bind(this), 1)
             return "Loading..."
          },
@@ -288,10 +302,7 @@ angular.module("components").controller("newQuestionController", ["questionServi
         autofocus: true,
         status:false,
         lineWrapping:true,
-
-
     };
-
 
     vm.register = function() {
             vm.question.tags = [];
@@ -382,5 +393,5 @@ $templateCache.put('./navBar.component.html','<nav class="navbar-fixed cyan dark
 $templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><h5>Algumas dicas para melhorar sua pergunta</h5><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title">{{sug.header}}</span><br><small ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></small></li></ul></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<nav-bar name="\'AQT\'"></nav-bar><div class="section"></div><div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><p><small>Fa\xE7a login com sua conta do Stack Overflow em Portugu\xEAs</small></p></center><div class="section"></div><div class="section"></div><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">Login com Stack Overflow</a></div></form></div>');
-$templateCache.put('./main.html','<nav-bar name="\'AQT\'"></nav-bar><div class="row"></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
-$templateCache.put('./new-question.html','<nav-bar name="\'AQT\'"></nav-bar><div class="container"><center><p>Escreva sua Perguta de Programa\xE7\xE3o</p></center>{{simplemde.get().value()}}<form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">T\xEDtulo da Pergunta</label></div></div><div class="row"><div class="input-field col s12"><textarea simplemde="nqCtrl.simplemdeOptions" id="description" ng-model="nqCtrl.question.description" class="materialize-textarea"></textarea></div></div><div class="row"><div class="input-field col s12"><tags-input id="tag" ng-model="nqCtrl.tags"></tags-input></div></div><br><div class="row"><div class="input-field col s12"><button class="col s12 btn btn-large waves-effect cyan darken-2">POSTAR</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);
+$templateCache.put('./main.html','<nav-bar name="\'AQT\'"></nav-bar><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">Qual a diferen\xE7a de uma toolbar para uma action bar?</span><p class="card-subtitle"><a href="#"><span class="new badge" data-badge-caption="java"></span></a> <a href="#"><span class="new badge" data-badge-caption="android"></span><a></a></p></div><div align="left" class="card-action"><a href="#">Acompanhar</a></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
+$templateCache.put('./new-question.html','<nav-bar name="\'AQT\'"></nav-bar><div class="container"><center><p>Escreva sua Perguta de Programa\xE7\xE3o</p></center>{{nqCtrl.question.description}}<form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">T\xEDtulo da Pergunta</label></div></div><div class="row"><div class="input-field col s12"><textarea simplemde="nqCtrl.simplemdeOptions" id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css"></textarea></div></div><div class="row"><div class="input-field col s12"><tags-input id="tag" ng-model="nqCtrl.tags"></tags-input></div></div><br><div class="row"><div class="input-field col s12"><button class="col s12 btn btn-large waves-effect cyan darken-2">POSTAR</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);

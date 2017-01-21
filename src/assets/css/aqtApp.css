@@ -86,6 +86,7 @@
     tags-input .tags .tag-item .remove-button:active {
       color: #ff0000;
     }
+
     tags-input .tags .input {
       border: 0;
       outline: none;
@@ -95,7 +96,35 @@
       float: left;
       height: 26px;
     }
+    /*card-view*/
+    span.badge{
+      float: left!important;
+      margin-left:2px !important;
+    }
 
+    @media only screen and (min-width: 601px){
+      .row .col.m6 {
+          width:100%!important;
+      }
+    }
+    .card-action a{
+        color:#0097a7!important;
+    }
+
+    .card-subtitle{
+      padding-top: 6px !important;
+    }
+    .row:after{
+      content: none !important;
+    }
+
+    .card .card-content .card-title{
+      line-height:19px !important;
+    }
+
+    .card .card-title{
+      font-size: 1em!important;
+    }
 
    /*custom simplemde*/
 
