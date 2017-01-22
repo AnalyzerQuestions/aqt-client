@@ -39,7 +39,7 @@ const PATHS = {
         'api-so/so-api.js',
         'simplemde/dist/simplemde.min.js',
         'prismjs/prism.js',
-        'simplemde-angular/dist/simplemde-angular.min.js',		
+        'simplemde-angular/dist/simplemde-angular.min.js',
     ],
     static: [
         `${ROOT}/index.html`,
@@ -124,7 +124,7 @@ gulp.task('copy', ['clean'], () => {
 });
 
 gulp.task('watch', ['serve', 'scripts'], () => {
-    gulp.watch([PATHS.scripts, PATHS.templates], ['scripts']);
+    gulp.watch([PATHS.scripts, PATHS.templates, PATHS.styles], ['scripts']);
 });
 
 gulp.task('default', (cb) => {

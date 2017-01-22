@@ -1,14 +1,14 @@
-    body {
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
+  @media only screen and (min-width: 732px) {
+      main {
+          position: absolute;
+          height: 75%;
+          width: 75%;
+          top: 10%;
+          left: 10%;
+      }
+  }
 
-    main {
-      flex: 1 0 auto;
-    }
-
-    h4 {
+  h4 {
       font-size: 25px;
       font-variant: inherit;
       font-weight: 100;
@@ -17,36 +17,37 @@
       color: rgba(68, 68, 68, 0.56);
       font-weight: 300;
       letter-spacing: 1.8px;
-    }
+  }
 
-    body {
+  body {
       background: #fff;
-    }
+  }
+  /*TAG COMPONENT*/
 
-
-    /*TAG COMPONENT*/
-
-    tags-input {
+  tags-input {
       display: block;
-    }
-    tags-input *, tags-input *:before, tags-input *:after {
+  }
+
+  tags-input *, tags-input *:before, tags-input *:after {
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
-    }
-    tags-input .host {
+  }
+
+  tags-input .host {
       position: relative;
       margin-top: 5px;
       margin-bottom: 5px;
       height: 100%;
-    }
-    tags-input .host:active {
+  }
+
+  tags-input .host:active {
       outline: none;
       border: none !important;
       box-shadow: none !important;
-    }
+  }
 
-    tags-input .tags {
+  tags-input .tags {
       background: transparent;
       border-bottom: 1px solid #999;
       display: inline-block;
@@ -63,14 +64,15 @@
       -ms-transition: all .3s;
       -o-transition: all .3s;
       transition: all .3s;
-    }
+  }
 
-    tags-input .tags .tag-list {
+  tags-input .tags .tag-list {
       margin: 0;
       padding: 0;
       list-style-type: none;
-    }
-    tags-input .tags .tag-item {
+  }
+
+  tags-input .tags .tag-item {
       margin: 2px;
       padding: 0 5px;
       display: inline-block;
@@ -79,12 +81,14 @@
       line-height: 25px;
       border-radius: 16px;
       background-color: #e4e4e4;
-    }
-    tags-input .tags .tag-item.selected {
+  }
+
+  tags-input .tags .tag-item.selected {
       background: -webkit-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
       background: linear-gradient(to bottom, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
-    }
-    tags-input .tags .tag-item .remove-button {
+  }
+
+  tags-input .tags .tag-item .remove-button {
       margin: 0 0 0 5px;
       padding: 0;
       border: none;
@@ -93,12 +97,13 @@
       vertical-align: middle;
       font: bold 16px Arial, sans-serif;
       color: #585858;
-    }
-    tags-input .tags .tag-item .remove-button:active {
-      color: #ff0000;
-    }
+  }
 
-    tags-input .tags .input {
+  tags-input .tags .tag-item .remove-button:active {
+      color: #ff0000;
+  }
+
+  tags-input .tags .input {
       border: 0;
       outline: none;
       margin: 2px;
@@ -106,50 +111,53 @@
       padding-left: 5px;
       float: left;
       height: 26px;
-    }
-    /*card-view*/
-    span.badge{
-      float: left!important;
-      margin-left:2px !important;
-    }
-    nav .brand-logo.center{
-       left: 45%!important;
-    }
+  }
 
-    @media only screen and (min-width: 601px){
+  /*card-view*/
+
+  span.badge {
+      float: left!important;
+      margin-left: 2px !important;
+  }
+
+  nav .brand-logo.center {
+      left: 45%!important;
+  }
+
+  @media only screen and (min-width: 601px) {
       .row .col.m6 {
-          width:100%!important;
+          width: 100%!important;
       }
-    }
-    .card-action {
+  }
+
+  .card-action {
       padding: 10px !important;
       margin-top: 10px !important;
-    }
-    .card-action a{
-        color:#0097a7!important;
-    }
+  }
 
-    .card-subtitle{
+  .card-action a {
+      color: #0097a7!important;
+  }
+
+  .card-subtitle {
       padding-top: 6px !important;
-    }
-    .row:after{
+  }
+
+  .row:after {
       content: none !important;
-    }
+  }
 
-    .card .card-content .card-title{
-      line-height:19px !important;
-    }
+  .card .card-content .card-title {
+      line-height: 19px !important;
+  }
 
-    .card .card-title{
+  .card .card-title {
       margin-top: 5px;
       margin-bottom: 5px;
       font-size: 1.3em!important;
       letter-spacing: 1.2px !important;
-    }
-
-
-
-   /*custom simplemde*/
+  }
+  /*custom simplemde*/
 
   .CodeMirror {
       min-height: 150px !important;
@@ -157,9 +165,9 @@
 
   .CodeMirror .CodeMirror-scroll {
       min-height: 150px !important;
-   }
+  }
 
-   .editor-toolbar{
+  .editor-toolbar {
       border-top-left-radius: 0px !important;
       border-top-right-radius: 0px !important;
-   }
+  }
