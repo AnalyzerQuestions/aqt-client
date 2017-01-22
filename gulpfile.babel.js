@@ -38,7 +38,8 @@ const PATHS = {
         'ng-tags-input/build/ng-tags-input.js',
         'api-so/so-api.js',
         'simplemde/dist/simplemde.min.js',
-        'prismjs/prism.js'
+        'prismjs/prism.js',
+        'simplemde-angular/dist/simplemde-angular.min.js',		
     ],
     static: [
         `${ROOT}/index.html`,
