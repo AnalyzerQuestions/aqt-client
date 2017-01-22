@@ -8,6 +8,17 @@
       flex: 1 0 auto;
     }
 
+    h4 {
+      font-size: 25px;
+      font-variant: inherit;
+      font-weight: 100;
+      line-height: 46px;
+      text-decoration: none;
+      color: rgba(68, 68, 68, 0.56);
+      font-weight: 300;
+      letter-spacing: 1.8px;
+    }
+
     body {
       background: #fff;
     }
@@ -110,6 +121,10 @@
           width:100%!important;
       }
     }
+    .card-action {
+      padding: 10px !important;
+      margin-top: 10px !important;
+    }
     .card-action a{
         color:#0097a7!important;
     }
@@ -126,8 +141,13 @@
     }
 
     .card .card-title{
-      font-size: 1em!important;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-size: 1.3em!important;
+      letter-spacing: 1.2px !important;
     }
+
+
 
    /*custom simplemde*/
 
