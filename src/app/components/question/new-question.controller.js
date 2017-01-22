@@ -16,28 +16,6 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.suggestions = [];
     vm.open = false;
 
-    vm.simplemdeOptions = {
-
-        spellChecker: true,
-        styleSelectedText:true,
-        showIcons: ["code"],
-        forceSync: true,
-        indentWithTabs: false,
-        lineWrapping: false,
-        hideIcons:["heading","fullscreen", "side-by-side"],
-        previewRender: function(plainText, preview) {
-            setTimeout(function() {
-                preview.innerHTML = this.parent.markdown(plainText);
-                Prism.highlightAll();
-            }.bind(this), 1)
-            return "Loading..."
-         },
-        tabSize:1,
-        autofocus: true,
-        status:false,
-        lineWrapping:true,
-    };
-
     vm.register = function() {
             vm.question.tags = [];
             questionService.getSuggestions(vm.question, function(response) {

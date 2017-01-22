@@ -5,9 +5,6 @@
 		<p>Escreva sua Perguta de Programação</p>
 	</center>
 
-
-	{{nqCtrl.question.description}}
-
 	<form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate>
 
 		<div class='row'>
@@ -24,7 +21,6 @@
 
 		<div class='row'>
 			<div class='input-field col s12'>
-				<textarea simplemde='nqCtrl.simplemdeOptions' id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css"></textarea>
 			</div>
 		</div>
 
