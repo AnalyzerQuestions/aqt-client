@@ -1,6 +1,6 @@
 {
-  "short_name": "AQT",
-  "name": "Perguntas de Programação",
+  "short_name": "AQ-App",
+  "name": "Assist Question",
   "theme_color": "#0097A7",
   "background_color": "#0097A7",
   "display": "standalone",
