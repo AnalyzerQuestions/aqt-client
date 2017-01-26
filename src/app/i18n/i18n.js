@@ -1,6 +1,6 @@
 angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
     $translateProvider.translations('en', {
-        'APP_NAME': 'Question Assist',
+        'APP_NAME': 'Assist Question',
         'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
         'BT_AUTHORIZE': 'AUTHORIZE',
         'LB_MAIN_TITLE': 'My Questions',
@@ -14,7 +14,7 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
     });
 
     $translateProvider.translations('pt', {
-        'APP_NAME': 'Question Assist',
+        'APP_NAME': 'Assist Question',
         'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
         'BT_AUTHORIZE': 'AUTORIZAR',
         'LB_MAIN_TITLE': 'Minhas Perguntas',
