@@ -25,14 +25,18 @@
 
 		<div class='row'>
 			<div class='input-field col s12'>
+				<!-- <div input-field>
+					<div chips secondary-placeholder="first seen placeholder" placeholder="placeholder on th side of the chips"></div>
+				</div> -->
 				<tags-input id="tag" placeholder="Question tag" ng-model="nqCtrl.tags"></tags-input>
 			</div>
 		</div>
 		<br/>
 
+
 		<div class='row'>
 			<div class='input-field col s12'>
-				<button class='col s12 btn btn-large waves-effect cyan darken-2'>{{ 'BT_POST' | translate }}</button>
+				<button class='col s12 btn btn-large waves-effect cyan darken-2' duration="4000" toast='click' message="{{'MSG_TOAS_CONFIRM | translate'}}">{{ 'BT_POST' | translate }}</button>
 			</div>
 		</div>
 

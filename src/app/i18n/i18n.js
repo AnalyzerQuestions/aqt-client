@@ -8,7 +8,9 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'LB_NQ_TITLE': 'Write your programming question',
         'LB_NQ_QUESTION_TITLE': 'Question title',
         'LB_NQ_QUESTION_TAG': 'Question tags',
-        'BT_POST': 'POST QUESTION'
+        'BT_POST': 'POST QUESTION',
+        'MSG_TOAS_CONFIRM': 'Question publised!'
+
     });
 
     $translateProvider.translations('pt', {
@@ -20,7 +22,8 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'LB_NQ_TITLE': 'Escreva sua Pergunta de Programação',
         'LB_NQ_QUESTION_TITLE': 'Título da Pergunta',
         'LB_NQ_QUESTION_TAG': 'Tags da pergunta',
-        'BT_POST': 'PUBLICAR PERGUNTA'
+        'BT_POST': 'PUBLICAR PERGUNTA',
+        'MSG_TOAS_CONFIRM': 'Pergunta postada com sucesso!'
     });
 
     $translateProvider.preferredLanguage('en');

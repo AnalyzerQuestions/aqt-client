@@ -17,12 +17,13 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.open = false;
 
     vm.register = function() {
-            vm.question.tags = [];
-            questionService.getSuggestions(vm.question, function(response) {
+        vm.question.tags = [];
+        questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
             if (vm.suggestions.length) {
                 vm.open = true;
+                console.log($scope);
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
