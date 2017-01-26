@@ -40,6 +40,7 @@ const PATHS = {
         'simplemde/dist/simplemde.min.js',
         'prismjs/prism.js',
         'simplemde-angular/dist/simplemde-angular.min.js',
+        'angular-translate/dist/angular-translate.js'
     ],
     static: [
         `${ROOT}/index.html`,

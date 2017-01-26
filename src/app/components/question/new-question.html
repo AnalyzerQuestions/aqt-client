@@ -1,6 +1,6 @@
 <div class="container">
 	<center>
-		<h5>Write your programming question</h5>
+		<h5>{{ 'LB_NQ_TITLE' | translate }}</h5>
 	</center>
 
 	<form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate>
@@ -13,7 +13,7 @@
 		<div class='row'>
 			<div class='input-field col s12'>
 				<input class='validate' type='text' name='title' ng-model="nqCtrl.question.title" id='title' />
-				<label for='title'>Question title</label>
+				<label for='title'>{{ 'LB_NQ_QUESTION_TITLE' | translate }}</label>
 			</div>
 		</div>
 
@@ -25,14 +25,14 @@
 
 		<div class='row'>
 			<div class='input-field col s12'>
-				<tags-input id="tag" placeholder="Question Tags" ng-model="nqCtrl.tags"></tags-input>
+				<tags-input id="tag" placeholder="Question tag" ng-model="nqCtrl.tags"></tags-input>
 			</div>
 		</div>
 		<br/>
 
 		<div class='row'>
 			<div class='input-field col s12'>
-				<button class='col s12 btn btn-large waves-effect cyan darken-2'>POST</button>
+				<button class='col s12 btn btn-large waves-effect cyan darken-2'>{{ 'BT_POST' | translate }}</button>
 			</div>
 		</div>
 
