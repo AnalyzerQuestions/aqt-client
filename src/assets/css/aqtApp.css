@@ -19,7 +19,6 @@
       letter-spacing: 1.8px;
   }
 
-
   body {
       background: #fff;
   }
@@ -113,7 +112,6 @@
       float: left;
       height: 26px;
   }
-
   /*card-view*/
 
   span.badge {
@@ -171,4 +169,37 @@
   .editor-toolbar {
       border-top-left-radius: 0px !important;
       border-top-right-radius: 0px !important;
+  }
+  /*NG ANIMATE*/
+
+  .page-transition.ng-enter, .page-transition.ng-leave {
+      -webkit-transition: opacity ease-in-out 500ms;
+      transition: opacity ease-in-out 500ms;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+  }
+
+  .page-transition.ng-enter, .page-transition.ng-leave.ng-leave-active {
+      opacity: 0;
+  }
+
+  .page-transition.ng-enter.ng-enter-active {
+      opacity: 1;
+  }
+
+  .page-transition.ng-enter {
+      -webkit-transition: transform ease-in-out 300ms;
+      transition: transform ease-in-out 300ms;
+      -webkit-transform: scale(0.6);
+      transform: scale(0.6);
+  }
+
+  .page-transition.ng-enter.ng-enter-active {
+      -webkit-transition-delay: 200ms;
+      transition-delay: 200ms;
+      -webkit-transform: none;
+      transform: none;
   }

@@ -11,23 +11,22 @@ angular.module("components").controller("loginController", function($location, a
 
     var vm = this;
 
-    initSO();
+    //initSO();
 
     vm.login = function() {
 
-        $(function() {
-            SE.authenticate({
-                success: function(data) {
-                    console.log('Success :', data);
-                    $location.path('/main');
-                },
-                error: function(data) {
-                    console.log('Error: ', data);
-                },
-                networkUsers: true
-            });
-
-        });
+        // $(function() {
+        //     SE.authenticate({
+        //         success: function(data) {
+        //             console.log('Success :', data);
+        //         },
+        //         error: function(data) {
+        //             console.log('Error: ', data);
+        //         },
+        //         networkUsers: true
+        //     });
+        // });
+        $location.path('/main');
     }
 
     function initSO() {

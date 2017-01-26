@@ -9,7 +9,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate']);
+angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'ngAnimate']);
 
 
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
@@ -133,18 +133,6 @@ angular.module("common").component('suggestionsModal', {
 'use strict';
 /**
  * @ngdoc module
- * @name aqtApp
- *
- * @description
- * This is the custom config for simplemde.
- *
- * @author <a href="https://github.com/JoseRafael97">José Rafael Feitosa</a>
- **/
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
  * @name common
  *
  * @description
@@ -153,6 +141,18 @@ angular.module("common").component('suggestionsModal', {
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
 angular.module('components', ['ngTagsInput', 'simplemde']);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name aqtApp
+ *
+ * @description
+ * This is the custom config for simplemde.
+ *
+ * @author <a href="https://github.com/JoseRafael97">José Rafael Feitosa</a>
+ **/
 })(window.angular);
 (function(angular){
 'use strict';
@@ -259,23 +259,22 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 
     var vm = this;
 
-    initSO();
+    //initSO();
 
     vm.login = function() {
 
-        $(function() {
-            SE.authenticate({
-                success: function(data) {
-                    console.log('Success :', data);
-                    $location.path('/main');
-                },
-                error: function(data) {
-                    console.log('Error: ', data);
-                },
-                networkUsers: true
-            });
-
-        });
+        // $(function() {
+        //     SE.authenticate({
+        //         success: function(data) {
+        //             console.log('Success :', data);
+        //         },
+        //         error: function(data) {
+        //             console.log('Error: ', data);
+        //         },
+        //         networkUsers: true
+        //     });
+        // });
+        $location.path('/main');
     }
 
     function initSO() {
