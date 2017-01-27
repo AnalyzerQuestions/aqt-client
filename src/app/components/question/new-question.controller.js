@@ -23,7 +23,6 @@ angular.module("components").controller("newQuestionController", function(questi
 
             if (vm.suggestions.length) {
                 vm.open = true;
-                console.log($scope);
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
@@ -34,9 +33,7 @@ angular.module("components").controller("newQuestionController", function(questi
     };
 
     var postQuestion = function(question) {
-        questionService.postQuestion(question, function(response) {
-            console.log(response);
-        });
+        questionService.postQuestion(question, function(response) {});
     };
 
 

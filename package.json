@@ -11,12 +11,10 @@
   "dependencies": {
     "angular": "1.5.8",
     "angular-animate": "1.5.8",
-    "angular-materialize": "^0.2.2",
     "angular-route": "1.5.8",
     "express": "~4.14.0",
     "jquery": "3.1.1",
     "materialize-css": "^0.97.8",
-    "ng-tags-input": "^3.1.1",
     "prismjs": "^1.6.0",
     "simplemde": "^1.11.2",
     "simplemde-angular": "git+https://github.com/hansottowirtz/simplemde-angular.git"

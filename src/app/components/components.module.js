@@ -8,4 +8,4 @@
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
 
-angular.module('components', ['ngTagsInput', 'simplemde', 'ui.materialize']);
+angular.module('components', ['simplemde']);
