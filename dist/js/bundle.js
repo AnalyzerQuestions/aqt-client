@@ -141,19 +141,7 @@ angular.module("common").component('suggestionsModal', {
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
 
-angular.module('components', ['ngTagsInput', 'simplemde', 'ui.materialize']);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name aqtApp
- *
- * @description
- * This is the custom config for simplemde.
- *
- * @author <a href="https://github.com/JoseRafael97">José Rafael Feitosa</a>
- **/
+angular.module('components', ['simplemde']);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -189,6 +177,49 @@ angular.module("components").directive('simpleMde', function() {
         }
     }
 })
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name components
+ *
+ * @description
+ * This is the directive to chip input.
+ *
+ * @author <a href="http://krescruz.github.io/npm angular-materialize/#chips">Angular Materialize</a>
+ **/
+angular.module("components").directive('aqtchip', ['$timeout', function($timeout) {
+    return {
+        restrict: 'A',
+        scope: {
+            ngModel: '=',
+            placeholder: '@',
+            secondaryPlaceholder: '@',
+        },
+        link: function(scope, element, attrs) {
+            $timeout(function() {
+                element.material_chip({
+                    data: scope.ngModel || [],
+                    placeholder: scope.placeholder || '',
+                    secondaryPlaceholder: scope.secondaryPlaceholder || '',
+                })
+                element.on('chip.add', function(e, chip) {
+                    scope.ngModel = element.data().chips.map(function(item) {
+                        return item.tag
+                    })
+                    scope.$apply()
+                })
+                element.on('chip.delete', function(e, chip) {
+                    scope.ngModel = element.data().chips.map(function(item) {
+                        return item.tag
+                    })
+                    scope.$apply()
+                })
+            })
+        }
+    };
+}]);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -352,9 +383,7 @@ angular.module("components").controller("newQuestionController", ["questionServi
     };
 
     var postQuestion = function(question) {
-        questionService.postQuestion(question, function(response) {
-            console.log(response);
-        });
+        questionService.postQuestion(question, function(response) {});
     };
 
 
@@ -421,8 +450,8 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
 'use strict';
 angular.module('templates', []).run(['$templateCache', function($templateCache) {$templateCache.put('./floating-button.component.html','<div class="fixed-action-btn"><a ng-href="{{$ctrl.url}}" class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">{{$ctrl.icon}}</i></a></div>');
 $templateCache.put('./navBar.component.html','<nav class="navbar-fixed cyan darken-2"><div class="nav-wrapper"><a href="#/" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> <a href="#/" data-activates="slide-out" class="brand-logo center button-collapse">{{$ctrl.name | translate}}</a><ul class="right"><li><a href="#/"><i class="material-icons">more_vert</i></a></li></ul></div></nav>');
-$templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><h4><small>Algumas dicas para melhorar sua pergunta</small></h4><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div>');
+$templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s12"><h4><small>Dicas para melhorar sua pergunta</small></h4></div></div><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><h4><small>{{ \'LB_LOGIN_TITLE\' | translate }}</small></h4></center><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">AUTHORIZE</a></div></form></div>');
 $templateCache.put('./main.html','<center><h4>{{ \'LB_MAIN_TITLE\' | translate }}</h4></center><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">Qual a diferen\xE7a de uma toolbar para uma action bar?</span><p class="card-subtitle"><a href="#"><span class="new badge" data-badge-caption="java"></span></a> <a href="#"><span class="new badge" data-badge-caption="android"></span><a></a></p></div><div align="center" class="card-action"><a href="#">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">Qual a diferen\xE7a entre spring e JavaEE?</span><p class="card-subtitle"><a href="#"><span class="new badge" data-badge-caption="java"></span></a></p></div><div align="center" class="card-action"><a href="#">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
-$templateCache.put('./new-question.html','<div class="container"><center><h5>{{ \'LB_NQ_TITLE\' | translate }}</h5></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">{{ \'LB_NQ_QUESTION_TITLE\' | translate }}</label></div></div><div class="row"><div class="input-field col s12"><simple-mde id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css"></simple-mde></div></div><div class="row"><div class="input-field col s12"><!-- <div input-field>\n\t\t\t\t\t<div chips secondary-placeholder="first seen placeholder" placeholder="placeholder on th side of the chips"></div>\n\t\t\t\t</div> --><tags-input id="tag" placeholder="Question tag" ng-model="nqCtrl.tags"></tags-input></div></div><br><div class="row"><div class="input-field col s12"><button id="postQuestion" class="col s12 btn btn-large waves-effect cyan darken-2">{{ \'BT_POST\' | translate }}</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);
+$templateCache.put('./new-question.html','<div class="container"><center><h5>{{ \'LB_NQ_TITLE\' | translate }}</h5></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">{{ \'LB_NQ_QUESTION_TITLE\' | translate }}</label></div></div><div class="row"><div class="input-field col s12"><simple-mde id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css"></simple-mde></div></div><div class="row"><div class="input-field col s12"><div id="tag" aqtchip ng-model="nqCtrl.tags" placeholder="Question tag" secondary-placeholder="Question tag"></div></div></div><br><div class="row"><div class="input-field col s12"><button id="postQuestion" class="col s12 btn btn-large waves-effect cyan darken-2">{{ \'BT_POST\' | translate }}</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);

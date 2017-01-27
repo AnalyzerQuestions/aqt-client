@@ -33,9 +33,7 @@ angular.module("components").controller("newQuestionController", function(questi
     };
 
     var postQuestion = function(question) {
-        questionService.postQuestion(question, function(response) {
-            console.log(response);
-        });
+        questionService.postQuestion(question, function(response) {});
     };
 
 

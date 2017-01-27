@@ -1,7 +1,11 @@
 <div ng-show="$ctrl.open" {{$ctrl.open}}>
     <div id="suggestionsModal" class="modal bottom-sheet">
         <div class="modal-content">
-            <h4><small>Algumas dicas para melhorar sua pergunta</small></h4>
+            <div class="row">
+                <div class="col s12">
+                    <h4><small>Dicas para melhorar sua pergunta</small></h4>
+                </div>
+            </div>
             <ul class="collection">
                 <li class="collection-item" ng-repeat="sug in $ctrl.suggestions">
 
