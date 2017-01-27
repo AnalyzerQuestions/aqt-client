@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("newQuestionController", function(questionService, $scope) {
+angular.module("components").controller("newQuestionController", function(questionService, $scope, $location) {
 
     var vm = this;
 
@@ -23,13 +23,12 @@ angular.module("components").controller("newQuestionController", function(questi
 
             if (vm.suggestions.length) {
                 vm.open = true;
-                console.log($scope);
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
-                postQuestion(vm.question);
+                $location.path("/main")
+                Materialize.toast("Pergunta Publicada com  sucesso", 3000);
             }
-
         });
     };
 
