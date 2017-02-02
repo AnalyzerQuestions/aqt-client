@@ -273,7 +273,7 @@ angular.module("components").value("aqtValue", {
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 7786,
-        scopeList: ['write_access'],
+        scopeList: ['read_inbox'],
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }
@@ -294,22 +294,22 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 
     var vm = this;
 
-    //initSO();
+    initSO();
 
     vm.login = function() {
 
-        // $(function() {
-        //     SE.authenticate({
-        //         success: function(data) {
-        //             console.log('Success :', data);
-        //         },
-        //         error: function(data) {
-        //             console.log('Error: ', data);
-        //         },
-        //         networkUsers: true
-        //     });
-        // });
-        $location.path('/main');
+        $(function() {
+            SE.authenticate({
+                success: function(data) {
+                    console.log('Success :', data);
+                    $location.path('/main');
+                },
+                error: function(data) {
+                    console.log('Error: ', data);
+                },
+                networkUsers: true
+            });
+        });
     }
 
     function initSO() {
