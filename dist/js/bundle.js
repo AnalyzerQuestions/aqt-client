@@ -225,7 +225,7 @@ angular.module("components").directive('aqtchip', ['$timeout', function($timeout
 'use strict';
 angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
     $translateProvider.translations('en', {
-        'APP_NAME': 'Assist Question',
+        'APP_NAME': "Question's Advisor",
         'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
         'BT_AUTHORIZE': 'AUTHORIZE',
         'LB_MAIN_TITLE': 'My Questions',
@@ -239,7 +239,7 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
     });
 
     $translateProvider.translations('pt', {
-        'APP_NAME': 'Assist Question',
+        'APP_NAME': "Question's Advisor",
         'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
         'BT_AUTHORIZE': 'AUTORIZAR',
         'LB_MAIN_TITLE': 'Minhas Perguntas',
@@ -296,7 +296,18 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 
     initSO();
 
-    vm.login = function() {}
+    vm.login = function() {
+        SE.authenticate({
+            success: function(data) {
+                console.log('Success :', data);
+                $location.path('/main');
+            },
+            error: function(data) {
+                console.log('Error: ', data);
+            },
+            networkUsers: true
+        });
+    }
 
     function initSO() {
         $(function() {
@@ -306,16 +317,6 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
                 channelUrl: aqtValue.so.channelUrl,
                 complete: function(data) {
                     console.log('Init: ', data);
-                    SE.authenticate({
-                        success: function(data) {
-                            console.log('Success :', data);
-                            $location.path('/main');
-                        },
-                        error: function(data) {
-                            console.log('Error: ', data);
-                        },
-                        networkUsers: true
-                    });
                 }
             });
         });

@@ -13,7 +13,18 @@ angular.module("components").controller("loginController", function($location, a
 
     initSO();
 
-    vm.login = function() {}
+    vm.login = function() {
+        SE.authenticate({
+            success: function(data) {
+                console.log('Success :', data);
+                $location.path('/main');
+            },
+            error: function(data) {
+                console.log('Error: ', data);
+            },
+            networkUsers: true
+        });
+    }
 
     function initSO() {
         $(function() {
@@ -23,16 +34,6 @@ angular.module("components").controller("loginController", function($location, a
                 channelUrl: aqtValue.so.channelUrl,
                 complete: function(data) {
                     console.log('Init: ', data);
-                    SE.authenticate({
-                        success: function(data) {
-                            console.log('Success :', data);
-                            $location.path('/main');
-                        },
-                        error: function(data) {
-                            console.log('Error: ', data);
-                        },
-                        networkUsers: true
-                    });
                 }
             });
         });
