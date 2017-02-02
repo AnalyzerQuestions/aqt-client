@@ -77,7 +77,7 @@ gulp.task('templates', () => {
 gulp.task('modules', ['templates'], () => {
     return gulp.src(PATHS.modules.map(item => 'node_modules/' + item))
         .pipe(concat('vendor.js'))
-        .pipe(gulpif(NODE_EV === 'production', uglify()))
+        .pipe(uglify())
         .pipe(gulp.dest(PATHS.dist + 'js/'));
 });
 
