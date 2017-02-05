@@ -14,7 +14,7 @@ angular.module("components").controller("loginController", function($location, a
     initSO();
 
     vm.login = function() {
-
+        console.log('tenta fazer login...');
         SE.authenticate({
             success: function(data) {
                 console.log('Success :', data);
