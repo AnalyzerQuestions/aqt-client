@@ -7,28 +7,25 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", function($location, $http, aqtValue) {
+angular.module("components").controller("loginController", function($location, aqtValue, loginService) {
 
     var vm = this;
 
-    //initSO();
+    initSO();
 
     vm.login = function() {
 
-        $http.jsonp(aqtValue.so.test).then(function(response) {
-            console.log(response);
-        });
 
-        // SE.authenticate({
-        //     success: function(data) {
-        //         console.log('Success :', data);
-        //         $location.path('/main');
-        //     },
-        //     error: function(data) {
-        //         console.log('Error: ', data);
-        //     },
-        //     networkUsers: true
-        // });
+        SE.authenticate({
+            success: function(data) {
+                console.log('Success :', data);
+                $location.path('/main');
+            },
+            error: function(data) {
+                console.log('Error: ', data);
+            },
+            networkUsers: true
+        });
     }
 
     function initSO() {
