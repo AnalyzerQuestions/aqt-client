@@ -18,17 +18,3 @@
 
 </div>
 </div>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#btn-auth').click(function() {
-			var $link = $(this);
-			var $dialog = $('<div></div>').load($link.attr('href')).dialog({
-				title: $link.attr('title'),
-				width: 500,
-				height: 300
-			});
-			return false
-		});
-	});
-</script>
