@@ -1,44 +1,34 @@
-<button name='btn_login' id='login-button' class='col s12 btn btn-large waves-effect yellow darken-3'>AUTHORIZE</button>
+<div class="section"></div>
+<div class="section"></div>
 
-<script type='text/javascript'>
-	// For simplicity, we're using jQuery for some things
-	//   However, the library has no jQuery dependency
-	$(function() {
-		// Initialize library
-		SE.init({
-			// Parameters obtained by registering an app, these are specific to the SE
-			//   documentation site
-			clientId: 1,
-			key: 'U4DMV*8nvpm3EOpvf69Rxw((',
-			// Used for cross domain communication, it will be validated
-			channelUrl: 'https://appif.herokuapp.com/#/blank',
-			// Called when all initialization is finished
-			complete: function(data) {
-				$('#login-button')
-					.removeAttr('disabled')
-					.text('Run Example With Version ' + data.version);
-			}
-		});
+<div class="container">
+	<center>
+		<img class="responsive-img" style="width: 300px;" src="../assets/img/so-logo.png" />
+		<h4><small>{{ 'LB_LOGIN_TITLE' | translate }}</small></h4>
+	</center>
 
-		// Attach click handler to login button
-		$('#login-button').click(function() {
+	<div class="section"></div>
 
-			// Make the authentication call, note that being in an onclick handler
-			//   is important; most browsers will hide windows opened without a
-			//   'click blessing'
-			SE.authenticate({
-				success: function(data) {
-					alert(
-						'User Authorized with account id = ' +
-						data.networkUsers[0].account_id + ', got access token = ' +
-						data.accessToken
-					);
-				},
-				error: function(data) {
-					alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
-				},
-				networkUsers: true
+
+	<form class="col s12">
+		<div class='row'>
+			<a name='btn_login' href='https://stackexchange.com/oauth/dialog?client_id=7061&scope=no_expiry&redirect_uri=https://appif.herokuapp.com/#/main' id='btn-auth' class='col s12 btn btn-large waves-effect yellow darken-3'>AUTHORIZE</a>
+		</div>
+	</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#btn-auth').click(function() {
+			var $link = $(this);
+			var $dialog = $('<div></div>').load($link.attr('href')).dialog({
+				title: $link.attr('title'),
+				width: 500,
+				height: 300
 			});
+			return false
 		});
 	});
 </script>
