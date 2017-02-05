@@ -291,7 +291,7 @@ angular.module("components").value("aqtValue", {
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", ["$location", "aqtValue", "loginService", function($location, aqtValue, loginService) {
+angular.module("components").controller("loginController", ["$location", "aqtValue", function($location, aqtValue) {
 
     var vm = this;
 
