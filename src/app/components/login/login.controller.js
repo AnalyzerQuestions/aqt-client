@@ -14,9 +14,16 @@ angular.module("components").controller("loginController", function($location, a
     initSO();
 
     vm.login = function() {
-
-        window.open(aqtValue.so.test, '', 'width=400, height=400');
-
+        SE.authenticate({
+            success: function(data) {
+                console.log('Success :', data);
+                $location.path('/main');
+            },
+            error: function(data) {
+                console.log('Error: ', data);
+            },
+            networkUsers: true
+        });
     }
 
     function initSO() {
