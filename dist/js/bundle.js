@@ -291,7 +291,7 @@ angular.module("components").value("aqtValue", {
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", ["$location", "aqtValue", "loginService", function($location, aqtValue, loginService) {
+angular.module("components").controller("loginController", ["$location", "aqtValue", function($location, aqtValue) {
 
     var vm = this;
 
@@ -352,6 +352,22 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 // }
 //
 // });
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc controller
+ * @name Main controller
+ *
+ * @description
+ * This is the main controller.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").controller("mainController", ["$scope", function($scope) {
+
+
+}]);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -452,22 +468,6 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
     }
 
 }]);;
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc controller
- * @name Main controller
- *
- * @description
- * This is the main controller.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").controller("mainController", ["$scope", function($scope) {
-
-
-}]);
 })(window.angular);
 (function(angular){
 'use strict';
