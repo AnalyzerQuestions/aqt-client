@@ -15,11 +15,8 @@ angular.module("components").controller("loginController", function($location, a
 
     vm.login = function() {
 
-        $('#btn-login').click(function() {
+        window.open(aqtValue.so.test, '', 'width=400, height=400');
 
-            window.open('http://www.google.com', '_blank');
-
-        });
     }
 
     function initSO() {

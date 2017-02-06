@@ -68,20 +68,6 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-
-angular.module('components', ['simplemde']);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name common
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
 angular.module('common', []);
 })(window.angular);
 (function(angular){
@@ -142,6 +128,20 @@ angular.module("common").component('suggestionsModal', {
         };
     }
 });
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name common
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+
+angular.module('components', ['simplemde']);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -299,11 +299,8 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 
     vm.login = function() {
 
-        $('#btn-login').click(function() {
+        window.open(aqtValue.so.test, '', 'width=400, height=400');
 
-            window.open('http://www.google.com', '_blank');
-
-        });
     }
 
     function initSO() {
