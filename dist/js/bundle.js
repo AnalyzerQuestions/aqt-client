@@ -273,9 +273,9 @@ angular.module("components").value("aqtValue", {
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
         test: 'https://stackexchange.com/oauth/dialog?client_id=7061&scope=no_expiry&redirect_uri=https://appif.herokuapp.com/#/main',
-        clientId: 7786,
+        clientId: 8955,
         scopeList: ['read_inbox'],
-        key: 'KJi1v7aNWJ8aziMts2QEmQ((',
+        key: 'bvot7qoa6k1gD4UfXAfYJA((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }
 });
