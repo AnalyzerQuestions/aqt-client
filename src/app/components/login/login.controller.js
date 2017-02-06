@@ -15,16 +15,10 @@ angular.module("components").controller("loginController", function($location, a
 
     vm.login = function() {
 
+        $('#btn-login').click(function() {
 
-        SE.authenticate({
-            success: function(data) {
-                console.log('Success :', data);
-                $location.path('/main');
-            },
-            error: function(data) {
-                console.log('Error: ', data);
-            },
-            networkUsers: true
+            window.open('http://www.google.com', '_blank');
+
         });
     }
 
