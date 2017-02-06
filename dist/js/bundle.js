@@ -298,7 +298,9 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
     //  initSO();
 
     vm.login = function() {
-        window.open(aqtValue.so.test, ' ', 'width=400, height=400')
+        window.open(aqtValue.so.test, ' ', 'width=400, height=400');
+        var hash = window.location.hash;
+        console.log(hash);
         // SE.authenticate({
         //     success: function(data) {
         //         console.log('Success :', data);
