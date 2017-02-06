@@ -12,9 +12,31 @@
 
 	<form class="col s12">
 		<div class='row'>
-			<a name='btn_login' href='https://stackexchange.com/oauth/dialog?client_id=7061&scope=no_expiry&redirect_uri=https://stackexchange.com/oauth/login_success' id='btn-auth' class='col s12 btn btn-large waves-effect yellow darken-3'>AUTHORIZE</a>
+			<!-- <a name='btn_login' href='https://stackexchange.com/oauth/dialog?client_id=7061&scope=no_expiry&redirect_uri=https://appif.herokuapp.com/#/main' id='btn-auth' class='col s12 btn btn-large waves-effect yellow darken-3'>AUTHORIZE</a> -->
+			<a name='btn_login' href='https://stackexchange.com/oauth/dialog?client_id=7061&scope=no_expiry&redirect_uri=https://appif.herokuapp.com/#/main' id='btn-auth' class=' example col s12 btn btn-large waves-effect yellow darken-3'>AUTHORIZE</a>
 		</div>
 	</form>
 
 </div>
 </div>
+
+<script type="text/javascript">
+	$('a.example').click(function() { //bind handlers
+		var url = $(this).attr('href');
+		showDialog(url);
+
+		return false;
+	});
+
+	$("#targetDiv").dialog({ //create dialog, but keep it closed
+		autoOpen: false,
+		height: 300,
+		width: 350,
+		modal: true
+	});
+
+	function showDialog(url) { //load content and open dialog
+		$("#targetDiv").load(url);
+		$("#targetDiv").dialog("open");
+	}
+</script>
