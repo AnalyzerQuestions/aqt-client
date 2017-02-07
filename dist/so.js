@@ -216,7 +216,7 @@ window.SE =
                     console.log('----------------------------> ', map);
                     opened.close();
 
-                    if (map.blankaccess_token) {
+                    if (map.access_token) {
                         mapSuccess(map.access_token, map.expires);
                         return;
                     }
