@@ -198,6 +198,7 @@ window.SE =
                     for (i = 0; i < parts.length; i++) {
                         pieces = parts[i].split('=');
                         map[pieces[0]] = pieces[1];
+                        console.log('----------------------------> ', parts);
                     }
 
                     if (+map.state !== state) {

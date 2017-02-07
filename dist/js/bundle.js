@@ -61,6 +61,24 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
 'use strict';
 /**
  * @ngdoc module
+ * @name components
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+
+angular.module('components', ['simplemde']);
+
+angular.module("components").config(["$httpProvider", function($httpProvider) {
+    $httpProvider.interceptors.push("tokenInterceptor");
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
  * @name common
  *
  * @description
@@ -128,24 +146,6 @@ angular.module("common").component('suggestionsModal', {
         };
     }
 });
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name components
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-
-angular.module('components', ['simplemde']);
-
-angular.module("components").config(["$httpProvider", function($httpProvider) {
-    $httpProvider.interceptors.push("tokenInterceptor");
-}]);
 })(window.angular);
 (function(angular){
 'use strict';
