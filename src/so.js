@@ -198,7 +198,6 @@ window.SE =
                     for (i = 0; i < parts.length; i++) {
                         pieces = parts[i].split('=');
                         map[pieces[0]] = pieces[1];
-                        console.log('----------------------------> ', parts);
                     }
 
                     if (+map.state !== state) {
@@ -211,6 +210,7 @@ window.SE =
                         window.removeEventListener("message", handler, false);
                     }
 
+                    console.log('----------------------------> ', map.access_token);
                     opened.close();
 
                     if (map.access_token) {
