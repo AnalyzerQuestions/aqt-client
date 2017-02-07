@@ -26,7 +26,6 @@ angular.module("components").controller("loginController", function($scope, $loc
             success: function(data) {
                 localStorage.setItem("userToken", data.accessToken);
                 console.log('auth success...', data);
-                $location.path('#/main');
             },
             error: function(data) {
                 console.log('auth error...', data);
@@ -35,16 +34,8 @@ angular.module("components").controller("loginController", function($scope, $loc
             networkUsers: true
         });
 
-        // var win = window.open(aqtValue.so.test, '_target');
-        //
-        // if (win) {
-        //     console.log(win.location.href);
-        //
-        //
-        //     setTimeout(function() {
-        //         win.close();
-        //     }, 8000);
-        // }
-
+        if (localStorage.getItem("userToken")) {
+            $location.path('#/main');
+        }
     }
 });
