@@ -197,8 +197,6 @@ window.SE =
 
                     for (i = 0; i < parts.length; i++) {
                         pieces = parts[i].split('=');
-                        nameLabel = pieces[0].replace('/', '');
-                        nameLabel = pieces[0].replace('#', '');
                         map[pieces[0]] = pieces[1];
                     }
 
