@@ -197,6 +197,8 @@ window.SE =
 
                     for (i = 0; i < parts.length; i++) {
                         pieces = parts[i].split('=');
+                        var tokenLabel = pieces[0];
+                        console.log(tokenLabel);
                         map[pieces[0]] = pieces[1];
                     }
 
