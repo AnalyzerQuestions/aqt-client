@@ -201,7 +201,7 @@ window.SE =
                         var tokenAlt = tokenLabel.replace("/", "");
                         var tokenAlt2 = tokenAlt.replace("#", "");
                         console.log(tokenLabel);
-                        map[pieces[0]] = pieces[1];
+                        map[tokenAlt2] = pieces[1];
                     }
 
                     if (+map.state !== state) {
