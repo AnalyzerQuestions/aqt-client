@@ -7,41 +7,42 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", function($location, aqtValue) {
+angular.module("components").controller("loginController", function($scope, $location, $http, aqtValue) {
 
     var vm = this;
 
-    //  initSO();
+    SE.init({
+        clientId: aqtValue.so.clientId,
+        key: aqtValue.so.key,
+        channelUrl: aqtValue.so.channelUrl,
+        complete: function(data) {
+            console.log('Init SO...');
+        }
+    });
 
     vm.login = function() {
-        window.open(aqtValue.so.test, ' ', 'width=400, height=400');
-        $(window).on('hashchange', function() {
-            var hash = window.location.hash;
-            console.log(hash);
+
+        SE.authenticate({
+            success: function(data) {
+                console.log('auth success...', data);
+            },
+            error: function(data) {
+                console.log('auth error...', data);
+            },
+            scope: ['read_inbox'],
+            networkUsers: true
         });
-        // SE.authenticate({
-        //     success: function(data) {
-        //         console.log('Success :', data);
-        //         $location.path('/main');
-        //     },
-        //     error: function(data) {
-        //         console.log('Error: ', data);
-        //     },
-        //     networkUsers: true
-        // });
+
+        // var win = window.open(aqtValue.so.test, '_target');
+        //
+        // if (win) {
+        //     console.log(win.location.href);
+        //
+        //
+        //     setTimeout(function() {
+        //         win.close();
+        //     }, 8000);
+        // }
+
     }
-
-    function initSO() {
-        $(function() {
-            SE.init({
-                clientId: aqtValue.so.clientId,
-                key: aqtValue.so.key,
-                channelUrl: aqtValue.so.channelUrl,
-                complete: function(data) {
-                    console.log('Init: ', data);
-                }
-            });
-        });
-    };
-
 });

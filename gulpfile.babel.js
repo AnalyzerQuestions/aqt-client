@@ -10,8 +10,7 @@ import templateCache from 'gulp-angular-templatecache';
 import server from 'browser-sync';
 import del from 'del';
 import path from 'path';
-import runSequence
-from 'run-sequence';
+import runSequence from 'run-sequence';
 
 const NODE_EV = process.env.NODE_ENV || 'development';
 const ROOT = 'src/';
@@ -48,6 +47,7 @@ const PATHS = {
         `${ROOT}/manifest.json`,
         `${ROOT}/appCache.manifest`,
         `${ROOT}/sw.js`,
+        `${ROOT}/so.js`,
         `${ROOT}/assets/img/**/*`,
         `${ROOT}/assets/fonts/**/*`
     ]
