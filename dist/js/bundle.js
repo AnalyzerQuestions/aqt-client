@@ -336,6 +336,7 @@ angular.module("components").controller("loginController", ["$scope", "$location
         SE.authenticate({
             success: function(data) {
                 localStorage.setItem("userToken", data.accessToken);
+                console.log('auth sucess...', data);
             },
             error: function(data) {
                 console.log('auth error...', data);
