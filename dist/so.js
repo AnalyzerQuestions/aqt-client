@@ -199,7 +199,6 @@ window.SE =
                         pieces = parts[i].split('=');
                         var tokenLabel = pieces[0];
                         var tokenAlt = tokenLabel.replace("/blank#", "");
-                        console.log(tokenLabel);
                         map[tokenAlt] = pieces[1];
                     }
 

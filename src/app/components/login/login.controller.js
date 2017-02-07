@@ -26,6 +26,7 @@ angular.module("components").controller("loginController", function($scope, $loc
             success: function(data) {
                 localStorage.setItem("userToken", data.accessToken);
                 $location.path('#/main');
+                console.log('auth success...', data);
             },
             error: function(data) {
                 console.log('auth error...', data);
