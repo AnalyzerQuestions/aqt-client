@@ -210,7 +210,7 @@ window.SE =
                         window.removeEventListener("message", handler, false);
                     }
 
-                    console.log('----------------------------> ', map.access_token);
+                    console.log('----------------------------> ', map);
                     opened.close();
 
                     if (map.access_token) {
