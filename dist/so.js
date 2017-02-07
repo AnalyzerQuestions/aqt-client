@@ -198,6 +198,8 @@ window.SE =
                     for (i = 0; i < parts.length; i++) {
                         pieces = parts[i].split('=');
                         var tokenLabel = pieces[0];
+                        var tokenAlt = tokenLabel.replace("/", "");
+                        var tokenAlt2 = tokenAlt.replace("#", "");
                         console.log(tokenLabel);
                         map[pieces[0]] = pieces[1];
                     }
@@ -215,7 +217,7 @@ window.SE =
                     console.log('----------------------------> ', map);
                     opened.close();
 
-                    if (map.access_token) {
+                    if (map.blankaccess_token) {
                         mapSuccess(map.access_token, map.expires);
                         return;
                     }
