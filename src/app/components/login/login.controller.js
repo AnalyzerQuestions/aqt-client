@@ -25,7 +25,6 @@ angular.module("components").controller("loginController", function($scope, $loc
         SE.authenticate({
             success: function(data) {
                 localStorage.setItem("userToken", data.accessToken);
-                console.log('auth success...', data);
             },
             error: function(data) {
                 console.log('auth error...', data);
@@ -34,8 +33,5 @@ angular.module("components").controller("loginController", function($scope, $loc
             networkUsers: true
         });
 
-        if (localStorage.getItem("userToken")) {
-            $location.path('#/main');
-        }
     }
 });

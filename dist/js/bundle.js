@@ -11,7 +11,17 @@
  **/
 angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'ngAnimate']);
 
+angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
 
+    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+
+        if (localStorage.getItem("userToken")) {
+            if ($location.path() === '/') {
+                $location.path('/main');
+            }
+        }
+    });
+}]);
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
 //
 //   navigator.serviceWorker.register('sw.js', {scope: './'
@@ -290,7 +300,6 @@ angular.module("components").value("aqtValue", {
     so: {
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
-        test: 'https://stackexchange.com/oauth/dialog?client_id=7786&scope=no_expiry&redirect_uri=https://appif.herokuapp.com/#/main',
         clientId: 7786,
         scopeList: ['read_inbox'],
         key: 'KJi1v7aNWJ8aziMts2QEmQ((',
@@ -327,7 +336,6 @@ angular.module("components").controller("loginController", ["$scope", "$location
         SE.authenticate({
             success: function(data) {
                 localStorage.setItem("userToken", data.accessToken);
-                console.log('auth success...', data);
             },
             error: function(data) {
                 console.log('auth error...', data);
@@ -336,9 +344,6 @@ angular.module("components").controller("loginController", ["$scope", "$location
             networkUsers: true
         });
 
-        if (localStorage.getItem("userToken")) {
-            $location.path('#/main');
-        }
     }
 }]);
 })(window.angular);
