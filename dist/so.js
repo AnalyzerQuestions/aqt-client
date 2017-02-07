@@ -212,8 +212,6 @@ window.SE =
                     } else {
                         window.removeEventListener("message", handler, false);
                     }
-
-                    console.log('----------------------------> ', map);
                     opened.close();
 
                     if (map.access_token) {
