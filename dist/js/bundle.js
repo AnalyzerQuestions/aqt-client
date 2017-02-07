@@ -295,7 +295,7 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
  **/
 angular.module("components").value("aqtValue", {
 
-    api: "http://localhost:8080/",
+    api: "https://aqt.herokuapp.com/",
 
     so: {
         site: 'pt.stackoverflow',
