@@ -197,8 +197,8 @@ window.SE =
 
                     for (i = 0; i < parts.length; i++) {
                         pieces = parts[i].split('=');
-                        //nameLabel = pieces[0].replace(/, '');
-                        //nameLabel = pieces[0].replace(#, '');
+                        nameLabel = pieces[0].replace('/', '');
+                        nameLabel = pieces[0].replace('#', '');
                         map[pieces[0]] = pieces[1];
                     }
 
@@ -333,6 +333,34 @@ return;
 }
 
 if (opened.closed) {
+    clearInterval(pollHandle);
+    return;
+}
+
+var msgFrame = opened.frames['se-api-frame'];
+if (msgFrame) {
+    clearInterval(pollHandle);
+
+    handler({
+        origin: seUrl,
+        source: opened,
+        data: msgFrame.location.hash
+    });
+}
+};
+
+pollHandle = setInterval(poll, 50);
+}
+
+opened = window.open(url, "_blank", "width=660, height=480");
+}
+
+return {
+    authenticate: authenticate,
+    init: init
+};
+}(navigator, document, window, window.encodeURIComponent, Math));
+osed) {
     clearInterval(pollHandle);
     return;
 }
