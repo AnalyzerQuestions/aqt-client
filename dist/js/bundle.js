@@ -300,9 +300,9 @@ angular.module("components").value("aqtValue", {
     so: {
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
-        clientId: 7786,
-        scopeList: ['read_inbox'],
-        key: 'KJi1v7aNWJ8aziMts2QEmQ((',
+        clientId: 8955,
+        scopeList: ['read_inbox', 'write_access'],
+        key: 'bvot7qoa6k1gD4UfXAfYJA((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }
 });
@@ -341,7 +341,7 @@ angular.module("components").controller("loginController", ["$scope", "$location
             error: function(data) {
                 console.log('auth error...', data);
             },
-            scope: ['read_inbox'],
+            scope: aqtValue.so.scopeList,
             networkUsers: true
         });
 

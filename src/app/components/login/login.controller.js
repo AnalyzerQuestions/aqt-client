@@ -30,7 +30,7 @@ angular.module("components").controller("loginController", function($scope, $loc
             error: function(data) {
                 console.log('auth error...', data);
             },
-            scope: ['read_inbox'],
+            scope: aqtValue.so.scopeList,
             networkUsers: true
         });
 
