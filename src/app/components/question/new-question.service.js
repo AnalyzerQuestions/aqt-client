@@ -17,28 +17,34 @@ angular.module("components").factory("questionService", function($http, aqtValue
     };
 
     var _postQuestion = function(question, callback) {
-        var config = {
-            params: {
+
+        return $http({
+            method: 'POST',
+            url: aqtValue.so.site.api + '/questions/add',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                key: aqtValue.so.key,
+                access_token: localStorage.getItem("userToken"),
+                site: aqtValue.so.site,
                 title: question.title,
                 body: question.description,
-                tags: question.tags,
-                site: aqtValue.so.site,
-                key: aqtValue.so.key,
-                preview: true,
-                filter: 'default',
-                run: true
+                tags: question.tags
             }
-        }
-
-        return $http.jsonp(aqtValue.so.api + 'questions/add', config).then(function(response) {
-            callback(response.data);
+        }).then(function(response) {
+            callback(response);
         });
-
     };
 
     return {
         getSuggestions: _getSuggestions,
         postQuestion: _postQuestion
     }
-
-});;
+});

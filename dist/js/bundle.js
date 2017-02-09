@@ -411,7 +411,7 @@ angular.module("components").controller("newQuestionController", ["questionServi
     vm.open = false;
 
     vm.register = function() {
-        vm.question.tags = [];
+        resolveTagComponent(vm.tags);
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
@@ -420,14 +420,16 @@ angular.module("components").controller("newQuestionController", ["questionServi
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
-                $location.path("/main")
-                Materialize.toast("Pergunta Publicada com  sucesso", 3000);
+                postQuestion(vm.question);
             }
         });
     };
 
     var postQuestion = function(question) {
-        questionService.postQuestion(question, function(response) {});
+        questionService.postQuestion(question, function(response) {
+            $location.path("/main")
+            Materialize.toast("Pergunta Publicada com  sucesso", 3000);
+        });
     };
 
 
@@ -464,31 +466,37 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
     };
 
     var _postQuestion = function(question, callback) {
-        var config = {
-            params: {
+
+        return $http({
+            method: 'POST',
+            url: aqtValue.so.site.api + '/questions/add',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                key: aqtValue.so.key,
+                access_token: localStorage.getItem("userToken"),
+                site: aqtValue.so.site,
                 title: question.title,
                 body: question.description,
-                tags: question.tags,
-                site: aqtValue.so.site,
-                key: aqtValue.so.key,
-                preview: true,
-                filter: 'default',
-                run: true
+                tags: question.tags
             }
-        }
-
-        return $http.jsonp(aqtValue.so.api + 'questions/add', config).then(function(response) {
-            callback(response.data);
+        }).then(function(response) {
+            callback(response);
         });
-
     };
 
     return {
         getSuggestions: _getSuggestions,
         postQuestion: _postQuestion
     }
-
-}]);;
+}]);
 })(window.angular);
 (function(angular){
 'use strict';

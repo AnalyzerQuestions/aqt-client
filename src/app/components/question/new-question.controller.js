@@ -17,7 +17,7 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.open = false;
 
     vm.register = function() {
-        vm.question.tags = [];
+        resolveTagComponent(vm.tags);
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
@@ -26,14 +26,16 @@ angular.module("components").controller("newQuestionController", function(questi
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
-                $location.path("/main")
-                Materialize.toast("Pergunta Publicada com  sucesso", 3000);
+                postQuestion(vm.question);
             }
         });
     };
 
     var postQuestion = function(question) {
-        questionService.postQuestion(question, function(response) {});
+        questionService.postQuestion(question, function(response) {
+            $location.path("/main")
+            Materialize.toast("Pergunta Publicada com  sucesso", 3000);
+        });
     };
 
 
