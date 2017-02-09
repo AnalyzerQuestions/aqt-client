@@ -26,6 +26,7 @@ angular.module("components").controller("newQuestionController", function(questi
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
+                console.log('try post...');
                 postQuestion(vm.question);
             }
         });
