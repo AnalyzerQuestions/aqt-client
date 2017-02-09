@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="aqtApp" Xmanifest="appCache.manifest" ng-strict-di>
+
+<head>
+    <base href="/" />
+
+    <title>AQ-App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="WebApp para perguntas de programação">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0097A7">
+
+
+    <link rel="icon" sizes="192x192" href="assets/img/icons/icon-192.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+</head>
+
+<body>
+    <nav-bar name="'APP_NAME'"></nav-bar>
+    <main>
+        <div ng-view class="page-transation"></div>
+    </main>
+</body>
+
+<script src="js/vendor.js"></script>
+<script src="js/bundle.js"></script>
+<script src="so.js"></script>
+
+
+
+</html>
