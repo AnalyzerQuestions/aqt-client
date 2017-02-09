@@ -12,12 +12,11 @@ angular.module("components").controller("newQuestionController", function(questi
     var vm = this;
 
     vm.question = {};
-    vm.tags = [];
     vm.suggestions = [];
     vm.open = false;
 
     vm.register = function() {
-        resolveTagComponent(vm.tags);
+        console.log(vm.question.tags);
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
@@ -37,17 +36,5 @@ angular.module("components").controller("newQuestionController", function(questi
             $location.path("/main")
             Materialize.toast("Pergunta Publicada com  sucesso", 3000);
         });
-    };
-
-
-    function resolveTagComponent(tags) {
-        if (tags) {
-            if (!vm.question.tags) {
-                vm.question.tags = [];
-            }
-            tags.forEach(function(tag) {
-                vm.question.tags.push(tag.text);
-            })
-        }
     };
 });
