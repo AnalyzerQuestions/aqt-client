@@ -1,14 +1,19 @@
 # Webapp AQT
+webapp using PWA (Progressive webapp) concept, AngularJS 1.6 and running in NodeJS.
+
+### APP
+Web App to help users share "good" questions in Stack Overflow pt-BR.
 
 ### REQUIREMENTS
-* NodeJS [download](https://nodejs.org/en/)
+* NodeJS
 
 ### USAGE
  * clone this repository;
  * Inside the project directory, perform the steps:
     1. Use command line `npm install` to download modules of project.
     3. Use command line `npm start` to started local server.
-    4. Be happy!!
 
+### IMPORTANT POINTS
+ * This project require HTTPS protocol.
 
-`MIT License - Copyright (c) 2017 Analyzer Questions Tool`
+`MIT License - Copyright (c) 2017 Analyzer Questions Tools`
