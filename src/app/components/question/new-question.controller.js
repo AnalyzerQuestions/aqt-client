@@ -16,7 +16,6 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.open = false;
 
     vm.register = function() {
-        console.log(vm.question.tags);
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
@@ -25,7 +24,6 @@ angular.module("components").controller("newQuestionController", function(questi
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
-                console.log('try post...');
                 postQuestion(vm.question);
             }
         });

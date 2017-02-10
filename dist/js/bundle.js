@@ -9,7 +9,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'ngAnimate']);
+angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'angular-loading-bar', 'ngAnimate']);
 
 angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
 
@@ -284,6 +284,15 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("aqtApp").config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+    // cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+}])
+})(window.angular);
+(function(angular){
+'use strict';
 /**
  * @ngdoc value
  * @name AQT Value
@@ -410,7 +419,6 @@ angular.module("components").controller("newQuestionController", ["questionServi
     vm.open = false;
 
     vm.register = function() {
-        console.log(vm.question.tags);
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
@@ -419,7 +427,6 @@ angular.module("components").controller("newQuestionController", ["questionServi
                 $('#suggestionsModal').modal('open');
             }
             if (!vm.open) {
-                console.log('try post...');
                 postQuestion(vm.question);
             }
         });
