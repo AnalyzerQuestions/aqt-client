@@ -19,10 +19,8 @@ angular.module("common").component('sideNav', {
                 params: {
                     key: aqtValue.so.key,
                     access_token: userToken,
-                    site: aqtValue.so.site
-                },
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+                    site: aqtValue.so.site,
+                    filter: 'vqc7J'
                 }
             }).success(function(data) {
                 vm.user = data.items[0];
@@ -33,6 +31,11 @@ angular.module("common").component('sideNav', {
 
         } else {
             $location.path('/');
+        }
+
+        vm.signout = function() {
+            localStorage.clear();
+            $location.path('#/login');
         }
     }
 });
