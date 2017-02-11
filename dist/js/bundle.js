@@ -115,7 +115,7 @@ angular.module("common").component('sideNav', {
 
     templateUrl: './side-nav.component.html',
 
-    controller: ["$location", "aqtValue", function($location, aqtValue) {
+    controller: ["$location", "$http", "aqtValue", function($location, $http, aqtValue) {
 
         $(".button-collapse").sideNav();
 

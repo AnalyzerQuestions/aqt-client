@@ -2,7 +2,7 @@ angular.module("common").component('sideNav', {
 
     templateUrl: './side-nav.component.html',
 
-    controller: function($location, aqtValue) {
+    controller: function($location, $http, aqtValue) {
 
         $(".button-collapse").sideNav();
 
