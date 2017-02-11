@@ -4,7 +4,10 @@ angular.module("common").component('sideNav', {
 
     controller: function($location, $http, aqtValue) {
 
-        $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav({
+            closeOnClick: true,
+            draggable: true
+        });
 
         var userToken = localStorage.getItem("userToken");
 
@@ -30,7 +33,7 @@ angular.module("common").component('sideNav', {
             });
 
         } else {
-            $location.path('/');
+            //  $location.path('/');
         }
 
         vm.signout = function() {
