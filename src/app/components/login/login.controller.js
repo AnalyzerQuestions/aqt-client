@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", function($scope, $location, $http, aqtValue) {
+angular.module("components").controller("loginController", function($location, aqtValue) {
 
     var vm = this;
 
@@ -21,10 +21,15 @@ angular.module("components").controller("loginController", function($scope, $loc
     });
 
     vm.login = function() {
-
         SE.authenticate({
             success: function(data) {
-                localStorage.setItem("userToken", data.accessToken);
+                var soPt = registrationSOPt(data.networkUsers);
+                if (soPt) {
+                    localStorage.setItem("userSO", {
+                        accessToken: data.accessToken,
+                        soPt: soPt
+                    })
+                }
                 console.log('auth sucess...', data);
             },
             error: function(data) {
@@ -33,6 +38,15 @@ angular.module("components").controller("loginController", function($scope, $loc
             scope: aqtValue.so.scopeList,
             networkUsers: true
         });
-
     }
+
+    function registrationSOPt(networkUsers) {
+        networkUsers.forEach(function(network) {
+            if (network.site_url === 'http://pt.stackoverflow.com') {
+                return network;
+            }
+        });
+        console.log('Sua conta não está associada ao SO  pt-BR');
+    }
+
 });

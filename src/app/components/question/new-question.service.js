@@ -32,7 +32,7 @@ angular.module("components").factory("questionService", function($http, aqtValue
             },
             data: {
                 key: aqtValue.so.key,
-                access_token: localStorage.getItem("userToken"),
+                access_token: localStorage.getItem("userSO").accessToken,
                 site: aqtValue.so.site,
                 title: question.title,
                 body: question.description,

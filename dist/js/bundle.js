@@ -111,6 +111,25 @@ angular.module("common").component('navBar', {
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("common").component('sideNav', {
+
+    bindings: {
+        name: '<'
+    },
+
+    templateUrl: './side-nav.component.html',
+
+    controller: function() {
+
+        $(".button-collapse").sideNav();
+        console.log(localStorage.getItem("userSO").soPt);
+
+    }
+
+});
+})(window.angular);
+(function(angular){
+'use strict';
 angular.module("common").component('suggestionsModal', {
 
     bindings: {
@@ -256,10 +275,11 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'APP_NAME': "Question's Advisor",
         'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
         'BT_AUTHORIZE': 'AUTHORIZE',
+        'BT_IGNORE': 'IGNORE',
         'LB_MAIN_TITLE': 'My Questions',
         'BT_MAIN_AUTH': 'Follow',
-        'LB_NQ_TITLE': 'Write your programming question',
         'LB_NQ_QUESTION_TITLE': 'Question title',
+        'LB_NQ_TITLE': 'Write your programming question',
         'LB_NQ_QUESTION_TAG': 'Question tags',
         'BT_POST': 'POST QUESTION',
         'MSG_TOAS_CONFIRM': 'Question publised!'
@@ -270,6 +290,7 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'APP_NAME': "Question's Advisor",
         'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
         'BT_AUTHORIZE': 'AUTORIZAR',
+        'BT_IGNORE': 'IGNORAR',
         'LB_MAIN_TITLE': 'Minhas Perguntas',
         'BT_MAIN_AUTH': 'Acompanhar',
         'LB_NQ_TITLE': 'Escreva sua Pergunta de Programação',
@@ -327,7 +348,7 @@ angular.module("components").value("aqtValue", {
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", ["$scope", "$location", "$http", "aqtValue", function($scope, $location, $http, aqtValue) {
+angular.module("components").controller("loginController", ["$location", "aqtValue", function($location, aqtValue) {
 
     var vm = this;
 
@@ -341,10 +362,15 @@ angular.module("components").controller("loginController", ["$scope", "$location
     });
 
     vm.login = function() {
-
         SE.authenticate({
             success: function(data) {
-                localStorage.setItem("userToken", data.accessToken);
+                var soPt = registrationSOPt(data.networkUsers);
+                if (soPt) {
+                    localStorage.setItem("userSO", {
+                        accessToken: data.accessToken,
+                        soPt: soPt
+                    })
+                }
                 console.log('auth sucess...', data);
             },
             error: function(data) {
@@ -353,8 +379,17 @@ angular.module("components").controller("loginController", ["$scope", "$location
             scope: aqtValue.so.scopeList,
             networkUsers: true
         });
-
     }
+
+    function registrationSOPt(networkUsers) {
+        networkUsers.forEach(function(network) {
+            if (network.site_url === 'http://pt.stackoverflow.com') {
+                return network;
+            }
+        });
+        console.log('Sua conta não está associada ao SO  pt-BR');
+    }
+
 }]);
 })(window.angular);
 (function(angular){
@@ -476,7 +511,7 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
             },
             data: {
                 key: aqtValue.so.key,
-                access_token: localStorage.getItem("userToken"),
+                access_token: localStorage.getItem("userSO").accessToken,
                 site: aqtValue.so.site,
                 title: question.title,
                 body: question.description,
@@ -496,8 +531,9 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
 (function(angular){
 'use strict';
 angular.module('templates', []).run(['$templateCache', function($templateCache) {$templateCache.put('./floating-button.component.html','<div class="fixed-action-btn"><a ng-href="{{$ctrl.url}}" class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">{{$ctrl.icon}}</i></a></div>');
-$templateCache.put('./navBar.component.html','<nav class="navbar-fixed cyan darken-2"><div class="nav-wrapper"><a href="#/" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> <a href="#/" data-activates="slide-out" class="brand-logo center button-collapse">{{$ctrl.name | translate}}</a><ul class="right"><li><a href="#/"><i class="material-icons">more_vert</i></a></li></ul></div></nav>');
-$templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s12"><h4><small>Dicas para melhorar sua pergunta</small></h4></div></div><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div>');
+$templateCache.put('./navBar.component.html','<nav class="navbar-fixed cyan darken-2"><div class="nav-wrapper"><a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> <a href="#/" data-activates="slide-out" class="brand-logo center button-collapse">{{$ctrl.name | translate}}</a><ul class="right"><li><a href="#/"><i class="material-icons">more_vert</i></a></li></ul></div></nav>');
+$templateCache.put('./side-nav.component.html','<ul id="slide-out" class="side-nav"><li><div class="userView"><div class="background"><img src="assets/img/bg.jpg"></div><a href="#!user"><img class="circle" src="images/yuna.jpg"></a><a href="#!name"><span class="white-text name">John Doe</span></a> <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a></div></li><li><a href="#!"><i class="material-icons">mode_edit</i>Fazer uma Pergunta</a></li><li><div class="divider"></div></li><li><a class="waves-effect" href="#!">Minhas Perguntas</a></li></ul>');
+$templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s8"><h4><small>Dicas para melhorar sua pergunta</small></h4></div><div class="col s4"><button>{{ \'BT_IGNORE\' | translate }}</button></div></div><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><h4><small>{{ \'LB_LOGIN_TITLE\' | translate }}</small></h4></center><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" id="btn-login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">AUTHORIZE</a></div></form></div>');
 $templateCache.put('./main.html','<center><h4>{{ \'LB_MAIN_TITLE\' | translate }}</h4></center><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">Qual a diferen\xE7a de uma toolbar para uma action bar?</span><p class="card-subtitle"><a href="#"><span class="new badge" data-badge-caption="java"></span></a> <a href="#"><span class="new badge" data-badge-caption="android"></span><a></a></p></div><div align="center" class="card-action"><a href="#">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">Qual a diferen\xE7a entre spring e JavaEE?</span><p class="card-subtitle"><a href="#"><span class="new badge" data-badge-caption="java"></span></a></p></div><div align="center" class="card-action"><a href="#">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
