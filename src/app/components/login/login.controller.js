@@ -30,7 +30,7 @@ angular.module("components").controller("loginController", function($location, a
                     }
                 })
                 if (soPt) {
-                    localStorage.setItem("userSO", data.accessToken);
+                    localStorage.setItem("userToken", data.accessToken);
                 } else {
                     console.log('Sua conta não está associada ao SO');
                 }
