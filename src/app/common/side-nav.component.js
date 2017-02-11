@@ -8,8 +8,7 @@ angular.module("common").component('sideNav', {
 
         var userToken = localStorage.getItem("userToken");
 
-        if (storage) {
-            console.log(storage);
+        if (userToken) {
 
             $http({
                 method: 'jsonp',
