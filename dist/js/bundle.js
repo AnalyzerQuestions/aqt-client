@@ -125,7 +125,7 @@ angular.module("common").component('sideNav', {
 
             $http({
                 method: 'jsonp',
-                url: aqtValue.so.api + "users/me",
+                url: aqtValue.so.api + "/me",
                 params: {
                     key: aqtValue.so.key,
                     access_token: userToken,
