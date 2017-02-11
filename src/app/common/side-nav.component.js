@@ -8,6 +8,9 @@ angular.module("common").component('sideNav', {
 
         var userToken = localStorage.getItem("userToken");
 
+        var vm = this;
+        vm.user = {};
+
         if (userToken) {
 
             $http({
@@ -19,7 +22,8 @@ angular.module("common").component('sideNav', {
                     site: aqtValue.so.site
                 }
             }).success(function(data) {
-                console.log('success user...', data);
+                vm.user = data.items[0];
+
             }).error(function(data) {
                 console.log('error user...', data);
             });
