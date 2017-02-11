@@ -365,7 +365,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
         SE.authenticate({
             success: function(data) {
                 var soPt;
-                networkUsers.forEach(function(network) {
+                data.networkUsers.forEach(function(network) {
                     if (network.site_url == "http://pt.stackoverflow.com") {
                         soPt = network;
                     }
