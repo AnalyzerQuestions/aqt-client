@@ -385,7 +385,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
         console.log('baba ', networkUsers);
         networkUsers.forEach(function(network) {
             console.log(network);
-            if (network.site_url === 'http://pt.stackoverflow.com') {
+            if (network.site_url === "http://pt.stackoverflow.com") {
                 return network;
             }
         });
