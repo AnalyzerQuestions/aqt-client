@@ -122,7 +122,7 @@ angular.module("common").component('sideNav', {
         var storage = localStorage.getItem("userSO");
 
         if (storage) {
-            console.log(storage.soPt);
+            console.log(storage);
 
             $http({
                 method: 'jsonp',
@@ -132,9 +132,9 @@ angular.module("common").component('sideNav', {
                     access_token: storage.accessToken,
                     site: aqtValue.so.site,
                 }
-            }).success(function(data, status, header, config) {
+            }).success(function(data) {
                 console.log('success user...', data);
-            }).error(function(data, status, header, config) {
+            }).error(function(data) {
                 console.log('error user...', data);
             });
 
