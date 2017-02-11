@@ -6,7 +6,7 @@ angular.module("common").component('sideNav', {
 
         $(".button-collapse").sideNav();
 
-        var storage = localStorage.getItem("userSO");
+        var userToken = localStorage.getItem("userToken");
 
         if (storage) {
             console.log(storage);
@@ -16,8 +16,8 @@ angular.module("common").component('sideNav', {
                 url: aqtValue.so.api + "users/me",
                 params: {
                     key: aqtValue.so.key,
-                    access_token: storage.accessToken,
-                    site: aqtValue.so.site,
+                    access_token: userToken,
+                    site: aqtValue.so.site
                 }
             }).success(function(data) {
                 console.log('success user...', data);

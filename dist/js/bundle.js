@@ -119,7 +119,7 @@ angular.module("common").component('sideNav', {
 
         $(".button-collapse").sideNav();
 
-        var storage = localStorage.getItem("userSO");
+        var userToken = localStorage.getItem("userToken");
 
         if (storage) {
             console.log(storage);
@@ -129,8 +129,8 @@ angular.module("common").component('sideNav', {
                 url: aqtValue.so.api + "users/me",
                 params: {
                     key: aqtValue.so.key,
-                    access_token: storage.accessToken,
-                    site: aqtValue.so.site,
+                    access_token: userToken,
+                    site: aqtValue.so.site
                 }
             }).success(function(data) {
                 console.log('success user...', data);
@@ -387,10 +387,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
                     }
                 })
                 if (soPt) {
-                    localStorage.setItem("userSO", {
-                        accessToken: data.accessToken,
-                        soPt: soPt
-                    })
+                    localStorage.setItem("userSO", data.accessToken);
                 } else {
                     console.log('Sua conta não está associada ao SO');
                 }
@@ -525,7 +522,7 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
             },
             data: {
                 key: aqtValue.so.key,
-                access_token: localStorage.getItem("userSO").accessToken,
+                access_token: localStorage.getItem("userToken"),
                 site: aqtValue.so.site,
                 title: question.title,
                 body: question.description,
