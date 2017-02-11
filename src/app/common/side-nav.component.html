@@ -1,16 +1,21 @@
 <ul id="slide-out" class="side-nav">
     <li>
         <div class="userView">
-            <div class="background">
-                <img src="assets/img/bg.jpg">
+            <div class="background cyan darken-2">
+                <!-- <img src="assets/img/bg.jpg"> -->
             </div>
-            <a href="#!user"><img class="circle" ng-src="{{$ctrl.user.profile_image}}"></a>
-            <a href="#!name"><span class="white-text name">{{$ctrl.user.display_name}}</span></a>
+            <a href="{{$ctrl.user.link}}"><img class="circle" ng-src="{{$ctrl.user.profile_image}}"></a>
+            <a href="{{$ctrl.user.link}}"><span class="white-text name"><b>{{$ctrl.user.display_name}}</b></span></a>
+            <span class="white-text name">Reputação: <b>{{$ctrl.user.reputation}}</b> Medalhas: <b>{{$ctrl.user.badge_counts}}</b></span>
         </div>
     </li>
-    <li><a href="#!"><i class="material-icons">mode_edit</i>Fazer uma Pergunta</a></li>
+    <li><a href="#!"><i class="material-icons">mode_edit</i>{{'LB_MENU_NEW_Q' | translate}}</a></li>
     <li>
         <div class="divider"></div>
     </li>
-    <li><a class="waves-effect" href="#!">Minhas Perguntas</a></li>
+    <li><a href="#!"><i class="material-icons">view_list</i>{{'LB_MENU_MY_Q' | translate}}</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="#!"><i class="material-icons">power_settings_new</i>{{'LB_MENU_OUT' | translate}}</a></li>
 </ul>

@@ -133,6 +133,9 @@ angular.module("common").component('sideNav', {
                     key: aqtValue.so.key,
                     access_token: userToken,
                     site: aqtValue.so.site
+                },
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
                 }
             }).success(function(data) {
                 vm.user = data.items[0];
@@ -292,30 +295,36 @@ angular.module("components").factory("tokenInterceptor", ["$q", "$location", fun
 angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
     $translateProvider.translations('en', {
         'APP_NAME': "Question's Advisor",
-        'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
         'BT_AUTHORIZE': 'AUTHORIZE',
         'BT_IGNORE': 'IGNORE',
-        'LB_MAIN_TITLE': 'My Questions',
         'BT_MAIN_AUTH': 'Follow',
+        'BT_POST': 'POST QUESTION',
+        'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
+        'LB_MAIN_TITLE': 'My Questions',
         'LB_NQ_QUESTION_TITLE': 'Question title',
         'LB_NQ_TITLE': 'Write your programming question',
         'LB_NQ_QUESTION_TAG': 'Question tags',
-        'BT_POST': 'POST QUESTION',
+        'LB_MENU_NEW_Q': 'Ask Question',
+        'LB_MENU_MY_Q': 'My Questions',
+        'LB_MENU_OUT': 'Sign out',
         'MSG_TOAS_CONFIRM': 'Question publised!'
 
     });
 
     $translateProvider.translations('pt', {
         'APP_NAME': "Question's Advisor",
-        'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
         'BT_AUTHORIZE': 'AUTORIZAR',
         'BT_IGNORE': 'IGNORAR',
-        'LB_MAIN_TITLE': 'Minhas Perguntas',
         'BT_MAIN_AUTH': 'Acompanhar',
+        'BT_POST': 'PUBLICAR PERGUNTA',
+        'LB_MAIN_TITLE': 'Minhas Perguntas',
+        'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
         'LB_NQ_TITLE': 'Escreva sua Pergunta de Programação',
         'LB_NQ_QUESTION_TITLE': 'Título da Pergunta',
         'LB_NQ_QUESTION_TAG': 'Tags da pergunta',
-        'BT_POST': 'PUBLICAR PERGUNTA',
+        'LB_MENU_NEW_Q': 'Faça uma pergunta',
+        'LB_MENU_MY_Q': 'Minhas Perguntas',
+        'LB_MENU_OUT': 'Sair',
         'MSG_TOAS_CONFIRM': 'Pergunta postada com sucesso!'
     });
 
@@ -436,6 +445,22 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 'use strict';
 /**
  * @ngdoc controller
+ * @name Main controller
+ *
+ * @description
+ * This is the main controller.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").controller("mainController", ["$scope", function($scope) {
+
+
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc controller
  * @name question controller
  *
  * @description
@@ -528,25 +553,9 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
 })(window.angular);
 (function(angular){
 'use strict';
-/**
- * @ngdoc controller
- * @name Main controller
- *
- * @description
- * This is the main controller.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").controller("mainController", ["$scope", function($scope) {
-
-
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
 angular.module('templates', []).run(['$templateCache', function($templateCache) {$templateCache.put('./floating-button.component.html','<div class="fixed-action-btn"><a ng-href="{{$ctrl.url}}" class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">{{$ctrl.icon}}</i></a></div>');
 $templateCache.put('./navBar.component.html','<nav class="navbar-fixed cyan darken-2"><div class="nav-wrapper"><a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> <a href="#/" data-activates="slide-out" class="brand-logo center button-collapse">{{$ctrl.name | translate}}</a><ul class="right"><li><a href="#/"><i class="material-icons">more_vert</i></a></li></ul></div></nav>');
-$templateCache.put('./side-nav.component.html','<ul id="slide-out" class="side-nav"><li><div class="userView"><div class="background"><img src="assets/img/bg.jpg"></div><a href="#!user"><img class="circle" ng-src="{{$ctrl.user.profile_image}}"></a><a href="#!name"><span class="white-text name">{{$ctrl.user.display_name}}</span></a></div></li><li><a href="#!"><i class="material-icons">mode_edit</i>Fazer uma Pergunta</a></li><li><div class="divider"></div></li><li><a class="waves-effect" href="#!">Minhas Perguntas</a></li></ul>');
+$templateCache.put('./side-nav.component.html','<ul id="slide-out" class="side-nav"><li><div class="userView"><div class="background cyan darken-2"><!-- <img src="assets/img/bg.jpg"> --></div><a href="{{$ctrl.user.link}}"><img class="circle" ng-src="{{$ctrl.user.profile_image}}"></a><a href="{{$ctrl.user.link}}"><span class="white-text name"><b>{{$ctrl.user.display_name}}</b></span></a> <span class="white-text name">Reputa\xE7\xE3o: <b>{{$ctrl.user.reputation}}</b> Medalhas: <b>{{$ctrl.user.badge_counts}}</b></span></div></li><li><a href="#!"><i class="material-icons">mode_edit</i>{{\'LB_MENU_NEW_Q\' | translate}}</a></li><li><div class="divider"></div></li><li><a href="#!"><i class="material-icons">view_list</i>{{\'LB_MENU_MY_Q\' | translate}}</a></li><li><div class="divider"></div></li><li><a href="#!"><i class="material-icons">power_settings_new</i>{{\'LB_MENU_OUT\' | translate}}</a></li></ul>');
 $templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s8"><h4><small>Dicas para melhorar sua pergunta</small></h4></div><div class="col s4"><button>{{ \'BT_IGNORE\' | translate }}</button></div></div><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><h4><small>{{ \'LB_LOGIN_TITLE\' | translate }}</small></h4></center><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" id="btn-login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">AUTHORIZE</a></div></form></div>');

@@ -22,6 +22,11 @@
   body {
       background: #fff;
   }
+
+  .button-collapse {
+    cursor: pointer;
+  }
+
   /*card-view*/
 
   span.badge {

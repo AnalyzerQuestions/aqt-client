@@ -20,6 +20,9 @@ angular.module("common").component('sideNav', {
                     key: aqtValue.so.key,
                     access_token: userToken,
                     site: aqtValue.so.site
+                },
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
                 }
             }).success(function(data) {
                 vm.user = data.items[0];
