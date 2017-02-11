@@ -41,10 +41,8 @@ angular.module("components").controller("loginController", function($location, a
     }
 
     function registrationSOPt(networkUsers) {
-        console.log('baba ', networkUsers);
         networkUsers.forEach(function(network) {
-            console.log(network);
-            if (network.site_url === "http://pt.stackoverflow.com") {
+            if (network.site_url == "http://pt.stackoverflow.com") {
                 return network;
             }
         });
