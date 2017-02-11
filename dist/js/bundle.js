@@ -135,7 +135,7 @@ angular.module("common").component('sideNav', {
             }).success(function(data, status, header, config) {
                 console.log('success user...', data);
             }).error(function(data, status, header, config) {
-                console.log('error user...');
+                console.log('error user...', data);
             });
 
         } else {
