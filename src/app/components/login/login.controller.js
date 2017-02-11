@@ -23,12 +23,19 @@ angular.module("components").controller("loginController", function($location, a
     vm.login = function() {
         SE.authenticate({
             success: function(data) {
-                var soPt = registrationSOPt(data.networkUsers);
+                var soPt;
+                networkUsers.forEach(function(network) {
+                    if (network.site_url == "http://pt.stackoverflow.com") {
+                        soPt = network;
+                    }
+                })
                 if (soPt) {
                     localStorage.setItem("userSO", {
                         accessToken: data.accessToken,
                         soPt: soPt
                     })
+                } else {
+                    console.log('Sua conta não está associada ao SO');
                 }
                 console.log('auth sucess...', data);
             },
@@ -38,15 +45,6 @@ angular.module("components").controller("loginController", function($location, a
             scope: aqtValue.so.scopeList,
             networkUsers: true
         });
-    }
-
-    function registrationSOPt(networkUsers) {
-        networkUsers.forEach(function(network) {
-            if (network.site_url == "http://pt.stackoverflow.com") {
-                return network;
-            }
-        });
-        console.log('Sua conta não está associada ao SO  pt-BR');
     }
 
 });
