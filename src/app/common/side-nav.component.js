@@ -11,7 +11,7 @@ angular.module("common").component('sideNav', {
         if (userToken) {
 
             $http({
-                method: 'jsonp',
+                method: 'GET',
                 url: aqtValue.so.api + "/me",
                 params: {
                     key: aqtValue.so.key,
