@@ -382,7 +382,9 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
     }
 
     function registrationSOPt(networkUsers) {
+        console.log('baba ', networkUsers);
         networkUsers.forEach(function(network) {
+            console.log(network);
             if (network.site_url === 'http://pt.stackoverflow.com') {
                 return network;
             }
