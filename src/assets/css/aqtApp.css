@@ -24,13 +24,18 @@
   }
 
   .button-collapse {
-    cursor: pointer;
+      cursor: pointer;
   }
 
   .aqt-nav-site {
-    margin-top: 7px !important;
+      margin-top: 0px !important;
+      padding: 0px !important;
+      margin-bottom: 8px !important;
   }
 
+  .aqt-card-info {
+      padding-top: 10px !important;
+  }
   /*card-view*/
 
   span.badge {
