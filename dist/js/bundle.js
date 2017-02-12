@@ -474,7 +474,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("mainController", ["$scope", "$htpp", function($scope, $htpp) {
+angular.module("components").controller("mainController", ["$scope", "$http", function($scope, $http) {
 
     var vm = this;
     var userToken = localStorage.getItem("userToken");

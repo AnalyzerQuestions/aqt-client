@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("mainController", function($scope, $htpp) {
+angular.module("components").controller("mainController", function($scope, $http) {
 
     var vm = this;
     var userToken = localStorage.getItem("userToken");
