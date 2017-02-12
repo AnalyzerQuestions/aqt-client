@@ -15,9 +15,7 @@ angular.module("components").controller("loginController", function($location, a
         clientId: aqtValue.so.clientId,
         key: aqtValue.so.key,
         channelUrl: aqtValue.so.channelUrl,
-        complete: function(data) {
-            console.log('Init SO...');
-        }
+        complete: function(data) {}
     });
 
     vm.login = function() {
@@ -32,12 +30,11 @@ angular.module("components").controller("loginController", function($location, a
                 if (soPt) {
                     localStorage.setItem("userToken", data.accessToken);
                 } else {
-                    console.log('Sua conta não está associada ao SO');
+                    Materialize.toast("Sua Conta não esta associada ao stack overflow, tente mais tarde", 3000);
                 }
-                console.log('auth sucess...', data);
             },
             error: function(data) {
-                console.log('auth error...', data);
+                Materialize.toast("Ocorreu algum problema do stack overflow, tente mais tarde", 3000);
             },
             scope: aqtValue.so.scopeList,
             networkUsers: true

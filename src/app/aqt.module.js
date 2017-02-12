@@ -9,6 +9,10 @@
  **/
 angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'angular-loading-bar', 'ngAnimate']);
 
+angular.module("aqtApp").config(function($httpProvider) {
+    $httpProvider.interceptors.push("errorResolverInterceptor");
+});
+
 angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
 
     $rootScope.$on('$locationChangeStart', function(event, next, current) {

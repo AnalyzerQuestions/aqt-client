@@ -33,7 +33,7 @@ angular.module("common").component('sideNav', {
             });
 
         } else {
-            //  $location.path('/');
+            //$location.path('/');
         }
 
         vm.signout = function() {

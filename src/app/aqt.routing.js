@@ -10,7 +10,8 @@
 angular.module("aqtApp").config(function($routeProvider) {
 
     $routeProvider.when("/main", {
-        templateUrl: './main.html'
+        templateUrl: './main.html',
+        controller: 'mainController as mainCtrl'
 
     }).when("/blank", {
         templateUrl: './blank.html'
