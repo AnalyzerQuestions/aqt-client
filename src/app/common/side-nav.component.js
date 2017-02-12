@@ -5,7 +5,6 @@ angular.module("common").component('sideNav', {
     controller: function($location, $http, aqtValue) {
 
         $(".button-collapse").sideNav({
-            closeOnClick: true,
             draggable: true
         });
 
@@ -33,7 +32,7 @@ angular.module("common").component('sideNav', {
             });
 
         } else {
-            //$location.path('/');
+            //  $location.path('/');
         }
 
         vm.signout = function() {

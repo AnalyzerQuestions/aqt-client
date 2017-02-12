@@ -22,6 +22,12 @@ angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $l
                 $location.path('/main');
             }
         }
+
+        if ($location.path() === '/') {
+            $rootScope.menuNav = false;
+        } else {
+            $rootScope.menuNav = true;
+        }
     });
 }]);
 // if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {

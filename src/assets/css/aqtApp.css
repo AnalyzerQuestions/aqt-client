@@ -1,10 +1,11 @@
   @media only screen and (min-width: 732px) {
       main {
           position: absolute;
-          height: 75%;
-          width: 75%;
+          height: 80%;
+          width: 80%;
           top: 10%;
           left: 10%;
+          padding-left: 300px;
       }
   }
 
@@ -23,6 +24,16 @@
       background: #fff;
   }
 
+  @media only screen and (min-width: 732px) {
+      .login {
+          position: absolute;
+          height: 75%;
+          width: 75%;
+          top: 10%;
+          left: 10%;
+      }
+  }
+
   .button-collapse {
       cursor: pointer;
   }
@@ -38,15 +49,15 @@
   }
 
   .aqt-empty-questions {
-    margin-top: 22px !important;
-    font-size: 20px !important;
-    font-variant: inherit !important;
-    font-weight: 100 !important;
-    line-height: 36px !important;
-    text-decoration: none !important;
-    color: #929fa6 !important;
-    font-weight: 300 !important;
-    letter-spacing: 0.8px !important;
+      margin-top: 22px !important;
+      font-size: 20px !important;
+      font-variant: inherit !important;
+      font-weight: 100 !important;
+      line-height: 36px !important;
+      text-decoration: none !important;
+      color: #929fa6 !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.8px !important;
   }
   /*card-view*/
 
