@@ -13,6 +13,8 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'LB_MENU_NEW_Q': 'Ask Question',
         'LB_MENU_MY_Q': 'My Questions',
         'LB_MENU_OUT': 'Sign out',
+        'LB_MAIN_EMPTY': 'No published questions',
+        'LB_SUGGESTIONS': 'Improve your question',
         'MSG_TOAS_CONFIRM': 'Question publised!'
 
     });
@@ -31,6 +33,8 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'LB_MENU_NEW_Q': 'Faça uma pergunta',
         'LB_MENU_MY_Q': 'Minhas Perguntas',
         'LB_MENU_OUT': 'Sair',
+        'LB_MAIN_EMPTY': 'Nenhuma pergunta publicada',
+        'LB_SUGGESTIONS': 'Dicas para melhorar sua pergunta',
         'MSG_TOAS_CONFIRM': 'Pergunta postada com sucesso!'
     });
 

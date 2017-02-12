@@ -9,14 +9,14 @@
   }
 
   h5, h4 {
-      font-size: 25px;
+      font-size: 21px;
       font-variant: inherit;
       font-weight: 100;
-      line-height: 46px;
+      line-height: 36px;
       text-decoration: none;
-      color: rgba(68, 68, 68, 0.56);
+      color: #929fa6;
       font-weight: 300;
-      letter-spacing: 1.8px;
+      letter-spacing: 0.8px;
   }
 
   body {
@@ -35,6 +35,18 @@
 
   .aqt-card-info {
       padding-top: 10px !important;
+  }
+
+  .aqt-empty-questions {
+    margin-top: 22px !important;
+    font-size: 20px !important;
+    font-variant: inherit !important;
+    font-weight: 100 !important;
+    line-height: 36px !important;
+    text-decoration: none !important;
+    color: #929fa6 !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.8px !important;
   }
   /*card-view*/
 

@@ -332,6 +332,8 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'LB_MENU_NEW_Q': 'Ask Question',
         'LB_MENU_MY_Q': 'My Questions',
         'LB_MENU_OUT': 'Sign out',
+        'LB_MAIN_EMPTY': 'No published questions',
+        'LB_SUGGESTIONS': 'Improve your question',
         'MSG_TOAS_CONFIRM': 'Question publised!'
 
     });
@@ -350,6 +352,8 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
         'LB_MENU_NEW_Q': 'Faça uma pergunta',
         'LB_MENU_MY_Q': 'Minhas Perguntas',
         'LB_MENU_OUT': 'Sair',
+        'LB_MAIN_EMPTY': 'Nenhuma pergunta publicada',
+        'LB_SUGGESTIONS': 'Dicas para melhorar sua pergunta',
         'MSG_TOAS_CONFIRM': 'Pergunta postada com sucesso!'
     });
 
@@ -474,29 +478,52 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("mainController", ["$scope", "$http", "aqtValue", function($scope, $http, aqtValue) {
+angular.module("components").controller("mainController", ["$scope", "$http", "questionsSoService", function($scope, $http, questionsSoService) {
 
     var vm = this;
-    var userToken = localStorage.getItem("userToken");
     vm.questions = {};
+    vm.isQuestions = false;
 
-    $http({
-        method: 'GET',
-        url: aqtValue.so.api + "/me/questions",
-        params: {
-            key: aqtValue.so.key,
-            access_token: userToken,
-            site: aqtValue.so.site,
-            filter: 'vqc7J'
-        }
-    }).success(function(data) {
+    questionsSoService.getQuestions(function(data) {
         vm.questions = data.items;
-
-    }).error(function(data) {
-        console.log('error questions...', data);
+        if (vm.questions.length) {
+            vm.isQuestions = true;
+        }
     });
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc service
+ * @name questiions SO Service
+ *
+ * @description
+ * This is the questions from SO service.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").factory("questionsSoService", ["$http", "aqtValue", function($http, aqtValue) {
 
+    var _getQuestions = function(callback) {
+        var userToken = localStorage.getItem("userToken");
+        return $http({
+            method: 'GET',
+            url: aqtValue.so.api + "/me/questions",
+            params: {
+                key: aqtValue.so.key,
+                access_token: userToken,
+                site: aqtValue.so.site,
+                filter: 'vqc7J'
+            }
+        }).then(function(data) {
+            callback(data);
+        });
+    };
 
+    return {
+        getQuestions: _getQuestions
+    }
 }]);
 })(window.angular);
 (function(angular){
@@ -598,8 +625,8 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
 angular.module('templates', []).run(['$templateCache', function($templateCache) {$templateCache.put('./floating-button.component.html','<div class="fixed-action-btn"><a ng-href="{{$ctrl.url}}" class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">{{$ctrl.icon}}</i></a></div>');
 $templateCache.put('./navBar.component.html','<nav class="navbar-fixed cyan darken-2"><div class="nav-wrapper"><a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> <a href="#/" data-activates="slide-out" class="brand-logo center button-collapse">{{$ctrl.name | translate}}</a><ul class="right"><li><a href="#/"><i class="material-icons">more_vert</i></a></li></ul></div></nav>');
 $templateCache.put('./side-nav.component.html','<ul id="slide-out" class="side-nav"><li><div class="userView"><div class="background cyan darken-2"><!-- <img src="assets/img/bg.jpg"> --></div><a href="{{$ctrl.user.link}}"><img class="circle" ng-src="{{$ctrl.user.profile_image}}"></a><a href="{{$ctrl.user.link}}"><span class="white-text name"><b>{{$ctrl.user.display_name}}</b></span></a> <a class="aqt-nav-site"><span class="white-text name aqt-nav-site"><small>stack Overflow em Portugu\xEAs</small></span></a></div></li><li><a href="#/new"><i class="material-icons">mode_edit</i>{{\'LB_MENU_NEW_Q\' | translate}}</a></li><li><div class="divider"></div></li><li><a href="#/main"><i class="material-icons">view_list</i>{{\'LB_MENU_MY_Q\' | translate}}</a></li><li><div class="divider"></div></li><li><a href="#/login" ng-click="$ctrl.signout()"><i class="material-icons">power_settings_new</i>{{\'LB_MENU_OUT\' | translate}}</a></li></ul>');
-$templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s9"><h4><small>Dicas para melhorar sua pergunta</small></h4></div><div class="col s3"><!-- <button class="btn">{{ \'BT_IGNORE\' | translate }}</button> --></div></div><div class="row"><div class="col s12"><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div></div></div>');
+$templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s9"><h4><small>{{ \'LB_SUGGESTIONS\' | translate }}</small></h4></div><div class="col s3"><!-- <button class="btn">{{ \'BT_IGNORE\' | translate }}</button> --></div></div><div class="row"><div class="col s12"><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><h4><small>{{ \'LB_LOGIN_TITLE\' | translate }}</small></h4></center><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" id="btn-login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">AUTHORIZE</a></div></form></div>');
-$templateCache.put('./main.html','<side-nav></side-nav><center><h4>{{ \'LB_MAIN_TITLE\' | translate }}</h4></center><div ng-repeat="question in mainCtrl.questions"><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">{{question.title}}</span><div class="card-subtitle"><div class="row"><div ng-repeat="tag in question.tags"><span class="new badge" data-badge-caption="{{tag}}"></span></div></div><div align="center" class="aqt-card-info"><div class="col s4"><span>Answers: {{question.answer_count}}</span></div><div class="col s4"><span>Votes: {{question.score}}</span></div><div class="col s4"><span>View : {{question.view_count}}</span></div></div></div></div><div align="center" class="card-action"><a href="{{question.link}}">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
+$templateCache.put('./main.html','<side-nav></side-nav><center ng-show="mainCtrl.isQuestions"><h4>{{ \'LB_MAIN_TITLE\' | translate }}</h4></center><center ng-show="!mainCtrl.isQuestions" class="aqt-empty-questions"><span>{{ \'LB_MAIN_EMPTY\' | translate }}</span></center><div ng-repeat="question in mainCtrl.questions"><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">{{question.title}}</span><div class="card-subtitle"><div class="row"><div ng-repeat="tag in question.tags"><span class="new badge" data-badge-caption="{{tag}}"></span></div></div><div align="center" class="aqt-card-info"><div class="col s4"><span>Answers: {{question.answer_count}}</span></div><div class="col s4"><span>Votes: {{question.score}}</span></div><div class="col s4"><span>View : {{question.view_count}}</span></div></div></div></div><div align="center" class="card-action"><a href="{{question.link}}">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
 $templateCache.put('./new-question.html','<side-nav></side-nav><div class="container"><center><h5>{{ \'LB_NQ_TITLE\' | translate }}</h5></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">{{ \'LB_NQ_QUESTION_TITLE\' | translate }}</label></div></div><div class="row"><div class="input-field col s12"><simple-mde id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css"></simple-mde></div></div><div class="row"><div class="input-field col s12"><div id="tag" aqtchip ng-model="nqCtrl.question.tags" placeholder="Question tag" secondary-placeholder="Question tag"></div></div></div><br><div class="row"><div class="input-field col s12"><button id="postQuestion" class="col s12 btn btn-large waves-effect cyan darken-2">{{ \'BT_POST\' | translate }}</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);

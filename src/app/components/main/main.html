@@ -1,6 +1,9 @@
 <side-nav></side-nav>
-<center>
+<center ng-show="mainCtrl.isQuestions">
     <h4>{{ 'LB_MAIN_TITLE' | translate }}</h4>
+</center>
+<center ng-show="!mainCtrl.isQuestions" class="aqt-empty-questions">
+    <span>{{ 'LB_MAIN_EMPTY' | translate }}</span>
 </center>
 <div ng-repeat="question in mainCtrl.questions">
     <div class="row">
