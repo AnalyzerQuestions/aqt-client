@@ -388,7 +388,7 @@ angular.module("components").value("aqtValue", {
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 8955,
-        scopeList: ['read_inbox', 'write_access'],
+        scopeList: ['read_inbox', 'no_expiry ', 'write_access'],
         key: 'bvot7qoa6k1gD4UfXAfYJA((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }
@@ -484,8 +484,9 @@ angular.module("components").controller("mainController", ["$scope", "$http", "q
     vm.questions = {};
     vm.isQuestions = false;
 
-    questionsSoService.getQuestions(function(data) {
-        vm.questions = data.items;
+    questionsSoService.getQuestions(function(response) {
+        vm.questions = response.items;
+        console.log('Questions..', response);
         if (vm.questions.length) {
             vm.isQuestions = true;
         }
@@ -516,8 +517,8 @@ angular.module("components").factory("questionsSoService", ["$http", "aqtValue",
                 site: aqtValue.so.site,
                 filter: 'vqc7J'
             }
-        }).then(function(data) {
-            callback(data);
+        }).success(function(response) {
+            callback(response);
         });
     };
 
@@ -628,5 +629,5 @@ $templateCache.put('./side-nav.component.html','<ul id="slide-out" class="side-n
 $templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s9"><h4><small>{{ \'LB_SUGGESTIONS\' | translate }}</small></h4></div><div class="col s3"><!-- <button class="btn">{{ \'BT_IGNORE\' | translate }}</button> --></div></div><div class="row"><div class="col s12"><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><h4><small>{{ \'LB_LOGIN_TITLE\' | translate }}</small></h4></center><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" id="btn-login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">AUTHORIZE</a></div></form></div>');
-$templateCache.put('./main.html','<side-nav></side-nav><center ng-show="mainCtrl.isQuestions"><h4>{{ \'LB_MAIN_TITLE\' | translate }}</h4></center><center ng-show="!mainCtrl.isQuestions" class="aqt-empty-questions"><span>{{ \'LB_MAIN_EMPTY\' | translate }}</span></center><div ng-repeat="question in mainCtrl.questions"><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">{{question.title}}</span><div class="card-subtitle"><div class="row"><div ng-repeat="tag in question.tags"><span class="new badge" data-badge-caption="{{tag}}"></span></div></div><div align="center" class="aqt-card-info"><div class="col s4"><span>Answers: {{question.answer_count}}</span></div><div class="col s4"><span>Votes: {{question.score}}</span></div><div class="col s4"><span>View : {{question.view_count}}</span></div></div></div></div><div align="center" class="card-action"><a href="{{question.link}}">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
+$templateCache.put('./main.html','<side-nav></side-nav><center ng-show="mainCtrl.isQuestions"><h4>{{ \'LB_MAIN_TITLE\' | translate }}</h4></center><center ng-show="!mainCtrl.isQuestions" class="aqt-empty-questions"><h4>{{ \'LB_MAIN_EMPTY\' | translate }}</h4></center><div ng-repeat="question in mainCtrl.questions"><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">{{question.title}}</span><div class="card-subtitle"><div class="row"><div ng-repeat="tag in question.tags"><span class="new badge" data-badge-caption="{{tag}}"></span></div></div><div align="center" class="aqt-card-info"><div class="col s4"><span>Answers: {{question.answer_count}}</span></div><div class="col s4"><span>Votes: {{question.score}}</span></div><div class="col s4"><span>View : {{question.view_count}}</span></div></div></div></div><div align="center" class="card-action"><a href="{{question.link}}">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb>');
 $templateCache.put('./new-question.html','<side-nav></side-nav><div class="container"><center><h5>{{ \'LB_NQ_TITLE\' | translate }}</h5></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12"><input class="validate" type="text" name="title" ng-model="nqCtrl.question.title" id="title"><label for="title">{{ \'LB_NQ_QUESTION_TITLE\' | translate }}</label></div></div><div class="row"><div class="input-field col s12"><simple-mde id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css"></simple-mde></div></div><div class="row"><div class="input-field col s12"><div id="tag" aqtchip ng-model="nqCtrl.question.tags" placeholder="Question tag" secondary-placeholder="Question tag"></div></div></div><br><div class="row"><div class="input-field col s12"><button id="postQuestion" class="col s12 btn btn-large waves-effect cyan darken-2">{{ \'BT_POST\' | translate }}</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div>');}]);})(window.angular);

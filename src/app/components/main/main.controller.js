@@ -13,8 +13,9 @@ angular.module("components").controller("mainController", function($scope, $http
     vm.questions = {};
     vm.isQuestions = false;
 
-    questionsSoService.getQuestions(function(data) {
-        vm.questions = data.items;
+    questionsSoService.getQuestions(function(response) {
+        vm.questions = response.items;
+        console.log('Questions..', response);
         if (vm.questions.length) {
             vm.isQuestions = true;
         }

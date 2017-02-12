@@ -20,8 +20,8 @@ angular.module("components").factory("questionsSoService", function($http, aqtVa
                 site: aqtValue.so.site,
                 filter: 'vqc7J'
             }
-        }).then(function(data) {
-            callback(data);
+        }).success(function(response) {
+            callback(response);
         });
     };
 
