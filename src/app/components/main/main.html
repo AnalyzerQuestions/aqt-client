@@ -8,11 +8,13 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">{{question.title}}</span>
-                    <div class="card-subtitle">
-                        <div ng-repeat="tag in question.tags">
-                            <span class="new badge" data-badge-caption="{{tag}}"></span>
-                        </div>
 
+                    <div class="card-subtitle">
+                        <div class="row">
+                            <div ng-repeat="tag in question.tags">
+                                <span class="new badge" data-badge-caption="{{tag}}"></span>
+                            </div>
+                        </div>
                         <div align="center" class="aqt-card-info">
                             <div class="col s4">
                                 <span>Answers: {{question.answer_count}}</span>
@@ -23,7 +25,7 @@
                             </div>
 
                             <div class="col s4">
-                                <span>View : {question.view_count}</span>
+                                <span>View : {{question.view_count}}</span>
                             </div>
                         </div>
                     </div>
@@ -37,4 +39,3 @@
 </div>
 
 <btn-fb url="'#/new'" icon="add"></btn-fb>
-'" icon="add"></btn-fb>
