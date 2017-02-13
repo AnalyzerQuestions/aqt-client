@@ -81,6 +81,24 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
 'use strict';
 /**
  * @ngdoc module
+ * @name components
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+
+angular.module('components', ['simplemde']);
+
+angular.module("components").config(["$httpProvider", function($httpProvider) {
+    $httpProvider.interceptors.push("tokenInterceptor");
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
  * @name common
  *
  * @description
@@ -195,24 +213,6 @@ angular.module("common").component('suggestionsModal', {
         };
     }
 });
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name components
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-
-angular.module('components', ['simplemde']);
-
-angular.module("components").config(["$httpProvider", function($httpProvider) {
-    $httpProvider.interceptors.push("tokenInterceptor");
-}]);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -530,7 +530,7 @@ angular.module("components").factory("questionsSoService", ["$http", "aqtValue",
         var userToken = localStorage.getItem("userToken");
         return $http({
             method: 'GET',
-            url: aqtValue.so.api + "/me/questions",
+            url: aqtValue.so.api + "me/questions",
             params: {
                 key: aqtValue.so.key,
                 access_token: userToken,
@@ -615,7 +615,7 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
 
         return $http({
             method: 'POST',
-            url: aqtValue.so.api + '/questions/add',
+            url: aqtValue.so.api + 'questions/add',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
