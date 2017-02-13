@@ -106,7 +106,7 @@
   /*custom simplemde*/
 
   .CodeMirror {
-      min-height: 150px !important;
+      min-height: 100px !important;
   }
 
   .CodeMirror .CodeMirror-scroll {
@@ -121,7 +121,7 @@
 
   /*OVERLAY*/
 
-  
+
   .overlay {
     /* Height & width depends on how you want to reveal the overlay (see JS below) */
     height: 100%;
