@@ -18,11 +18,13 @@ angular.module("aqtApp").config(["$httpProvider", function($httpProvider) {
 angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
 
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
+        $('.button-collapse').sideNav('destroy');
 
         if (localStorage.getItem("userToken")) {
             if ($location.path() === '/') {
                 $location.path('/main');
             }
+
         } else {
             if ($location.path() !== '/') {
                 $location.path('/')
@@ -150,7 +152,8 @@ angular.module("common").component('sideNav', {
                 vm.user = data.items[0];
 
             }).error(function(data) {
-                $location.path('/500');
+                Materialize.toast("Ocorreu um problema ao recuperar o usuário", 6000);
+                $location.path('#/');
             });
 
         } else {
@@ -580,9 +583,7 @@ angular.module("components").controller("newQuestionController", ["questionServi
     };
 
     var postQuestion = function(question) {
-        blockUI.start('posting question...');
         questionService.postQuestion(question, function(response) {
-            blockUI.stop();
             $location.path("/main");
             Materialize.toast("Pergunta Publicada com  sucesso", 6000);
         });

@@ -16,11 +16,13 @@ angular.module("aqtApp").config(function($httpProvider) {
 angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
 
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
+        $('.button-collapse').sideNav('destroy');
 
         if (localStorage.getItem("userToken")) {
             if ($location.path() === '/') {
                 $location.path('/main');
             }
+
         } else {
             if ($location.path() !== '/') {
                 $location.path('/')

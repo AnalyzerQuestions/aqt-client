@@ -28,7 +28,8 @@ angular.module("common").component('sideNav', {
                 vm.user = data.items[0];
 
             }).error(function(data) {
-                $location.path('/500');
+                Materialize.toast("Ocorreu um problema ao recuperar o usuário", 6000);
+                $location.path('#/');
             });
 
         } else {

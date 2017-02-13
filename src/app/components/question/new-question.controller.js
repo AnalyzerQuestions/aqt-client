@@ -32,9 +32,7 @@ angular.module("components").controller("newQuestionController", function(questi
     };
 
     var postQuestion = function(question) {
-        blockUI.start('posting question...');
         questionService.postQuestion(question, function(response) {
-            blockUI.stop();
             $location.path("/main");
             Materialize.toast("Pergunta Publicada com  sucesso", 6000);
         });
