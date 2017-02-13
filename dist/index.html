@@ -2,8 +2,6 @@
 <html ng-app="aqtApp" Xmanifest="appCache.manifest" ng-strict-di>
 
 <head>
-    <base href="/" />
-
     <title>Question's Advisor</title>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,8 +19,8 @@
 </head>
 
 <body>
+    <div id="loading-bar-container"></div>
     <nav-bar name="'APP_NAME'"></nav-bar>
-    <div id="loading-bar-container" class="aqt-loading overlay"></div>
     <div ng-view></div>
 
 </body>
