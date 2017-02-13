@@ -438,8 +438,9 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
                 })
                 if (soPt) {
                     localStorage.setItem("userToken", data.accessToken);
+                    $location.path('/main');
                 } else {
-                    Materialize.toast("Sua Conta não esta associada ao stack overflow, tente mais tarde", 5000);
+                    Materialize.toast("Sua Conta não esta associada ao stack overflow", 5000);
                 }
             },
             error: function(data) {
