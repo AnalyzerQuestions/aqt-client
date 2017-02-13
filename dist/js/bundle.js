@@ -231,7 +231,7 @@ angular.module("components").directive('simpleMde', function() {
                 forceSync: true,
                 indentWithTabs: false,
                 lineWrapping: false,
-                hideIcons: ["heading", "fullscreen", "side-by-side"],
+                hideIcons: ["heading", "fullscreen", "side-by-side", "ordered-list", "guide"],
                 previewRender: function(plainText, preview) {
                     setTimeout(function() {
                         preview.innerHTML = this.parent.markdown(plainText);
