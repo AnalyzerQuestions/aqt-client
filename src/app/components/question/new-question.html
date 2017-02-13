@@ -39,6 +39,12 @@
 				</div>
 			</div>
 
+			<div class='row' ng-show="nqCtrl.open">
+				<div class='input-field col s12'>
+					<button ng-click="nqCtrl.ignoreSuggestions()" class='col s12 btn btn-large waves-effect red darken-2'>IGNORE AND POST</button>
+				</div>
+			</div>
+
 			<suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal>
 
 			</center>

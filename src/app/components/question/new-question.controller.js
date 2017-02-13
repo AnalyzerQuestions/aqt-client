@@ -25,11 +25,17 @@ angular.module("components").controller("newQuestionController", function(questi
                 vm.open = true;
                 $('#suggestionsModal').modal('open');
             }
-            if (vm.suggestions.length < 3) {
+            if (!vm.open) {
                 postQuestion(vm.question);
             }
         });
     };
+
+    vm.ignoreSuggestions = function() {
+        if (vm.suggestions.length < 3) {
+            postQuestion(vm.question);
+        }
+    }
 
     var postQuestion = function(question) {
         questionService.postQuestion(question, function(response) {
