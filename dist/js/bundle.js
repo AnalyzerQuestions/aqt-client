@@ -156,7 +156,7 @@ angular.module("common").component('sideNav', {
             });
 
         } else {
-            //  $location.path('/');
+            $location.path('/');
         }
 
         vm.signout = function() {
@@ -576,7 +576,7 @@ angular.module("components").controller("newQuestionController", ["questionServi
         blockUI.start('posting question...');
         questionService.postQuestion(question, function(response) {
             blockUI.stop();
-            $location.path("/main")
+            $location.path("/main");
             Materialize.toast("Pergunta Publicada com  sucesso", 6000);
         });
     };
