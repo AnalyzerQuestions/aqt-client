@@ -34,7 +34,8 @@ angular.module("components").controller("newQuestionController", function(questi
     var postQuestion = function(question) {
         questionService.postQuestion(question, function(response) {
             $location.path("/main");
-            Materialize.toast("Pergunta Publicada com  sucesso", 6000);
+            //Materialize.toast("Pergunta Publicada com  sucesso", 6000);
+            Materialize.toast("Question published successfully", 6000);
         });
     };
 });
