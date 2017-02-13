@@ -25,7 +25,7 @@ angular.module("components").controller("newQuestionController", function(questi
                 vm.open = true;
                 $('#suggestionsModal').modal('open');
             }
-            if (!vm.open) {
+            if (vm.suggestions.length < 3) {
                 postQuestion(vm.question);
             }
         });
