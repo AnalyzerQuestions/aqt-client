@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'angular-loading-bar', 'ngAnimate']);
+angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'angular-loading-bar', 'blockUI', 'ngAnimate']);
 
 angular.module("aqtApp").config(function($httpProvider) {
     $httpProvider.interceptors.push("errorResolverInterceptor");

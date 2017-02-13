@@ -30,11 +30,11 @@ angular.module("components").controller("loginController", function($location, a
                 if (soPt) {
                     localStorage.setItem("userToken", data.accessToken);
                 } else {
-                    Materialize.toast("Sua Conta não esta associada ao stack overflow, tente mais tarde", 3000);
+                    Materialize.toast("Sua Conta não esta associada ao stack overflow, tente mais tarde", 5000);
                 }
             },
             error: function(data) {
-                Materialize.toast("Ocorreu algum problema do stack overflow, tente mais tarde", 3000);
+                Materialize.toast("Ocorreu algum problema do stack overflow, tente mais tarde", 5000);
             },
             scope: aqtValue.so.scopeList,
             networkUsers: true

@@ -13,7 +13,7 @@
 			</div>
 
 			<div class='row'>
-				<div class='input-field col s12' ng-class="{ 'data-error' : nqForm.title.$error.required && nqForm.title.$dirty}">
+				<div class='input-field col s12' ng-class="{ 'data-error' : nqForm.title.$error.required	}">
 					<input class='validate' name="title" type='text' name='title' ng-model="nqCtrl.question.title" id='title' required="" aria-required="true" />
 					<label for='title'>{{ 'LB_NQ_QUESTION_TITLE' | translate }}</label>
 				</div>
@@ -35,14 +35,15 @@
 
 			<div class='row'>
 				<div class='input-field col s12'>
-					<button type="submit" id="postQuestion" class='col s12 btn btn-large waves-effect cyan darken-2'>{{ 'BT_POST' | translate }}</button>
+					<button type="submit" class='col s12 btn btn-large waves-effect cyan darken-2'>{{ 'BT_POST' | translate }}</button>
 				</div>
 			</div>
+
+			<!-- <div id="loading-bar-container" class="aqt-loading overlay"></div> -->
 
 			<suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal>
 
 			</center>
-
 
 		</form>
 	</div>

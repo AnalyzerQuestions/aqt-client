@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("newQuestionController", function(questionService, $scope, $location) {
+angular.module("components").controller("newQuestionController", function(questionService, $scope, $location, blockUI) {
 
     var vm = this;
 
@@ -16,10 +16,12 @@ angular.module("components").controller("newQuestionController", function(questi
     vm.open = false;
 
     vm.register = function() {
+        blockUI.start('Checking question...');
         questionService.getSuggestions(vm.question, function(response) {
             vm.suggestions = response;
 
             if (vm.suggestions.length) {
+                blockUI.stop();
                 vm.open = true;
                 $('#suggestionsModal').modal('open');
             }
@@ -30,9 +32,11 @@ angular.module("components").controller("newQuestionController", function(questi
     };
 
     var postQuestion = function(question) {
+        blockUI.start('posting question...');
         questionService.postQuestion(question, function(response) {
+            blockUI.stop();
             $location.path("/main")
-            Materialize.toast("Pergunta Publicada com  sucesso", 3000);
+            Materialize.toast("Pergunta Publicada com  sucesso", 6000);
         });
     };
 });

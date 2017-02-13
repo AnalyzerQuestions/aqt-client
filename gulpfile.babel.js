@@ -26,6 +26,7 @@ const PATHS = {
         'node_modules/simplemde/dist/simplemde.min.css',
         'node_modules/angular-loading-bar/build/loading-bar.min.css',
         'node_modules/prismjs/themes/prism.css',
+        'node_modules/angular-block-ui/dist/angular-block-ui.min.css',
     ],
     templates: `${ROOT}/app/**/*.html`,
 
@@ -43,6 +44,7 @@ const PATHS = {
         'angular-loading-bar/build/loading-bar.min.js',
         'angular-animate/angular-animate.js',
         'angular-materialize/src/angular-materialize.min.js',
+        'angular-block-ui/dist/angular-block-ui.min.js',
     ],
     static: [
         `${ROOT}/index.html`,
