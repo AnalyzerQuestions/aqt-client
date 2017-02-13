@@ -21,12 +21,10 @@ angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $l
             if ($location.path() === '/') {
                 $location.path('/main');
             }
-        }
-
-        if ($location.path() === '/') {
-            $rootScope.menuNav = false;
         } else {
-            $rootScope.menuNav = true;
+            if ($location.path() !== '/') {
+                $location.path('/')
+            }
         }
     });
 }]);

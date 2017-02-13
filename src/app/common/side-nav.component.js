@@ -28,7 +28,7 @@ angular.module("common").component('sideNav', {
                 vm.user = data.items[0];
 
             }).error(function(data) {
-                console.log('error user...', data);
+                $location.path('/500');
             });
 
         } else {

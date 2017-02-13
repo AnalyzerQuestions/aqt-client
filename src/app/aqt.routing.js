@@ -24,6 +24,12 @@ angular.module("aqtApp").config(function($routeProvider) {
         templateUrl: './new-question.html',
         controller: 'newQuestionController as nqCtrl'
 
+    }).when("/404", {
+        templateUrl: './404.html'
+
+    }).when("/500", {
+        templateUrl: './500.html'
+
     }).otherwise({
         redirectTo: '/'
     });
