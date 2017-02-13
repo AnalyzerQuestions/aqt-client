@@ -20,7 +20,7 @@ angular.module("components").factory("questionService", function($http, aqtValue
 
         return $http({
             method: 'POST',
-            url: aqtValue.so.api + '/questions/add',
+            url: aqtValue.so.api + 'questions/add',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
