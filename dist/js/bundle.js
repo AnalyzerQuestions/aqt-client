@@ -9,6 +9,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
+(function () {
 angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'angular-loading-bar', 'blockUI', 'ngAnimate']);
 
 angular.module("aqtApp").config(["$httpProvider", function($httpProvider) {
@@ -44,6 +45,8 @@ angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $l
 //   });
 //
 // };
+
+})();
 })(window.angular);
 (function(angular){
 'use strict';
