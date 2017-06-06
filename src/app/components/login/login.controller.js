@@ -23,6 +23,7 @@ angular.module("components").controller("loginController", function($location, a
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
+		   console.log(network);
                     if (network.site_url == "http://pt.stackoverflow.com") {
                         soPt = network;
                     }
