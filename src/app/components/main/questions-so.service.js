@@ -13,7 +13,7 @@ angular.module("components").factory("questionsSoService", function($http, aqtVa
         var userToken = localStorage.getItem("userToken");
         return $http({
             method: 'GET',
-            url: aqtValue.so.api + "/me/questions",
+            url: aqtValue.so.api + "me/questions",
             params: {
                 key: aqtValue.so.key,
                 access_token: userToken,

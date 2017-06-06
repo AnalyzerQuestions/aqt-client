@@ -16,4 +16,4 @@ Web App to help users share "good" questions in Stack Overflow pt-BR.
 ### IMPORTANT POINTS
  * This project require HTTPS protocol.
 
-`MIT License - Copyright (c) 2017 Analyzer Questions Tools`
+`MIT License - Copyright (c) 2017 Question's Analyzer Tools`

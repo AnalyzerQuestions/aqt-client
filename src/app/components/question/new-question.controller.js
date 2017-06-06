@@ -31,10 +31,17 @@ angular.module("components").controller("newQuestionController", function(questi
         });
     };
 
+    vm.ignoreSuggestions = function() {
+        if (vm.suggestions.length < 3) {
+            postQuestion(vm.question);
+        }
+    }
+
     var postQuestion = function(question) {
         questionService.postQuestion(question, function(response) {
             $location.path("/main");
-            Materialize.toast("Pergunta Publicada com  sucesso", 6000);
+            //Materialize.toast("Pergunta Publicada com  sucesso", 6000);
+            Materialize.toast("Question published successfully", 6000);
         });
     };
 });

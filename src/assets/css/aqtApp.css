@@ -110,7 +110,7 @@
   }
 
   .CodeMirror .CodeMirror-scroll {
-      min-height: 150px !important;
+      min-height: 100px !important;
   }
 
   .editor-toolbar {
