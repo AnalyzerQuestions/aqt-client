@@ -29,7 +29,9 @@ angular.module("components").controller("loginController", function($location, a
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
+                    console.log(network);
                     if (network.site_url.startsWith(aqtValue.siteUrl)) {
+                        console.log('Entra aqui !');
                         soPt = network;
                     }
                 })

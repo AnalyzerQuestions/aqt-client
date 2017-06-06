@@ -294,6 +294,38 @@ angular.module("components").directive('aqtchip', ['$timeout', function($timeout
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
+    var errorResolverInterceptor = {
+        responseError: function(response) {
+            if (response.status >= 500) {
+                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
+            }
+
+            if (response.status >= 400 && response.status < 500) {
+                Materialize.toast("Recurso não encontrado", 5000);
+            }
+            return $q.reject(response);
+        }
+    };
+    return errorResolverInterceptor;
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("components").factory("tokenInterceptor", ["$q", "$location", function($q, $location) {
+
+    return {
+
+        'response': function(config) {
+
+            return config;
+        }
+    };
+
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
 angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
     $translateProvider.translations('en', {
         'APP_NAME': "Question's Advisor",
@@ -335,38 +367,6 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
     });
 
     $translateProvider.preferredLanguage('en');
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
-    var errorResolverInterceptor = {
-        responseError: function(response) {
-            if (response.status >= 500) {
-                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
-            }
-
-            if (response.status >= 400 && response.status < 500) {
-                Materialize.toast("Recurso não encontrado", 5000);
-            }
-            return $q.reject(response);
-        }
-    };
-    return errorResolverInterceptor;
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("components").factory("tokenInterceptor", ["$q", "$location", function($q, $location) {
-
-    return {
-
-        'response': function(config) {
-
-            return config;
-        }
-    };
-
 }]);
 })(window.angular);
 (function(angular){
@@ -443,7 +443,9 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
+                    console.log(network);
                     if (network.site_url.startsWith(aqtValue.siteUrl)) {
+                        console.log('Entra aqui !');
                         soPt = network;
                     }
                 })
