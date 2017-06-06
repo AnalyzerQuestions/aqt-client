@@ -1,3 +1,12 @@
+/**
+ * SDK do stackschange para JS, este js é necessário pois neste mesmo foi realizado correções
+ * de bug nas linhas 200-205.
+ *
+ * A versão provida pelo SO esta com bug
+ *
+ * SDK original (https://gist.github.com/kevin-montrose/1655043) [COM ERROS]
+ * @type {{authenticate, init}}
+ */
 window.SE =
     (function(navigator,
         document,

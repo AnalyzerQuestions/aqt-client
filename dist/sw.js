@@ -1,3 +1,9 @@
+/**
+ * Service worker - Offline access - NOT WORK
+ * * @type {string}
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ */
 var CACHE_NAME = 'aqt-cache-v1';
 var urlsToCache = [
   "index.html",

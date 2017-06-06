@@ -443,10 +443,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
-                    console.log(network);
-                    console.log(network.site_url);
                     if (network.site_url == 'https://pt.stackoverflow.com') {
-                        console.log('Entra aqui !');
                         soPt = network;
                     }
                 })

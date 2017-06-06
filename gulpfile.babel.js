@@ -1,3 +1,6 @@
+/**
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
 import gulp from 'gulp';
 import concat from 'gulp-concat';
 import wrap from 'gulp-wrap';
