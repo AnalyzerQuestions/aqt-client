@@ -9,7 +9,6 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-(function () {
 angular.module("aqtApp", ['ngRoute', 'components', 'templates', 'common', 'pascalprecht.translate', 'angular-loading-bar', 'blockUI', 'ngAnimate']);
 
 angular.module("aqtApp").config(["$httpProvider", function($httpProvider) {
@@ -44,8 +43,6 @@ angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $l
 //   });
 //
 // };
-
-})();
 })(window.angular);
 (function(angular){
 'use strict';
@@ -78,6 +75,24 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
     }).otherwise({
         redirectTo: '/'
     });
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc module
+ * @name components
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+
+angular.module('components', ['simplemde']);
+
+angular.module("components").config(["$httpProvider", function($httpProvider) {
+    $httpProvider.interceptors.push("tokenInterceptor");
 }]);
 })(window.angular);
 (function(angular){
@@ -198,24 +213,6 @@ angular.module("common").component('suggestionsModal', {
         };
     }
 });
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
- * @name components
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-
-angular.module('components', ['simplemde']);
-
-angular.module("components").config(["$httpProvider", function($httpProvider) {
-    $httpProvider.interceptors.push("tokenInterceptor");
-}]);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -439,6 +436,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
+		   console.log(network);
                     if (network.site_url == "http://pt.stackoverflow.com") {
                         soPt = network;
                     }
