@@ -12,6 +12,7 @@ angular.module("components").value("aqtValue", {
     api: "https://aqt.herokuapp.com/",
 
     so: {
+        siteUrl: 'https://pt.stackoverflow.com',
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 8955,

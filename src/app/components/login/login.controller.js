@@ -11,6 +11,9 @@ angular.module("components").controller("loginController", function($location, a
 
     var vm = this;
 
+    /**
+     *
+     */
     SE.init({
         clientId: aqtValue.so.clientId,
         key: aqtValue.so.key,
@@ -18,13 +21,15 @@ angular.module("components").controller("loginController", function($location, a
         complete: function(data) {}
     });
 
+    /**
+     *
+     */
     vm.login = function() {
         SE.authenticate({
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
-		   console.log(network);
-                    if (network.site_url == "http://pt.stackoverflow.com") {
+                    if (network.site_url.startsWith(aqtValue.siteUrl)) {
                         soPt = network;
                     }
                 })

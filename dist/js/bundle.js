@@ -81,24 +81,6 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
 'use strict';
 /**
  * @ngdoc module
- * @name components
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-
-angular.module('components', ['simplemde']);
-
-angular.module("components").config(["$httpProvider", function($httpProvider) {
-    $httpProvider.interceptors.push("tokenInterceptor");
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
  * @name common
  *
  * @description
@@ -216,6 +198,24 @@ angular.module("common").component('suggestionsModal', {
 })(window.angular);
 (function(angular){
 'use strict';
+/**
+ * @ngdoc module
+ * @name components
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+
+angular.module('components', ['simplemde']);
+
+angular.module("components").config(["$httpProvider", function($httpProvider) {
+    $httpProvider.interceptors.push("tokenInterceptor");
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
 angular.module("components").directive('simpleMde', function() {
     return {
         restrict: 'E',
@@ -294,38 +294,6 @@ angular.module("components").directive('aqtchip', ['$timeout', function($timeout
 })(window.angular);
 (function(angular){
 'use strict';
-angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
-    var errorResolverInterceptor = {
-        responseError: function(response) {
-            if (response.status >= 500) {
-                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
-            }
-
-            if (response.status >= 400 && response.status < 500) {
-                Materialize.toast("Recurso não encontrado", 5000);
-            }
-            return $q.reject(response);
-        }
-    };
-    return errorResolverInterceptor;
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("components").factory("tokenInterceptor", ["$q", "$location", function($q, $location) {
-
-    return {
-
-        'response': function(config) {
-
-            return config;
-        }
-    };
-
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
 angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
     $translateProvider.translations('en', {
         'APP_NAME': "Question's Advisor",
@@ -371,6 +339,38 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
+    var errorResolverInterceptor = {
+        responseError: function(response) {
+            if (response.status >= 500) {
+                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
+            }
+
+            if (response.status >= 400 && response.status < 500) {
+                Materialize.toast("Recurso não encontrado", 5000);
+            }
+            return $q.reject(response);
+        }
+    };
+    return errorResolverInterceptor;
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("components").factory("tokenInterceptor", ["$q", "$location", function($q, $location) {
+
+    return {
+
+        'response': function(config) {
+
+            return config;
+        }
+    };
+
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
 angular.module("aqtApp").config(["blockUIConfig", function(blockUIConfig) {
     //  blockUIConfig.template = '<div id=""><i class="fa fa-refresh fa-spin"></i></div>';
     blockUIConfig.autoBlock = false;
@@ -400,6 +400,7 @@ angular.module("components").value("aqtValue", {
     api: "https://aqt.herokuapp.com/",
 
     so: {
+        siteUrl: 'https://pt.stackoverflow.com',
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 8955,
@@ -424,6 +425,9 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
 
     var vm = this;
 
+    /**
+     *
+     */
     SE.init({
         clientId: aqtValue.so.clientId,
         key: aqtValue.so.key,
@@ -431,13 +435,15 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
         complete: function(data) {}
     });
 
+    /**
+     *
+     */
     vm.login = function() {
         SE.authenticate({
             success: function(data) {
                 var soPt;
                 data.networkUsers.forEach(function(network) {
-		   console.log(network);
-                    if (network.site_url == "http://pt.stackoverflow.com") {
+                    if (network.site_url.startsWith(aqtValue.siteUrl)) {
                         soPt = network;
                     }
                 })
