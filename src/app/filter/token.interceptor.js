@@ -1,11 +1,21 @@
-angular.module("components").factory("tokenInterceptor", function($q, $location) {
+/**
+ * @ngdoc Service
+ * @name login tokenInterceptor
+ *
+ * @description
+ * Interceptor to get access token of SO
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components")
+    .factory("tokenInterceptor", function ($q, $location) {
 
-    return {
+        return {
 
-        'response': function(config) {
+            'response': function (config) {
 
-            return config;
-        }
-    };
+                return config;
+            }
+        };
 
-});
+    });

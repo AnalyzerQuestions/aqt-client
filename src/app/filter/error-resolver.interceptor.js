@@ -1,4 +1,5 @@
 angular.module("components").factory("errorResolverInterceptor", function($q, $location) {
+
     var errorResolverInterceptor = {
         responseError: function(response) {
             if (response.status >= 500) {
