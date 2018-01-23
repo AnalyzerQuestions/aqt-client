@@ -42,6 +42,10 @@ angular.module("components").controller("loginController", function($location, a
                 } else {
                     Materialize.toast("Sua Conta não esta associada ao stack overflow", 5000);
                 }
+
+                if (localStorage.getItem("userToken")) {
+                    $location.path('/main');
+                }
             },
             error: function(data) {
                 Materialize.toast("Ocorreu algum problema do stack overflow, tente mais tarde", 5000);
