@@ -13,8 +13,13 @@ angular.module("aqtApp").config(function($httpProvider) {
     $httpProvider.interceptors.push("errorResolverInterceptor");
 });
 
-angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
-
+angular.module("aqtApp").run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+    var forceSSL = function () {
+        if ($location.protocol() !== 'https') {
+            $window.location.href = $location.absUrl().replace('http', 'https');
+        }
+    };
+    forceSSL();
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
 
         if (localStorage.getItem("userToken")) {

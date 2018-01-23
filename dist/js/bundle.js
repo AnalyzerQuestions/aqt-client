@@ -15,8 +15,13 @@ angular.module("aqtApp").config(["$httpProvider", function($httpProvider) {
     $httpProvider.interceptors.push("errorResolverInterceptor");
 }]);
 
-angular.module("aqtApp").run(['$rootScope', '$location', function($rootScope, $location) {
-
+angular.module("aqtApp").run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+    var forceSSL = function () {
+        if ($location.protocol() !== 'https') {
+            $window.location.href = $location.absUrl().replace('http', 'https');
+        }
+    };
+    forceSSL();
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
 
         if (localStorage.getItem("userToken")) {
@@ -97,6 +102,66 @@ angular.module("components").config(["$httpProvider", function($httpProvider) {
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
+    $translateProvider.translations('en', {
+        'APP_NAME': "Question's Advisor",
+        'BT_AUTHORIZE': 'AUTHORIZE',
+        'BT_IGNORE': 'IGNORE',
+        'BT_MAIN_AUTH': 'Follow',
+        'BT_POST': 'POST QUESTION',
+        'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
+        'LB_MAIN_TITLE': 'My Questions',
+        'LB_NQ_QUESTION_TITLE': 'Question title',
+        'LB_NQ_TITLE': 'Write your programming question',
+        'LB_NQ_QUESTION_TAG': 'Question tags',
+        'LB_MENU_NEW_Q': 'Ask Question',
+        'LB_MENU_MY_Q': 'My Questions',
+        'LB_MENU_OUT': 'Sign out',
+        'LB_MAIN_EMPTY': 'No published questions',
+        'LB_SUGGESTIONS': 'Improve your question',
+        'MSG_TOAS_CONFIRM': 'Question publised!'
+
+    });
+
+    $translateProvider.translations('pt', {
+        'APP_NAME': "Question's Advisor",
+        'BT_AUTHORIZE': 'AUTORIZAR',
+        'BT_IGNORE': 'IGNORAR',
+        'BT_MAIN_AUTH': 'Acompanhar',
+        'BT_POST': 'PUBLICAR PERGUNTA',
+        'LB_MAIN_TITLE': 'Minhas Perguntas',
+        'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
+        'LB_NQ_TITLE': 'Escreva sua Pergunta de Programação',
+        'LB_NQ_QUESTION_TITLE': 'Título da Pergunta',
+        'LB_NQ_QUESTION_TAG': 'Tags da pergunta',
+        'LB_MENU_NEW_Q': 'Faça uma pergunta',
+        'LB_MENU_MY_Q': 'Minhas Perguntas',
+        'LB_MENU_OUT': 'Sair',
+        'LB_MAIN_EMPTY': 'Nenhuma pergunta publicada',
+        'LB_SUGGESTIONS': 'Dicas para melhorar sua pergunta',
+        'MSG_TOAS_CONFIRM': 'Pergunta postada com sucesso!'
+    });
+
+    $translateProvider.preferredLanguage('en');
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("aqtApp").config(["blockUIConfig", function(blockUIConfig) {
+    //  blockUIConfig.template = '<div id=""><i class="fa fa-refresh fa-spin"></i></div>';
+    blockUIConfig.autoBlock = false;
+
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("aqtApp").config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = false;
+}])
+})(window.angular);
+(function(angular){
+'use strict';
 angular.module("components").directive('simpleMde', function() {
     return {
         restrict: 'E',
@@ -172,6 +237,32 @@ angular.module("components").directive('aqtchip', ['$timeout', function($timeout
         }
     };
 }]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc value
+ * @name AQT Value
+ *
+ * @description
+ * This is major value this app.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").value("aqtValue", {
+
+    api: "https://aqt.herokuapp.com/",
+
+    so: {
+        siteUrl: 'https://pt.stackoverflow.com',
+        site: 'pt.stackoverflow',
+        api: 'https://api.stackexchange.com/2.2/',
+        clientId: 8955,
+        scopeList: ['read_inbox', 'no_expiry', 'write_access'],
+        key: 'bvot7qoa6k1gD4UfXAfYJA((',
+        channelUrl: 'https://appif.herokuapp.com/#/blank'
+    }
+});
 })(window.angular);
 (function(angular){
 'use strict';
@@ -337,195 +428,6 @@ angular.module("components")
 })(window.angular);
 (function(angular){
 'use strict';
-angular.module("aqtApp").config(["blockUIConfig", function(blockUIConfig) {
-    //  blockUIConfig.template = '<div id=""><i class="fa fa-refresh fa-spin"></i></div>';
-    blockUIConfig.autoBlock = false;
-
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("aqtApp").config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-    cfpLoadingBarProvider.spinnerTemplate = false;
-}])
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc value
- * @name AQT Value
- *
- * @description
- * This is major value this app.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").value("aqtValue", {
-
-    api: "https://aqt.herokuapp.com/",
-
-    so: {
-        siteUrl: 'https://pt.stackoverflow.com',
-        site: 'pt.stackoverflow',
-        api: 'https://api.stackexchange.com/2.2/',
-        clientId: 8955,
-        scopeList: ['read_inbox', 'no_expiry', 'write_access'],
-        key: 'bvot7qoa6k1gD4UfXAfYJA((',
-        channelUrl: 'https://appif.herokuapp.com/#/blank'
-    }
-});
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("aqtApp").config(['$translateProvider', function($translateProvider) {
-    $translateProvider.translations('en', {
-        'APP_NAME': "Question's Advisor",
-        'BT_AUTHORIZE': 'AUTHORIZE',
-        'BT_IGNORE': 'IGNORE',
-        'BT_MAIN_AUTH': 'Follow',
-        'BT_POST': 'POST QUESTION',
-        'LB_LOGIN_TITLE': 'Login in with account Stack Overflow in Portuguese',
-        'LB_MAIN_TITLE': 'My Questions',
-        'LB_NQ_QUESTION_TITLE': 'Question title',
-        'LB_NQ_TITLE': 'Write your programming question',
-        'LB_NQ_QUESTION_TAG': 'Question tags',
-        'LB_MENU_NEW_Q': 'Ask Question',
-        'LB_MENU_MY_Q': 'My Questions',
-        'LB_MENU_OUT': 'Sign out',
-        'LB_MAIN_EMPTY': 'No published questions',
-        'LB_SUGGESTIONS': 'Improve your question',
-        'MSG_TOAS_CONFIRM': 'Question publised!'
-
-    });
-
-    $translateProvider.translations('pt', {
-        'APP_NAME': "Question's Advisor",
-        'BT_AUTHORIZE': 'AUTORIZAR',
-        'BT_IGNORE': 'IGNORAR',
-        'BT_MAIN_AUTH': 'Acompanhar',
-        'BT_POST': 'PUBLICAR PERGUNTA',
-        'LB_MAIN_TITLE': 'Minhas Perguntas',
-        'LB_LOGIN': 'Login com sua conta do Stack Overflow em Português',
-        'LB_NQ_TITLE': 'Escreva sua Pergunta de Programação',
-        'LB_NQ_QUESTION_TITLE': 'Título da Pergunta',
-        'LB_NQ_QUESTION_TAG': 'Tags da pergunta',
-        'LB_MENU_NEW_Q': 'Faça uma pergunta',
-        'LB_MENU_MY_Q': 'Minhas Perguntas',
-        'LB_MENU_OUT': 'Sair',
-        'LB_MAIN_EMPTY': 'Nenhuma pergunta publicada',
-        'LB_SUGGESTIONS': 'Dicas para melhorar sua pergunta',
-        'MSG_TOAS_CONFIRM': 'Pergunta postada com sucesso!'
-    });
-
-    $translateProvider.preferredLanguage('en');
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc controller
- * @name question controller
- *
- * @description
- * This is the new question controller.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").controller("newQuestionController", ["questionService", "$scope", "$location", "blockUI", function(questionService, $scope, $location, blockUI) {
-
-    var vm = this;
-
-    vm.question = {};
-    vm.suggestions = [];
-    vm.open = false;
-
-    vm.register = function() {
-        blockUI.start('Checking question...');
-        questionService.getSuggestions(vm.question, function(response) {
-            vm.suggestions = response;
-
-            if (vm.suggestions.length) {
-                blockUI.stop();
-                vm.open = true;
-                $('#suggestionsModal').modal('open');
-            }
-            if (!vm.open) {
-                postQuestion(vm.question);
-            }
-        });
-    };
-
-    vm.ignoreSuggestions = function() {
-        if (vm.suggestions.length < 3) {
-            postQuestion(vm.question);
-        }
-    }
-
-    var postQuestion = function(question) {
-        questionService.postQuestion(question, function(response) {
-            $location.path("/main");
-            //Materialize.toast("Pergunta Publicada com  sucesso", 6000);
-            Materialize.toast("Question published successfully", 6000);
-        });
-    };
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc service
- * @name question Service
- *
- * @description
- * This is the question service.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").factory("questionService", ["$http", "aqtValue", function($http, aqtValue) {
-
-    var _getSuggestions = function(question, callback) {
-        return $http.post(aqtValue.api + "analyzerOnly", question).then(function(response) {
-            callback(response.data);
-        });
-
-    };
-
-    var _postQuestion = function(question, callback) {
-
-        return $http({
-            method: 'POST',
-            url: aqtValue.so.api + 'questions/add',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            transformRequest: function(obj) {
-                var str = [];
-                for (var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
-            },
-            data: {
-                key: aqtValue.so.key,
-                access_token: localStorage.getItem("userToken"),
-                site: aqtValue.so.site,
-                title: question.title,
-                body: question.description,
-                tags: question.tags
-            }
-        }).then(function(response) {
-            callback(response);
-        });
-    };
-
-    return {
-        getSuggestions: _getSuggestions,
-        postQuestion: _postQuestion
-    }
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
 /**
  * @ngdoc controller
  * @name login controller
@@ -644,6 +546,109 @@ angular.module("components").factory("questionsSoService", ["$http", "aqtValue",
 
     return {
         getQuestions: _getQuestions
+    }
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc controller
+ * @name question controller
+ *
+ * @description
+ * This is the new question controller.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").controller("newQuestionController", ["questionService", "$scope", "$location", "blockUI", function(questionService, $scope, $location, blockUI) {
+
+    var vm = this;
+
+    vm.question = {};
+    vm.suggestions = [];
+    vm.open = false;
+
+    vm.register = function() {
+        blockUI.start('Checking question...');
+        questionService.getSuggestions(vm.question, function(response) {
+            vm.suggestions = response;
+
+            if (vm.suggestions.length) {
+                blockUI.stop();
+                vm.open = true;
+                $('#suggestionsModal').modal('open');
+            }
+            if (!vm.open) {
+                postQuestion(vm.question);
+            }
+        });
+    };
+
+    vm.ignoreSuggestions = function() {
+        if (vm.suggestions.length < 3) {
+            postQuestion(vm.question);
+        }
+    }
+
+    var postQuestion = function(question) {
+        questionService.postQuestion(question, function(response) {
+            $location.path("/main");
+            //Materialize.toast("Pergunta Publicada com  sucesso", 6000);
+            Materialize.toast("Question published successfully", 6000);
+        });
+    };
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc service
+ * @name question Service
+ *
+ * @description
+ * This is the question service.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").factory("questionService", ["$http", "aqtValue", function($http, aqtValue) {
+
+    var _getSuggestions = function(question, callback) {
+        return $http.post(aqtValue.api + "analyzerOnly", question).then(function(response) {
+            callback(response.data);
+        });
+
+    };
+
+    var _postQuestion = function(question, callback) {
+
+        return $http({
+            method: 'POST',
+            url: aqtValue.so.api + 'questions/add',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: function(obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: {
+                key: aqtValue.so.key,
+                access_token: localStorage.getItem("userToken"),
+                site: aqtValue.so.site,
+                title: question.title,
+                body: question.description,
+                tags: question.tags
+            }
+        }).then(function(response) {
+            callback(response);
+        });
+    };
+
+    return {
+        getSuggestions: _getSuggestions,
+        postQuestion: _postQuestion
     }
 }]);
 })(window.angular);
