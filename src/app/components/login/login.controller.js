@@ -18,7 +18,9 @@ angular.module("components").controller("loginController", function($location, a
         clientId: aqtValue.so.clientId,
         key: aqtValue.so.key,
         channelUrl: aqtValue.so.channelUrl,
-        complete: function(data) {}
+        complete: function(data) {
+            console.log("Regstrou na API... ", data);
+        }
     });
 
     /**
@@ -27,6 +29,7 @@ angular.module("components").controller("loginController", function($location, a
     vm.login = function() {
         SE.authenticate({
             success: function(data) {
+                console.log("Autenticou... ", data);
                 var soPt;
                 data.networkUsers.forEach(function(network) {
                     if (network.site_url == 'https://pt.stackoverflow.com') {

@@ -11,6 +11,8 @@
   "dependencies": {
     "angular": "1.5.8",
     "angular-animate": "1.5.8",
+    "angular-block-ui": "git+https://github.com/McNull/angular-block-ui.git",
+    "angular-blockUI": "git+https://github.com/McNull/angular-block-ui",
     "angular-loading-bar": "^0.9.0",
     "angular-route": "1.5.8",
     "angular-sanitize": "^1.6.1",
@@ -20,7 +22,6 @@
     "materialize-css": "^0.97.8",
     "prismjs": "^1.6.0",
     "simplemde": "^1.11.2",
-    "angular-blockUI": "git+https://github.com/McNull/angular-block-ui",
     "simplemde-angular": "git+https://github.com/hansottowirtz/simplemde-angular.git"
   },
   "devDependencies": {

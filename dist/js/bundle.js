@@ -294,46 +294,29 @@ angular.module("components").directive('aqtchip', ['$timeout', function($timeout
 })(window.angular);
 (function(angular){
 'use strict';
-angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
-
-    var errorResolverInterceptor = {
-        responseError: function(response) {
-            if (response.status >= 500) {
-                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
-            }
-
-            if (response.status >= 400 && response.status < 500) {
-                Materialize.toast("Recurso não encontrado", 5000);
-            }
-            return $q.reject(response);
-        }
-    };
-    return errorResolverInterceptor;
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
 /**
- * @ngdoc Service
- * @name login tokenInterceptor
+ * @ngdoc value
+ * @name AQT Value
  *
  * @description
- * Interceptor to get access token of SO
+ * This is major value this app.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components")
-    .factory("tokenInterceptor", ["$q", "$location", function ($q, $location) {
+angular.module("components").value("aqtValue", {
 
-        return {
+    api: "https://aqt.herokuapp.com/",
 
-            'response': function (config) {
-
-                return config;
-            }
-        };
-
-    }]);
+    so: {
+        siteUrl: 'https://pt.stackoverflow.com',
+        site: 'pt.stackoverflow',
+        api: 'https://api.stackexchange.com/2.2/',
+        clientId: 8955,
+        scopeList: ['read_inbox', 'no_expiry ', 'write_access'],
+        key: 'bvot7qoa6k1gD4UfXAfYJA((',
+        channelUrl: 'https://appif.herokuapp.com/#/blank'
+    }
+});
 })(window.angular);
 (function(angular){
 'use strict';
@@ -382,6 +365,49 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
 })(window.angular);
 (function(angular){
 'use strict';
+angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
+
+    var errorResolverInterceptor = {
+        responseError: function(response) {
+            if (response.status >= 500) {
+                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
+            }
+
+            if (response.status >= 400 && response.status < 500) {
+                Materialize.toast("Recurso não encontrado", 5000);
+            }
+            return $q.reject(response);
+        }
+    };
+    return errorResolverInterceptor;
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc Service
+ * @name login tokenInterceptor
+ *
+ * @description
+ * Interceptor to get access token of SO
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components")
+    .factory("tokenInterceptor", ["$q", "$location", function ($q, $location) {
+
+        return {
+
+            'response': function (config) {
+
+                return config;
+            }
+        };
+
+    }]);
+})(window.angular);
+(function(angular){
+'use strict';
 angular.module("aqtApp").config(["blockUIConfig", function(blockUIConfig) {
     //  blockUIConfig.template = '<div id=""><i class="fa fa-refresh fa-spin"></i></div>';
     blockUIConfig.autoBlock = false;
@@ -394,32 +420,6 @@ angular.module("aqtApp").config(['cfpLoadingBarProvider', function(cfpLoadingBar
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
     cfpLoadingBarProvider.spinnerTemplate = false;
 }])
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc value
- * @name AQT Value
- *
- * @description
- * This is major value this app.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").value("aqtValue", {
-
-    api: "https://aqt.herokuapp.com/",
-
-    so: {
-        siteUrl: 'https://pt.stackoverflow.com',
-        site: 'pt.stackoverflow',
-        api: 'https://api.stackexchange.com/2.2/',
-        clientId: 8955,
-        scopeList: ['read_inbox', 'no_expiry ', 'write_access'],
-        key: 'bvot7qoa6k1gD4UfXAfYJA((',
-        channelUrl: 'https://appif.herokuapp.com/#/blank'
-    }
-});
 })(window.angular);
 (function(angular){
 'use strict';
@@ -443,7 +443,9 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
         clientId: aqtValue.so.clientId,
         key: aqtValue.so.key,
         channelUrl: aqtValue.so.channelUrl,
-        complete: function(data) {}
+        complete: function(data) {
+            console.log("Regstrou na API... ", data);
+        }
     });
 
     /**
@@ -452,6 +454,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
     vm.login = function() {
         SE.authenticate({
             success: function(data) {
+                console.log("Autenticou... ", data);
                 var soPt;
                 data.networkUsers.forEach(function(network) {
                     if (network.site_url == 'https://pt.stackoverflow.com') {
