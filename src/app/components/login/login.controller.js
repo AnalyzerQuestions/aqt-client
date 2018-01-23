@@ -7,7 +7,7 @@
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").controller("loginController", function($location, aqtValue) {
+angular.module("components").controller("loginController", function($location, $window, aqtValue) {
 
     var vm = this;
 
@@ -39,6 +39,7 @@ angular.module("components").controller("loginController", function($location, a
                 if (soPt) {
                     localStorage.setItem("userToken", data.accessToken);
                     $location.path('/main');
+                    $window.location.reload(); 
                 } else {
                     Materialize.toast("Sua Conta não esta associada ao stack overflow", 5000);
                 }
@@ -54,10 +55,6 @@ angular.module("components").controller("loginController", function($location, a
             scope: aqtValue.so.scopeList,
             networkUsers: true
         });
-        if (localStorage.getItem("userToken")) {
-            $location.path('/main');
-        }
-
     }
 
 });
