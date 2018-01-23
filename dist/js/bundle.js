@@ -81,125 +81,6 @@ angular.module("aqtApp").config(["$routeProvider", function($routeProvider) {
 'use strict';
 /**
  * @ngdoc module
- * @name common
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module('common', []);
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("common").component('btnFb', {
-
-  bindings: {
-    url: '<',
-    icon: '@'
-  },
-
-  templateUrl: './floating-button.component.html',
-
-});
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("common").component('navBar', {
-
-  bindings: {
-    name: '<'
-  },
-
-  templateUrl: './navBar.component.html',
-
-  controller: function(){
-
-  }
-
-});
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("common").component('sideNav', {
-
-    templateUrl: './side-nav.component.html',
-
-    controller: ["$location", "$http", "aqtValue", function($location, $http, aqtValue) {
-
-        $(".button-collapse").sideNav({
-            draggable: true
-        });
-
-        var userToken = localStorage.getItem("userToken");
-
-        var vm = this;
-        vm.user = {};
-
-        if (userToken) {
-
-            $http({
-                method: 'GET',
-                url: aqtValue.so.api + "/me",
-                params: {
-                    key: aqtValue.so.key,
-                    access_token: userToken,
-                    site: aqtValue.so.site,
-                    filter: 'vqc7J'
-                }
-            }).success(function(data) {
-                vm.user = data.items[0];
-
-            }).error(function(data) {
-                Materialize.toast("Ocorreu um problema ao recuperar o usuário", 6000);
-                $location.path('#/');
-            });
-
-        } else {
-            $location.path('/');
-        }
-
-        vm.signout = function() {
-            localStorage.clear();
-            $location.path('#/login');
-        }
-    }]
-});
-})(window.angular);
-(function(angular){
-'use strict';
-angular.module("common").component('suggestionsModal', {
-
-    bindings: {
-        suggestions: '=',
-        open: '<'
-    },
-
-    templateUrl: './suggestions.component.html',
-
-    controller: function() {
-
-        function showModal() {
-            $('#suggestionsModal').modal('open');
-        };
-
-        this.$onInit = function() {
-            $(document).ready(function() {
-                $('.modal').modal();
-
-            });
-        };
-
-        this.onDestry = function() {
-            this.suggestions = [];
-        };
-    }
-});
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc module
  * @name components
  *
  * @description
@@ -424,6 +305,125 @@ angular.module("components").value("aqtValue", {
 (function(angular){
 'use strict';
 /**
+ * @ngdoc module
+ * @name common
+ *
+ * @description
+ * This is the common module.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module('common', []);
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("common").component('btnFb', {
+
+  bindings: {
+    url: '<',
+    icon: '@'
+  },
+
+  templateUrl: './floating-button.component.html',
+
+});
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("common").component('navBar', {
+
+  bindings: {
+    name: '<'
+  },
+
+  templateUrl: './navBar.component.html',
+
+  controller: function(){
+
+  }
+
+});
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("common").component('sideNav', {
+
+    templateUrl: './side-nav.component.html',
+
+    controller: ["$location", "$http", "aqtValue", function($location, $http, aqtValue) {
+
+        $(".button-collapse").sideNav({
+            draggable: true
+        });
+
+        var userToken = localStorage.getItem("userToken");
+
+        var vm = this;
+        vm.user = {};
+
+        if (userToken) {
+
+            $http({
+                method: 'GET',
+                url: aqtValue.so.api + "/me",
+                params: {
+                    key: aqtValue.so.key,
+                    access_token: userToken,
+                    site: aqtValue.so.site,
+                    filter: 'vqc7J'
+                }
+            }).success(function(data) {
+                vm.user = data.items[0];
+
+            }).error(function(data) {
+                Materialize.toast("Ocorreu um problema ao recuperar o usuário", 6000);
+                $location.path('#/');
+            });
+
+        } else {
+            $location.path('/');
+        }
+
+        vm.signout = function() {
+            localStorage.clear();
+            $location.path('#/login');
+        }
+    }]
+});
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("common").component('suggestionsModal', {
+
+    bindings: {
+        suggestions: '=',
+        open: '<'
+    },
+
+    templateUrl: './suggestions.component.html',
+
+    controller: function() {
+
+        function showModal() {
+            $('#suggestionsModal').modal('open');
+        };
+
+        this.$onInit = function() {
+            $(document).ready(function() {
+                $('.modal').modal();
+
+            });
+        };
+
+        this.onDestry = function() {
+            this.suggestions = [];
+        };
+    }
+});
+})(window.angular);
+(function(angular){
+'use strict';
+/**
  * @ngdoc controller
  * @name login controller
  *
@@ -469,6 +469,7 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
                 }
 
                 if (localStorage.getItem("userToken")) {
+                    console.log("Conseguiu recuperar token... ");
                     $location.path('/main');
                 }
             },
@@ -478,10 +479,10 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
             scope: aqtValue.so.scopeList,
             networkUsers: true
         });
-
         if (localStorage.getItem("userToken")) {
             $location.path('/main');
         }
+
     }
 
 }]);
@@ -657,5 +658,5 @@ $templateCache.put('./side-nav.component.html','<ul id="slide-out" class="side-n
 $templateCache.put('./suggestions.component.html','<div ng-show="$ctrl.open" {{$ctrl.open}}><div id="suggestionsModal" class="modal bottom-sheet"><div class="modal-content"><div class="row"><div class="col s9"><h4><small>{{ \'LB_SUGGESTIONS\' | translate }}</small></h4></div><div class="col s3"><!-- <button class="btn">{{ \'BT_IGNORE\' | translate }}</button> --></div></div><div class="row"><div class="col s12"><ul class="collection"><li class="collection-item" ng-repeat="sug in $ctrl.suggestions"><span class="title"><b>{{sug.header}}</b></span><br><span ng-repeat="m in sug.subHeaders"><i>{{m}}</i><br></span></li></ul></div></div></div></div></div>');
 $templateCache.put('./blank.html','');
 $templateCache.put('./login.html','<div class="login"><div class="section"></div><div class="section"></div><div class="container"><center><img class="responsive-img" style="width: 300px" src="../assets/img/so-logo.png"><h5><small>{{ \'LB_LOGIN_TITLE\' | translate }}</small></h5></center><div class="section"></div><form class="col s12"><div class="row"><a name="btn_login" id="btn-login" ng-click="loginCtrl.login()" class="col s12 btn btn-large waves-effect yellow darken-3">AUTHORIZE</a></div></form></div></div>');
-$templateCache.put('./main.html','<main><side-nav></side-nav><center ng-show="mainCtrl.isQuestions"><h5>{{ \'LB_MAIN_TITLE\' | translate }}</h5></center><center ng-show="!mainCtrl.isQuestions" class="aqt-empty-questions"><h5>{{ \'LB_MAIN_EMPTY\' | translate }}</h5></center><div ng-repeat="question in mainCtrl.questions"><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">{{question.title}}</span><div class="card-subtitle"><div class="row"><div ng-repeat="tag in question.tags"><span class="new badge" data-badge-caption="{{tag}}"></span></div></div><div align="center" class="aqt-card-info"><div class="col s4"><span>Answers: {{question.answer_count}}</span></div><div class="col s4"><span>Votes: {{question.score}}</span></div><div class="col s4"><span>View : {{question.view_count}}</span></div></div></div></div><div align="center" class="card-action"><a href="{{question.link}}">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb></main>');
-$templateCache.put('./new-question.html','<main><side-nav></side-nav><div class="container"><center><h5>{{ \'LB_NQ_TITLE\' | translate }}</h5></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12" ng-class="{ \'data-error\' : nqForm.title.$error.required\t}"><input class="validate" name="title" type="text" name="title" ng-model="nqCtrl.question.title" id="title" required="" aria-required="true"><label for="title">{{ \'LB_NQ_QUESTION_TITLE\' | translate }}</label></div></div><div class="row"><div class="input-field col s12"><simple-mde id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css" required="" aria-required="true"></simple-mde></div></div><div class="row"><div class="input-field col s12"><div id="tag" aqtchip ng-model="nqCtrl.question.tags" placeholder="Question tag" secondary-placeholder="Question tag" required="" aria-required="true"></div></div></div><br><div class="row"><div class="input-field col s12"><button type="submit" class="col s12 btn btn-large waves-effect cyan darken-2">{{ \'BT_POST\' | translate }}</button></div></div><div class="row" ng-show="nqCtrl.open"><div class="input-field col s12"><button ng-click="nqCtrl.ignoreSuggestions()" class="col s12 btn btn-large waves-effect red darken-2">IGNORE AND POST</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div></main>');}]);})(window.angular);
+$templateCache.put('./new-question.html','<main><side-nav></side-nav><div class="container"><center><h5>{{ \'LB_NQ_TITLE\' | translate }}</h5></center><form class="col s12" name="nqForm" ng-submit="nqForm.$valid && nqCtrl.register()" role="form" novalidate><div class="row"><div class="col s12"></div></div><div class="row"><div class="input-field col s12" ng-class="{ \'data-error\' : nqForm.title.$error.required\t}"><input class="validate" name="title" type="text" name="title" ng-model="nqCtrl.question.title" id="title" required="" aria-required="true"><label for="title">{{ \'LB_NQ_QUESTION_TITLE\' | translate }}</label></div></div><div class="row"><div class="input-field col s12"><simple-mde id="description" ng-model="nqCtrl.question.description" class="materialize-textarea language-css" required="" aria-required="true"></simple-mde></div></div><div class="row"><div class="input-field col s12"><div id="tag" aqtchip ng-model="nqCtrl.question.tags" placeholder="Question tag" secondary-placeholder="Question tag" required="" aria-required="true"></div></div></div><br><div class="row"><div class="input-field col s12"><button type="submit" class="col s12 btn btn-large waves-effect cyan darken-2">{{ \'BT_POST\' | translate }}</button></div></div><div class="row" ng-show="nqCtrl.open"><div class="input-field col s12"><button ng-click="nqCtrl.ignoreSuggestions()" class="col s12 btn btn-large waves-effect red darken-2">IGNORE AND POST</button></div></div><suggestions-modal suggestions="nqCtrl.suggestions" open="nqCtrl.open"></suggestions-modal></form></div></main>');
+$templateCache.put('./main.html','<main><side-nav></side-nav><center ng-show="mainCtrl.isQuestions"><h5>{{ \'LB_MAIN_TITLE\' | translate }}</h5></center><center ng-show="!mainCtrl.isQuestions" class="aqt-empty-questions"><h5>{{ \'LB_MAIN_EMPTY\' | translate }}</h5></center><div ng-repeat="question in mainCtrl.questions"><div class="row"><div class="col s12 m6"><div class="card"><div class="card-content"><span class="card-title">{{question.title}}</span><div class="card-subtitle"><div class="row"><div ng-repeat="tag in question.tags"><span class="new badge" data-badge-caption="{{tag}}"></span></div></div><div align="center" class="aqt-card-info"><div class="col s4"><span>Answers: {{question.answer_count}}</span></div><div class="col s4"><span>Votes: {{question.score}}</span></div><div class="col s4"><span>View : {{question.view_count}}</span></div></div></div></div><div align="center" class="card-action"><a href="{{question.link}}">{{ \'BT_MAIN_AUTH\' | translate }}</a></div></div></div></div></div><btn-fb url="\'#/new\'" icon="add"></btn-fb></main>');}]);})(window.angular);

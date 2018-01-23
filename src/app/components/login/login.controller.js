@@ -44,6 +44,7 @@ angular.module("components").controller("loginController", function($location, a
                 }
 
                 if (localStorage.getItem("userToken")) {
+                    console.log("Conseguiu recuperar token... ");
                     $location.path('/main');
                 }
             },
@@ -53,10 +54,10 @@ angular.module("components").controller("loginController", function($location, a
             scope: aqtValue.so.scopeList,
             networkUsers: true
         });
-
         if (localStorage.getItem("userToken")) {
             $location.path('/main');
         }
+
     }
 
 });
