@@ -16,7 +16,7 @@ angular.module("components").value("aqtValue", {
         site: 'pt.stackoverflow',
         api: 'https://api.stackexchange.com/2.2/',
         clientId: 8955,
-        scopeList: ['read_inbox', 'no_expiry ', 'write_access'],
+        scopeList: ['read_inbox', 'no_expiry', 'write_access'],
         key: 'bvot7qoa6k1gD4UfXAfYJA((',
         channelUrl: 'https://appif.herokuapp.com/#/blank'
     }

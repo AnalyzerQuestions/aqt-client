@@ -198,24 +198,6 @@ angular.module("common").component('suggestionsModal', {
 })(window.angular);
 (function(angular){
 'use strict';
-/**
- * @ngdoc module
- * @name components
- *
- * @description
- * This is the common module.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-
-angular.module('components', ['simplemde']);
-
-angular.module("components").config(["$httpProvider", function($httpProvider) {
-    $httpProvider.interceptors.push("tokenInterceptor");
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
 angular.module("components").directive('simpleMde', function() {
     return {
         restrict: 'E',
@@ -295,28 +277,63 @@ angular.module("components").directive('aqtchip', ['$timeout', function($timeout
 (function(angular){
 'use strict';
 /**
- * @ngdoc value
- * @name AQT Value
+ * @ngdoc module
+ * @name components
  *
  * @description
- * This is major value this app.
+ * This is the common module.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  **/
-angular.module("components").value("aqtValue", {
 
-    api: "https://aqt.herokuapp.com/",
+angular.module('components', ['simplemde']);
 
-    so: {
-        siteUrl: 'https://pt.stackoverflow.com',
-        site: 'pt.stackoverflow',
-        api: 'https://api.stackexchange.com/2.2/',
-        clientId: 8955,
-        scopeList: ['read_inbox', 'no_expiry ', 'write_access'],
-        key: 'bvot7qoa6k1gD4UfXAfYJA((',
-        channelUrl: 'https://appif.herokuapp.com/#/blank'
-    }
-});
+angular.module("components").config(["$httpProvider", function($httpProvider) {
+    $httpProvider.interceptors.push("tokenInterceptor");
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
+
+    var errorResolverInterceptor = {
+        responseError: function(response) {
+            if (response.status >= 500) {
+                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
+            }
+
+            if (response.status >= 400 && response.status < 500) {
+                Materialize.toast("Recurso não encontrado", 5000);
+            }
+            return $q.reject(response);
+        }
+    };
+    return errorResolverInterceptor;
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc Service
+ * @name login tokenInterceptor
+ *
+ * @description
+ * Interceptor to get access token of SO
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components")
+    .factory("tokenInterceptor", ["$q", "$location", function ($q, $location) {
+
+        return {
+
+            'response': function (config) {
+
+                return config;
+            }
+        };
+
+    }]);
 })(window.angular);
 (function(angular){
 'use strict';
@@ -365,49 +382,6 @@ angular.module("aqtApp").config(['$translateProvider', function($translateProvid
 })(window.angular);
 (function(angular){
 'use strict';
-angular.module("components").factory("errorResolverInterceptor", ["$q", "$location", function($q, $location) {
-
-    var errorResolverInterceptor = {
-        responseError: function(response) {
-            if (response.status >= 500) {
-                Materialize.toast("Ocorreu algum erro no servidor... tente novamente mais tarde!", 5000);
-            }
-
-            if (response.status >= 400 && response.status < 500) {
-                Materialize.toast("Recurso não encontrado", 5000);
-            }
-            return $q.reject(response);
-        }
-    };
-    return errorResolverInterceptor;
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc Service
- * @name login tokenInterceptor
- *
- * @description
- * Interceptor to get access token of SO
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components")
-    .factory("tokenInterceptor", ["$q", "$location", function ($q, $location) {
-
-        return {
-
-            'response': function (config) {
-
-                return config;
-            }
-        };
-
-    }]);
-})(window.angular);
-(function(angular){
-'use strict';
 angular.module("aqtApp").config(["blockUIConfig", function(blockUIConfig) {
     //  blockUIConfig.template = '<div id=""><i class="fa fa-refresh fa-spin"></i></div>';
     blockUIConfig.autoBlock = false;
@@ -420,6 +394,32 @@ angular.module("aqtApp").config(['cfpLoadingBarProvider', function(cfpLoadingBar
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
     cfpLoadingBarProvider.spinnerTemplate = false;
 }])
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc value
+ * @name AQT Value
+ *
+ * @description
+ * This is major value this app.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").value("aqtValue", {
+
+    api: "https://aqt.herokuapp.com/",
+
+    so: {
+        siteUrl: 'https://pt.stackoverflow.com',
+        site: 'pt.stackoverflow',
+        api: 'https://api.stackexchange.com/2.2/',
+        clientId: 8955,
+        scopeList: ['read_inbox', 'no_expiry', 'write_access'],
+        key: 'bvot7qoa6k1gD4UfXAfYJA((',
+        channelUrl: 'https://appif.herokuapp.com/#/blank'
+    }
+});
 })(window.angular);
 (function(angular){
 'use strict';
@@ -480,66 +480,6 @@ angular.module("components").controller("loginController", ["$location", "aqtVal
         }
     }
 
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc controller
- * @name Main controller
- *
- * @description
- * This is the main controller.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").controller("mainController", ["$scope", "$http", "questionsSoService", function($scope, $http, questionsSoService) {
-
-    var vm = this;
-    vm.questions = {};
-    vm.isQuestions = false;
-
-    questionsSoService.getQuestions(function(response) {
-        vm.questions = response.items;
-        console.log(vm.questions);
-        if (vm.questions.length) {
-            vm.isQuestions = true;
-        }
-    });
-}]);
-})(window.angular);
-(function(angular){
-'use strict';
-/**
- * @ngdoc service
- * @name questiions SO Service
- *
- * @description
- * This is the questions from SO service.
- *
- * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
- **/
-angular.module("components").factory("questionsSoService", ["$http", "aqtValue", function($http, aqtValue) {
-
-    var _getQuestions = function(callback) {
-        var userToken = localStorage.getItem("userToken");
-        return $http({
-            method: 'GET',
-            url: aqtValue.so.api + "me/questions",
-            params: {
-                key: aqtValue.so.key,
-                access_token: userToken,
-                site: aqtValue.so.site,
-                filter: 'vqc7J'
-            }
-        }).success(function(response) {
-            callback(response);
-        });
-    };
-
-    return {
-        getQuestions: _getQuestions
-    }
 }]);
 })(window.angular);
 (function(angular){
@@ -642,6 +582,66 @@ angular.module("components").factory("questionService", ["$http", "aqtValue", fu
     return {
         getSuggestions: _getSuggestions,
         postQuestion: _postQuestion
+    }
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc controller
+ * @name Main controller
+ *
+ * @description
+ * This is the main controller.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").controller("mainController", ["$scope", "$http", "questionsSoService", function($scope, $http, questionsSoService) {
+
+    var vm = this;
+    vm.questions = {};
+    vm.isQuestions = false;
+
+    questionsSoService.getQuestions(function(response) {
+        vm.questions = response.items;
+        console.log(vm.questions);
+        if (vm.questions.length) {
+            vm.isQuestions = true;
+        }
+    });
+}]);
+})(window.angular);
+(function(angular){
+'use strict';
+/**
+ * @ngdoc service
+ * @name questiions SO Service
+ *
+ * @description
+ * This is the questions from SO service.
+ *
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ **/
+angular.module("components").factory("questionsSoService", ["$http", "aqtValue", function($http, aqtValue) {
+
+    var _getQuestions = function(callback) {
+        var userToken = localStorage.getItem("userToken");
+        return $http({
+            method: 'GET',
+            url: aqtValue.so.api + "me/questions",
+            params: {
+                key: aqtValue.so.key,
+                access_token: userToken,
+                site: aqtValue.so.site,
+                filter: 'vqc7J'
+            }
+        }).success(function(response) {
+            callback(response);
+        });
+    };
+
+    return {
+        getQuestions: _getQuestions
     }
 }]);
 })(window.angular);
