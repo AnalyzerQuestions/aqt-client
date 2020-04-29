@@ -18,7 +18,7 @@
     "angular-sanitize": "^1.6.1",
     "angular-translate": "^2.13.1",
     "express": "~4.14.0",
-    "jquery": "3.1.1",
+    "jquery": "3.5.0",
     "materialize-css": "^0.97.8",
     "prismjs": "^1.6.0",
     "simplemde": "^1.11.2",
