@@ -20,7 +20,7 @@
     "express": "~4.14.0",
     "jquery": "3.1.1",
     "materialize-css": "^0.97.8",
-    "prismjs": "^1.6.0",
+    "prismjs": "^1.24.0",
     "simplemde": "^1.11.2",
     "simplemde-angular": "git+https://github.com/hansottowirtz/simplemde-angular.git"
   },
